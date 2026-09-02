@@ -53,7 +53,28 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
   font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim);
 }
 .dateline .tag{color:var(--svh-ink);font-weight:600;letter-spacing:var(--ls-label)}
-.dateline .names{color:var(--svh-ink);letter-spacing:var(--ls-names)}
+.dateline .loc{color:var(--svh-dim)}
+.names{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);list-style:none;margin:0;padding:0;
+  color:var(--svh-ink);letter-spacing:var(--ls-names)}
+.names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
+.names li:last-child::after{content:""}
+
+/* A partir de 1200px la mitad derecha quedaba muerta y se leía como que se
+   acabó el contenido. La credencial se va a una columna propia junto al
+   titular: el hueco se vuelve asimetría decidida, sin agregar material. */
+@media (min-width:1200px){
+  .front{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,15rem);
+    column-gap:clamp(3rem,5vw,5rem);align-items:start}
+  .front .eye{grid-column:1/-1}
+  .front h1{grid-column:1;grid-row:2}
+  .front .lede{grid-column:1;grid-row:3}
+  .dateline{grid-column:2;grid-row:2/span 2;flex-direction:column;align-items:flex-start;
+    gap:var(--s3);margin-top:0;padding:.85rem 0 0 clamp(1.5rem,2.5vw,2.5rem);
+    border-top:0;border-left:1px solid var(--svh-rule);align-self:stretch}
+  .names{flex-direction:column;gap:.45em}
+  .names li::after{content:""}
+  .dateline .loc{margin-top:auto;padding-bottom:.35rem}
+}
 
 /* ── grupos del índice ────────────────────────────────────────────────── */
 .grp{margin-top:var(--rhythm-group)}
@@ -104,11 +125,13 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 
 /* fila que se agrega — colgada del nivel de arriba */
 .row.add{padding-top:.55rem;padding-bottom:.55rem}
+/* Cuelga del renglón de arriba con su propia guía y un signo +. El
+   border-left + indent era el patrón de sub-ítem más genérico que existe. */
+.row.add{padding-left:clamp(1rem,3.5vw,2.25rem)}
 .row.add .n{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;letter-spacing:0;
-  color:var(--svh-dim);padding-left:var(--s4);border-left:1px solid var(--svh-rule);white-space:normal}
+  color:var(--svh-dim);white-space:normal}
+.row.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
 .row.add .v{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;color:var(--svh-dim)}
-.row.add .d{padding-left:var(--s4)}
-.row.add .lead{border-bottom-color:transparent}
 
 /* ── el único movimiento: la fila que se abre ─────────────────────────── */
 a.row{display:grid}
@@ -166,6 +189,7 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 .open{
   margin:0;position:relative;overflow:hidden;
   min-height:clamp(19rem,68vh,42rem);
+  min-height:clamp(19rem,68svh,42rem);
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:clamp(3rem,9vw,6rem) var(--edge) clamp(2rem,5vw,3.25rem);
   color:var(--svh-on-tint);background:var(--lugar);
@@ -187,10 +211,16 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 .detail h2{margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body)}
-.detail .hizo{display:flex;flex-wrap:wrap;gap:.55em var(--s4);list-style:none;margin:var(--s8) 0 0;padding:0;
-  font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--svh-dim);line-height:1.5}
-.detail .hizo li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
-.detail .hizo li:last-child::after{content:""}
+/* Cada entregable sobre su propio filete: es una hoja de especificación y
+   reusa el filete del índice. Las versalitas separadas por punto medio son
+   el recurso por defecto de todo portafolio de estudio. */
+.detail .hizo{display:grid;grid-template-columns:1fr;gap:0 clamp(1.5rem,4vw,3rem);
+  list-style:none;margin:var(--s8) 0 0;padding:0;
+  font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--svh-dim);line-height:1.4}
+@media (min-width:560px){.detail .hizo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:900px){.detail .hizo{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.detail .hizo li{padding:.7em 0;border-top:1px solid var(--svh-rule)}
 /* 44px de alto real sin mover el ritmo óptico: el relleno se compensa
    con margen negativo, así el subrayado sigue donde estaba. */
 .detail .visita{display:inline-flex;align-items:center;min-height:44px;
@@ -214,19 +244,22 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
    y cierra con su gemela. Sin ese cierre no se sabe dónde termina, y el
    índice de abajo parece parte del proyecto. */
 .cierre{
-  display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);
-  width:100%;margin-top:clamp(3rem,8vw,5.5rem);
+  display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4) var(--s6);
+  flex-wrap:wrap;width:100%;margin-top:clamp(3rem,8vw,5.5rem);
   padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
-  background:var(--lugar);color:rgba(242,239,234,.68);border:0;
-  font:inherit;text-align:left;cursor:pointer;
-  transition:color var(--motion-fast)}
-.cierre:hover{color:var(--svh-on-tint)}
+  background:var(--lugar);color:rgba(242,239,234,.70)}
+.cierre button,.cierre a{background:none;border:0;padding:0;font:inherit;color:inherit;
+  cursor:pointer;text-decoration:none;transition:color var(--motion-fast)}
+.cierre button:hover,.cierre a:hover{color:var(--svh-on-tint)}
 .cierre .et{font-family:var(--svh-serif);font-size:var(--t-value);
   line-height:var(--lh-tight);letter-spacing:var(--ls-row);color:var(--svh-on-tint)}
 .cierre .de{font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase}
-.cierre .fl{display:inline-block;margin-left:.3em;font-size:.72em;
+.cierre .fl{display:inline-block;margin-left:.35em;font-size:.72em;
   transition:transform var(--motion-fast)}
-.cierre:hover .fl{transform:translateY(-3px)}
+.cierre button:hover .fl{transform:translateY(-3px)}
+.cierre a:hover .fl{transform:translateY(3px)}
+.cierre button:focus-visible,.cierre a:focus-visible{
+  outline:2px solid var(--svh-on-tint);outline-offset:4px}
 
 /* El último renglón de la página es la dirección de correo, puesta como
    el nombre de una fila. No hay botón: la acción es leer una línea y
@@ -237,11 +270,22 @@ a.row--cta:hover .n{text-decoration:none}
 a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
 a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
 
+/* Ritmo por peso, no un solo valor: la prueba y el precio respiran igual,
+   la letra chica va más apretada, y el cierre pide el doble de aire. */
+.grp:nth-of-type(3){margin-top:clamp(2rem,6vw,3.5rem)}
 .grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
+.grp[id]{scroll-margin-top:clamp(1rem,4vw,2.5rem)}
 
-.sig{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
-  margin-top:var(--rhythm-group);padding-top:var(--s3);border-top:1px solid var(--svh-rule);
-  font-size:var(--t-small);color:var(--svh-dim)}
+/* Colofón. Lo último que se ve, con el mismo filete de 1.5px que abre cada
+   grupo del índice, no dos spans a 13px en un flex sin decidir. */
+.colofon{margin-top:clamp(3.5rem,11vw,6.5rem);padding-top:clamp(1rem,2.5vw,1.5rem);
+  border-top:1.5px solid var(--svh-rule-hard);display:grid;gap:var(--s4) var(--s8)}
+@media (min-width:640px){.colofon{grid-template-columns:minmax(0,1fr) auto;align-items:baseline}}
+.colofon .frase{margin:0;font-family:var(--svh-serif);font-size:var(--t-plain);
+  line-height:1.28;letter-spacing:-.01em;max-width:34ch;color:var(--svh-ink)}
+.colofon .dom{margin:0;font-size:var(--t-label);letter-spacing:var(--ls-label);
+  text-transform:uppercase;color:var(--svh-dim);justify-self:start}
+@media (min-width:640px){.colofon .dom{justify-self:end}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}

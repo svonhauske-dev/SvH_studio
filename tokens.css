@@ -30,8 +30,8 @@
   --lugar: #101010;
 
   /* ----------------------------------------------------------------- TIPO */
-  --svh-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --svh-sans:  "Archivo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --svh-serif: "Instrument Serif", "Instrument Serif respaldo", Georgia, "Times New Roman", serif;
+  --svh-sans:  "Archivo", "Archivo respaldo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
 
   /* Escala fluida — móvil primero. min → max en px al margen. */
   --t-display:  clamp(2.125rem, 8.6vw, 5.75rem);   /*  34 →  92  frontispicio */

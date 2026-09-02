@@ -43,6 +43,13 @@
       }
     });
 
+    /* Salir del capítulo hacia el precio: cierra primero, para no dejar un
+       proyecto abierto a la espalda del visitante. */
+    var alPrecio = panel.querySelector('[data-cierra-y-va]');
+    if (alPrecio) {
+      alPrecio.addEventListener('click', function () { estado(false); });
+    }
+
     /* La barra de cierre devuelve al índice, en el mismo lugar del que saliste. */
     if (cierre) {
       cierre.addEventListener('click', function () {

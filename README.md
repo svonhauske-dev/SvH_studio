@@ -9,6 +9,8 @@ HTML, CSS y JavaScript planos. Sin build, sin dependencias.
 
     index.html      El sitio completo: frontispicio + índice.
     404.html        La misma retícula, una entrada que no existe.
+    fonts.css       Tipografía autoalojada + respaldos con métricas medidas.
+    fonts/          64 KB de woff2, subconjunto latino. Sin terceros.
     tokens.css      Sistema de diseño. Color, tipo, espacio, movimiento.
     site.css        Estilos. Depende de tokens.css.
     index.js        El único movimiento del sitio: la fila que se abre.
@@ -53,6 +55,21 @@ barra gemela, para que se vea dónde termina.
 - [ ] **WhatsApp.** Fuera del sitio a propósito: no se publica un número
       personal. Cuando haya una línea aparte con WhatsApp Business, entra
       como una fila más del grupo *Escríbeme*.
+
+## Accesibilidad y rendimiento — verificado, no supuesto
+
+Medido en el navegador con emulación de dispositivo real (375 / 768 / 1024 /
+1440 / 1920), no estimado:
+
+- Todo el texto pasa WCAG AA. `--svh-dim` está en `.62` porque es el mínimo
+  con holgura sobre el papel (5.21:1); a `.54` daba 4.02:1 y reprobaba.
+- El panel cerrado lleva `inert`: sus enlaces no se alcanzan con Tab.
+- Blancos táctiles de 44px. Anillo de foco invertido sobre el color del lugar.
+- Las imágenes llevan dimensiones intrínsecas y los respaldos tipográficos
+  llevan `size-adjust` medido, así que no hay salto de maquetación.
+- `svh` en vez de `vh` para que la foto no salte con la barra del navegador.
+- Cero peticiones a terceros. Cero errores de consola. Cero desbordamiento
+  horizontal en ningún ancho.
 
 ## Fotografía
 

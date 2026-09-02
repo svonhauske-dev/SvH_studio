@@ -7,18 +7,25 @@
 <meta name="description" content="Diseño y programo sitios web a la medida para restaurantes, cafés y bares en la Ciudad de México. Con panel propio para que lo manejes tú. Desde $35,000.">
 <link rel="canonical" href="https://svh.studio/">
 <meta name="theme-color" content="#FAFAF8">
+<meta name="color-scheme" content="light">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://svh.studio/">
 <meta property="og:title" content="SvH Studio — Sitios web para restaurantes en la Ciudad de México">
 <meta property="og:description" content="Diseño y programo sitios a la medida para restaurantes, cafés y bares. Con panel propio para que lo manejes tú.">
-<meta property="og:image" content="https://svh.studio/images/jabali/finca-1500.jpg">
+<meta property="og:image" content="https://svh.studio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="svh.studio — Tu sitio debería verse tan bueno como tu lugar.">
+<meta property="og:site_name" content="SvH Studio">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts.css">
 <link rel="stylesheet" href="/tokens.css">
 <link rel="stylesheet" href="/site.css">
 </head>
@@ -41,11 +48,17 @@
       para que cambies fotos, precios y la carta sin llamarle a nadie.
     </p>
 
-    <p class="dateline">
+    <div class="dateline">
       <span class="tag">Antes</span>
-      <span class="names">Disney · CAMP · Fishbowl · Episcope Hospitality · Firebirds</span>
-      <span>Nueva York · Parsons School of Design</span>
-    </p>
+      <ul class="names">
+        <li>Disney</li>
+        <li>CAMP</li>
+        <li>Fishbowl</li>
+        <li>Episcope Hospitality</li>
+        <li>Firebirds</li>
+      </ul>
+      <span class="loc">Nueva York · Parsons School of Design</span>
+    </div>
   </header>
 
   <!-- ══════════ LUGARES ══════════ -->
@@ -112,10 +125,14 @@
         </div>
       </div>
 
-      <button class="cierre" type="button" data-cierra="jabali">
-        <span class="et">Cerrar Jabalí</span>
-        <span class="de">Volver al índice<span class="fl" aria-hidden="true">↑</span></span>
-      </button>
+      <div class="cierre">
+        <button type="button" data-cierra="jabali">
+          <span class="et">Cerrar Jabalí</span><span class="fl" aria-hidden="true">↑</span>
+        </button>
+        <a href="#precios" data-cierra-y-va="jabali">
+          <span class="de">Ver precios</span><span class="fl" aria-hidden="true">↓</span>
+        </a>
+      </div>
       </div>
     </div>
 
@@ -128,7 +145,7 @@
   </section>
 
   <!-- ══════════ EL SITIO ══════════ -->
-  <section class="grp">
+  <section class="grp" id="precios">
     <h2 class="grp-label"><span>El sitio</span><span>Precio cerrado</span></h2>
 
     <div class="row">
@@ -193,10 +210,10 @@
     </a>
   </section>
 
-  <p class="sig">
-    <span>Diseño y programo yo. Nadie interpreta el diseño en medio.</span>
-    <span>svh.studio</span>
-  </p>
+  <footer class="colofon">
+    <p class="frase">Diseño y programo yo. Nadie interpreta el diseño en medio.</p>
+    <p class="dom">svh.studio · Ciudad de México</p>
+  </footer>
 
 </main>
 
