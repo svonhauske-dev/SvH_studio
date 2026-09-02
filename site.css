@@ -149,19 +149,10 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row.sin-cifra.row--reco .d{grid-row:3}
 .row.sin-cifra.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
 
-/* Sin cifra a la derecha, la columna se quedaba medio vacía. Pero soltar el
-   texto a todo lo ancho da 108 caracteres por renglón, ilegible. Dos
-   columnas resuelven las dos cosas: llenan el ancho y la medida aterriza
-   sola en unos 62 caracteres, sin necesidad de tope. */
-@media (min-width:760px){
-  .row.sin-cifra{grid-template-columns:minmax(0,auto) minmax(0,1fr);
-    column-gap:clamp(2rem,5vw,4rem);row-gap:0}
-  .row.sin-cifra .n{grid-column:1;grid-row:1}
-  .row.sin-cifra .d{grid-column:2;grid-row:1;max-width:none}
-  .row.sin-cifra.row--reco .rec{grid-column:1/-1;grid-row:1}
-  .row.sin-cifra.row--reco .n{grid-column:1;grid-row:2}
-  .row.sin-cifra.row--reco .d{grid-column:2;grid-row:2}
-}
+/* Apiladas, con la descripción a todo el ancho de la columna. La medida
+   larga no estorba porque estas descripciones son de uno o dos renglones,
+   no párrafos: el tope de 58ch existe para texto corrido, no para esto. */
+.row.sin-cifra .d{max-width:none}
 
 /* fila de texto llano — "Cómo funciona" */
 .row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
@@ -357,7 +348,9 @@ a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
 
 /* Ritmo por peso, no un solo valor: la prueba y el precio respiran igual,
    la letra chica va más apretada, y el cierre pide el doble de aire. */
-.grp:nth-of-type(3){margin-top:clamp(2rem,6vw,3.5rem)}
+/* "Se agrega" respira menos que los demás a propósito: pertenece al grupo
+   de arriba y el aire corto los une sin necesidad de decirlo. */
+.grp:nth-of-type(3){margin-top:clamp(1.75rem,5vw,3rem)}
 .grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
 .grp[id]{scroll-margin-top:clamp(1rem,4vw,2.5rem)}
 
