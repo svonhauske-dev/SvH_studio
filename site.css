@@ -19,7 +19,8 @@ img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:var(--focus);outline-offset:3px}
 
-.page{max-width:var(--maxw);margin:0 auto;padding:var(--rhythm-page) var(--gutter) var(--s16)}
+.page{max-width:var(--maxw);margin:0 auto;padding:var(--rhythm-page) var(--gutter) var(--rhythm-foot)}
+.front + .grp{margin-top:var(--rhythm-front)}
 
 /* ── frontispicio ─────────────────────────────────────────────────────── */
 .eye{
@@ -99,7 +100,7 @@ a{color:inherit}
   letter-spacing:.03em;border-bottom:1px solid currentColor;padding-bottom:.12em}
 
 /* fila de texto llano — "Cómo funciona" */
-.row.plain .n{font-family:var(--svh-sans);font-size:var(--t-body);font-weight:600;
+.row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
   letter-spacing:0;line-height:var(--lh-snug)}
 
 /* fila que se agrega — colgada del nivel de arriba */
@@ -113,18 +114,33 @@ a{color:inherit}
 a.row{display:grid}
 a.row:hover .n{text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
 button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:var(--radius);
-  transition:background var(--motion-fast),color var(--motion-fast),padding var(--motion-fast)}
-button.row:hover{background:rgba(16,16,16,.04)}
+  transition:background var(--motion-fast),color var(--motion-fast),
+             border-color var(--motion-fast),margin var(--motion-fast),padding var(--motion-fast)}
+
+/* Afordancia tipográfica: el filete se cierra y la etiqueta se subraya.
+   Sin caja gris — el sistema no tiene rellenos que no sean el color del lugar. */
+button.row:hover{border-bottom-color:var(--svh-ink)}
+button.row:hover .v{border-bottom:1px solid currentColor;padding-bottom:.12em}
+
+/* Abierta: la fila toma el color del lugar y respira 20px más allá del texto,
+   sin salirse de la columna. Lo único que sangra en todo el sitio es la foto. */
 button.row[aria-expanded="true"]{
-  background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:var(--lugar);
-  width:100vw;margin-inline:calc(50% - 50vw);padding-inline:var(--edge);
+  background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:transparent;
+  width:auto;margin-inline:calc(-1 * var(--s5));padding-inline:var(--s5);
 }
 button.row[aria-expanded="true"] .d,
 button.row[aria-expanded="true"] .v{color:rgba(242,239,234,.74)}
-button.row[aria-expanded="true"]:hover{background:var(--lugar)}
+button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
 
-.panel[hidden]{display:none}
-.panel{padding-bottom:clamp(2.5rem,8vw,5rem)}
+/* El único movimiento del sitio.
+   Sin JS el panel queda abierto y el contenido es alcanzable; el script lo
+   cierra al cargar y a partir de ahí anima el alto con grid-template-rows,
+   que recorta como telón en vez de aplastar. */
+.panel{display:grid;grid-template-rows:1fr;transition:grid-template-rows var(--motion)}
+.panel[data-open="false"]{grid-template-rows:0fr}
+.panel > .inner{min-height:0;overflow:hidden;padding-bottom:clamp(3rem,9vw,6rem);
+  opacity:1;transition:opacity var(--motion)}
+.panel[data-open="false"] > .inner{opacity:0;padding-bottom:0}
 
 /* imagen que abre el lugar — a sangre, oscura, con el texto abajo */
 .open{
@@ -132,10 +148,13 @@ button.row[aria-expanded="true"]:hover{background:var(--lugar)}
   width:100vw;margin-inline:calc(50% - 50vw);
   min-height:clamp(19rem,72vh,44rem);
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:var(--gutter) var(--edge);color:var(--svh-on-tint);background:var(--lugar);
+  padding:clamp(1.75rem,5vw,3.5rem) var(--edge);color:var(--svh-on-tint);background:var(--lugar);
+  overflow:hidden;
 }
 .open picture,.open img{position:absolute;inset:0;z-index:-2}
-.open img{width:100%;height:100%;object-fit:cover}
+.open img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.045);transition:transform var(--motion-slow)}
+.panel[data-open="true"] .open img{transform:scale(1)}
 .open::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to top,rgba(8,12,8,.82) 0%,rgba(8,12,8,.30) 46%,rgba(8,12,8,0) 76%)}
 .open .wm{font-family:var(--svh-sans);font-weight:700;font-size:var(--t-open);
@@ -144,19 +163,22 @@ button.row[aria-expanded="true"]:hover{background:var(--lugar)}
   color:rgba(242,239,234,.72)}
 
 /* detalle del lugar, ya dentro del papel */
-.detail{padding-top:var(--s8)}
+.detail{padding-top:clamp(2rem,6vw,3.5rem)}
 .detail h2{margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body)}
-.detail .hizo{display:flex;flex-wrap:wrap;gap:.4em var(--s3);list-style:none;margin:var(--s6) 0 0;padding:0;
-  font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--svh-dim)}
+.detail .hizo{display:flex;flex-wrap:wrap;gap:.55em var(--s4);list-style:none;margin:var(--s8) 0 0;padding:0;
+  font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--svh-dim);line-height:1.5}
 .detail .hizo li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
 .detail .hizo li:last-child::after{content:""}
-.detail .visita{display:inline-block;margin-top:var(--s8);font-size:var(--t-small);font-weight:600;
-  letter-spacing:.03em;border-bottom:1px solid var(--svh-ink);padding-bottom:.12em}
+.detail .visita{display:inline-block;margin-top:clamp(1.75rem,5vw,2.75rem);
+  font-size:var(--t-body);font-weight:600;letter-spacing:.01em;
+  border-bottom:1px solid var(--svh-ink);padding-bottom:.18em;
+  transition:opacity var(--motion-fast)}
+.detail .visita:hover{opacity:.55}
 
 /* par de imágenes claras — viven en el papel, sin marco */
-.pale{display:grid;gap:var(--s4);margin-top:var(--s10)}
+.pale{display:grid;gap:var(--s4);margin-top:clamp(2.25rem,7vw,4rem)}
 @media (min-width:600px){.pale{grid-template-columns:1fr 1fr;gap:var(--s6)}}
 .pale img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
 

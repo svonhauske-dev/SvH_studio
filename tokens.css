@@ -37,8 +37,9 @@
   --t-value:    clamp(1.0625rem, 4.4vw, 2rem);     /*  17 →  32  precio / año */
   --t-open:     clamp(2.5rem, 13vw, 8.5rem);       /*  40 → 136  wordmark abierto */
   --t-lede:     clamp(1rem, 3.7vw, 1.1875rem);     /*  16 →  19  entrada */
-  --t-body:     clamp(0.875rem, 3.4vw, 1rem);      /*  14 →  16  cuerpo */
-  --t-desc:     clamp(0.8125rem, 3.1vw, 0.875rem); /*  13 →  14  descripción de fila */
+  --t-body:     clamp(0.9375rem, 3.4vw, 1.0625rem);/*  15 →  17  cuerpo */
+  --t-plain:    clamp(1rem, 3.9vw, 1.3125rem);     /*  16 →  21  nombre de fila llana */
+  --t-desc:     clamp(0.8125rem, 3.1vw, 0.9375rem);/*  13 →  15  descripción de fila */
   --t-small:    clamp(0.75rem, 2.9vw, 0.8125rem);  /*  12 →  13  pie, secundario */
   --t-label:    clamp(0.625rem, 2.5vw, 0.6875rem); /*  10 →  11  etiqueta de grupo */
   --t-eyebrow:  clamp(0.6875rem, 2.7vw, 0.75rem);  /*  11 →  12  ojo superior */
@@ -63,9 +64,11 @@
   --s20:5rem;  --s24:6rem;
 
   /* Ritmo vertical — el índice respira por grupo, no por elemento */
-  --rhythm-group: clamp(2rem, 7vw, 3.25rem);   /* entre grupos */
-  --rhythm-row:   clamp(.625rem, 2.4vw, 1.3125rem); /* dentro de la fila */
-  --rhythm-page:  clamp(1.75rem, 6vw, 3.5rem); /* margen superior/inferior */
+  --rhythm-group: clamp(2.5rem, 8vw, 4.5rem);    /* entre grupos */
+  --rhythm-row:   clamp(.8125rem, 2.9vw, 1.75rem);/* alto de la fila */
+  --rhythm-page:  clamp(2rem, 6vw, 4rem);         /* margen superior */
+  --rhythm-foot:  clamp(4rem, 12vw, 9rem);        /* margen inferior */
+  --rhythm-front: clamp(3.25rem, 11vw, 6.5rem);   /* frontispicio → índice */
 
   /* --------------------------------------------------------------- LAYOUT */
   --maxw:   1120px;
@@ -82,7 +85,8 @@
   /* ---------------------------------------------------- INTERACCIÓN / MOVIMIENTO
      Un solo gesto en todo el sitio: la fila que se abre.
      Sin fade-up al hacer scroll, sin cursor propio, sin marquesina. */
-  --motion:      .42s cubic-bezier(.22,1,.36,1);
-  --motion-fast: .16s ease;
+  --motion:      .52s cubic-bezier(.22,1,.36,1);  /* la fila que se abre */
+  --motion-slow: .9s  cubic-bezier(.22,1,.36,1);  /* el asentamiento de la foto */
+  --motion-fast: .18s cubic-bezier(.4,0,.2,1);    /* hover, foco */
   --focus:       2px solid var(--svh-ink);
 }
