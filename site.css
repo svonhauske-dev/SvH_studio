@@ -213,10 +213,19 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 @keyframes capitulo-entra{from{opacity:0}to{opacity:1}}
 @keyframes foto-asienta{from{transform:scale(1.05)}to{transform:scale(1)}}
 
+/* El telón vertical. La altura NO se anima —eso rehace la maquetación de
+   todo el documento en cada cuadro y tartamudea—, así que el despliegue se
+   finge recortando: la foto se descubre de arriba hacia abajo con
+   clip-path, que es pintura y no toca el layout. El panel ya está a su
+   alto final desde el primer cuadro; lo que se mueve es el recorte. */
+@keyframes telon{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes detalle-sube{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
 /* La foto del lugar. Lo único que sangra en todo el sitio.
    Capas en orden de pintado, sin z-index negativos: foto → velo → texto. */
 .open{
   margin:0;position:relative;overflow:hidden;
+  animation:telon var(--motion-telon) both;
   min-height:clamp(19rem,68vh,42rem);
   min-height:clamp(19rem,68svh,42rem);
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -238,7 +247,8 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   color:var(--pie-foto,rgba(242,239,234,.86))}
 
 /* detalle del lugar, ya dentro del papel */
-.detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0}
+.detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0;
+  animation:detalle-sube var(--motion) var(--retraso-detalle) both}
 .detail h2{margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body);text-wrap:pretty}
