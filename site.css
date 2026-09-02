@@ -54,6 +54,9 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
 }
 .dateline .tag{color:var(--svh-ink);font-weight:600;letter-spacing:var(--ls-label)}
 .dateline .loc{color:var(--svh-dim)}
+/* El trabajo local pesa distinto: va en tinta, como los nombres, no en gris
+   como la formación. La colonia es lo que de verdad reconoce el comprador. */
+.dateline .aqui{color:var(--svh-ink);letter-spacing:var(--ls-names)}
 .names{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);list-style:none;margin:0;padding:0;
   color:var(--svh-ink);letter-spacing:var(--ls-names)}
 .names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
