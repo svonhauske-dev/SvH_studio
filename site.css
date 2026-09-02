@@ -248,7 +248,10 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   flex-wrap:wrap;width:100%;margin-top:clamp(3rem,8vw,5.5rem);
   padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
   background:var(--lugar);color:rgba(242,239,234,.70)}
-.cierre button,.cierre a{background:none;border:0;padding:0;font:inherit;color:inherit;
+/* 44px de alto real en los dos controles, con margen negativo que devuelve
+   el ritmo óptico de la barra. Medían 35 y 26px. */
+.cierre button,.cierre a{background:none;border:0;font:inherit;color:inherit;
+  display:inline-flex;align-items:center;min-height:44px;padding:0;margin-block:-.35rem;
   cursor:pointer;text-decoration:none;transition:color var(--motion-fast)}
 .cierre button:hover,.cierre a:hover{color:var(--svh-on-tint)}
 .cierre .et{font-family:var(--svh-serif);font-size:var(--t-value);
