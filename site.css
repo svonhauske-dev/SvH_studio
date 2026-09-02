@@ -137,6 +137,11 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
    trabajo: unía el nombre con el precio. Se va con él, y la fila queda como
    lo que es — un nombre y lo que incluye. */
 .row.sin-cifra{grid-template-columns:1fr}
+/* El resultado que compra el dueño, colgado del nombre del paquete: en
+   itálica y a menor cuerpo, para que se lea como aclaración y no compita
+   con el nombre. El eje del nivel es lo que consigue, no cuántas páginas. */
+.row.sin-cifra .n em{font-style:italic;font-size:.66em;letter-spacing:0;
+  color:var(--svh-dim);white-space:nowrap}
 .row.sin-cifra .n{grid-column:1;white-space:normal}
 .row.sin-cifra .d{grid-column:1;grid-row:2}
 .row.sin-cifra.row--reco .rec{grid-column:1;grid-row:1}
