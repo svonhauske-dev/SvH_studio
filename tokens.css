@@ -1,0 +1,85 @@
+/* ==========================================================================
+   SvH STUDIO — DESIGN TOKENS · dirección "Índice"
+   Fuente única de color, tipo, espacio y movimiento.
+   Enlazar antes de site.css.
+
+   TESIS
+   El estudio no tiene color de acento. La página es tinta sobre papel y el
+   único color del sitio es el de los lugares del cliente.
+
+   REGLA DE IMAGEN — de VALOR, no de matiz
+   · Cada lugar ABRE con una imagen oscura, a sangre, de borde a borde.
+   · Las imágenes claras viven DENTRO de la página, sin marco, sin sombra y
+     sin esquina redondeada: al estar casi al mismo valor que el papel se
+     integran en vez de flotar.
+   ========================================================================== */
+:root{
+  /* ---------------------------------------------------------------- COLOR */
+  --svh-paper:      #FAFAF8;   /* papel — nunca blanco puro */
+  --svh-ink:        #101010;   /* tinta — nunca #000 */
+  --svh-dim:        rgba(16,16,16,.54);   /* descripciones, etiquetas */
+  --svh-faint:      rgba(16,16,16,.34);   /* estados apagados */
+  --svh-rule:       rgba(16,16,16,.15);   /* filete del índice */
+  --svh-rule-hard:  #101010;              /* filete que abre un grupo */
+  --svh-on-tint:    #F2EFEA;              /* texto sobre el color del lugar */
+
+  /* Color del lugar — lo aporta cada fila, no el sistema.
+     Se sobrescribe con --lugar en el elemento. */
+  --lugar: #101010;
+
+  /* ----------------------------------------------------------------- TIPO */
+  --svh-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --svh-sans:  "Archivo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+
+  /* Escala fluida — móvil primero. min → max en px al margen. */
+  --t-display:  clamp(2.125rem, 8.6vw, 5.75rem);   /*  34 →  92  frontispicio */
+  --t-row:      clamp(1.375rem, 6.2vw, 2.75rem);   /*  22 →  44  nombre de fila */
+  --t-value:    clamp(1.0625rem, 4.4vw, 2rem);     /*  17 →  32  precio / año */
+  --t-open:     clamp(2.5rem, 13vw, 8.5rem);       /*  40 → 136  wordmark abierto */
+  --t-lede:     clamp(1rem, 3.7vw, 1.1875rem);     /*  16 →  19  entrada */
+  --t-body:     clamp(0.875rem, 3.4vw, 1rem);      /*  14 →  16  cuerpo */
+  --t-desc:     clamp(0.8125rem, 3.1vw, 0.875rem); /*  13 →  14  descripción de fila */
+  --t-small:    clamp(0.75rem, 2.9vw, 0.8125rem);  /*  12 →  13  pie, secundario */
+  --t-label:    clamp(0.625rem, 2.5vw, 0.6875rem); /*  10 →  11  etiqueta de grupo */
+  --t-eyebrow:  clamp(0.6875rem, 2.7vw, 0.75rem);  /*  11 →  12  ojo superior */
+
+  /* Tracking */
+  --ls-display: -.022em;
+  --ls-row:     -.015em;
+  --ls-eyebrow:  .2em;
+  --ls-label:    .3em;   /* etiquetas de grupo */
+  --ls-names:    .13em;  /* línea de clientes */
+
+  /* Interlínea */
+  --lh-display: .94;
+  --lh-tight:   1;
+  --lh-snug:    1.42;
+  --lh-body:    1.55;
+
+  /* ---------------------------------------------------------------- ESPACIO */
+  /* Retícula de 4px — todo padding, margen y gap aterriza aquí */
+  --s1:.25rem; --s2:.5rem;  --s3:.75rem; --s4:1rem;   --s5:1.25rem;
+  --s6:1.5rem; --s8:2rem;   --s10:2.5rem; --s12:3rem; --s16:4rem;
+  --s20:5rem;  --s24:6rem;
+
+  /* Ritmo vertical — el índice respira por grupo, no por elemento */
+  --rhythm-group: clamp(2rem, 7vw, 3.25rem);   /* entre grupos */
+  --rhythm-row:   clamp(.625rem, 2.4vw, 1.3125rem); /* dentro de la fila */
+  --rhythm-page:  clamp(1.75rem, 6vw, 3.5rem); /* margen superior/inferior */
+
+  /* --------------------------------------------------------------- LAYOUT */
+  --maxw:   1120px;
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --bp:     760px;    /* único salto: lista apilada → lista en tres columnas */
+  --touch:  44px;
+
+  /* -------------------------------------------------------------- BORDES */
+  --radius: 0;        /* el sistema es cuadrado. sin excepciones. */
+
+  /* ---------------------------------------------------- INTERACCIÓN / MOVIMIENTO
+     Un solo gesto en todo el sitio: la fila que se abre.
+     Sin fade-up al hacer scroll, sin cursor propio, sin marquesina. */
+  --motion:      .42s cubic-bezier(.22,1,.36,1);
+  --motion-fast: .16s ease;
+  --focus:       2px solid var(--svh-ink);
+}
