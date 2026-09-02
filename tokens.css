@@ -22,8 +22,12 @@
   --svh-dim:        rgba(16,16,16,.62);   /* descripciones, etiquetas — 5.2:1 */
   --svh-faint:      rgba(16,16,16,.40);   /* separadores, nunca texto */
   --svh-rule:       rgba(16,16,16,.15);   /* filete del índice */
+  --svh-guia:       rgba(16,16,16,.19);   /* guía de puntos, en reposo */
+  --svh-guia-viva:  rgba(16,16,16,.40);   /* guía de puntos, al pasar encima */
+  --svh-subraya:    rgba(16,16,16,.32);   /* subrayado de enlace en reposo */
   --svh-rule-hard:  #101010;              /* filete que abre un grupo */
-  --svh-on-tint:    #F2EFEA;              /* texto sobre el color del lugar */
+  --svh-on-tint:      #F2EFEA;            /* texto sobre el color del lugar */
+  --svh-on-tint-soft: rgba(242,239,234,.74); /* secundario sobre el lugar */
 
   /* Color del lugar — lo aporta cada fila, no el sistema.
      Se sobrescribe con --lugar en el elemento. */
@@ -37,7 +41,6 @@
   --t-display:  clamp(2.125rem, 8.6vw, 5.75rem);   /*  34 →  92  frontispicio */
   --t-row:      clamp(1.375rem, 6.2vw, 2.75rem);   /*  22 →  44  nombre de fila */
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  precio / año */
-  --t-open:     clamp(2.5rem, 13vw, 8.5rem);       /*  40 → 136  wordmark abierto */
   --t-lede:     clamp(1rem, 3.7vw, 1.1875rem);     /*  16 →  19  entrada */
   --t-body:     clamp(0.9375rem, 3.4vw, 1.0625rem);/*  15 →  17  cuerpo */
   --t-plain:    clamp(1rem, 3.9vw, 1.3125rem);     /*  16 →  21  nombre de fila llana */

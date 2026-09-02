@@ -105,7 +105,7 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
 .row .n{grid-column:1;grid-row:1;font-family:var(--svh-serif);font-size:var(--t-row);
   line-height:var(--lh-tight);letter-spacing:var(--ls-row);white-space:nowrap}
 .row .lead{grid-column:2;grid-row:1;align-self:baseline;transform:translateY(-.34em);
-  border-bottom:1px dotted rgba(16,16,16,.19)}
+  border-bottom:1px dotted var(--svh-guia)}
 .row .v{grid-column:3;grid-row:1;justify-self:end;font-family:var(--svh-serif);font-size:var(--t-value);
   line-height:var(--lh-tight);font-variant-numeric:tabular-nums;white-space:nowrap}
 .row .d{grid-column:1/-1;grid-row:2;font-size:var(--t-desc);color:var(--svh-dim);
@@ -187,7 +187,7 @@ button.row:hover::before,a.row:hover::before,
 button.row:focus-visible::before,a.row:focus-visible::before{transform:scaleY(1)}
 
 button.row:not([aria-expanded="true"]):not(.armada):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
-button.row:hover .lead,a.row:hover .lead{border-bottom-color:rgba(16,16,16,.4)}
+button.row:hover .lead,a.row:hover .lead{border-bottom-color:var(--svh-guia-viva)}
 button.row:not([aria-expanded="true"]):not(.armada):hover .n,a.row:hover .n{color:var(--lugar)}
 .row .n,.row .lead{transition:color var(--motion-fast),border-color var(--motion-fast)}
 
@@ -207,9 +207,9 @@ button.row.armada::before,
 button.row[aria-expanded="true"]::before{display:none}
 button.row.armada .d,button.row.armada .v,
 button.row[aria-expanded="true"] .d,
-button.row[aria-expanded="true"] .v{color:rgba(242,239,234,.74)}
-button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
-button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)}
+button.row[aria-expanded="true"] .v{color:var(--svh-on-tint-soft)}
+button.row[aria-expanded="true"] .v{border-bottom-color:var(--svh-on-tint-soft)}
+button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-soft)}
 
 /* El único movimiento del sitio.
 
@@ -281,7 +281,7 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 /* detalle del lugar, ya dentro del papel */
 .detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0;
   animation:detalle-sube var(--motion) var(--retraso-detalle) both}
-.detail h2{margin:0;font-family:var(--svh-serif);font-weight:400;
+.detail h3{margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body);text-wrap:pretty}
 /* Cada entregable sobre su propio filete: es una hoja de especificación y
@@ -290,17 +290,17 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 .detail .hizo{display:grid;grid-template-columns:1fr;gap:0 clamp(1.5rem,4vw,3rem);
   list-style:none;margin:var(--s8) 0 0;padding:0;
   font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--svh-dim);line-height:1.4}
+  color:var(--svh-dim);line-height:var(--lh-snug)}
 @media (min-width:560px){.detail .hizo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:900px){.detail .hizo{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .detail .hizo li{padding:.7em 0;border-top:1px solid var(--svh-rule)}
 /* 44px de alto real sin mover el ritmo óptico: el relleno se compensa
    con margen negativo, así el subrayado sigue donde estaba. */
-.detail .visita{display:inline-flex;align-items:center;min-height:44px;
+.detail .visita{display:inline-flex;align-items:center;min-height:var(--touch);
   padding-block:.55rem;margin-block:calc(clamp(1.75rem,5vw,2.75rem) - .55rem) -.55rem;
   font-size:var(--t-body);font-weight:600;letter-spacing:.01em;
   text-decoration:underline;text-underline-offset:.34em;text-decoration-thickness:1px;
-  text-decoration-color:rgba(16,16,16,.32);
+  text-decoration-color:var(--svh-subraya);
   transition:text-decoration-color var(--motion-fast)}
 .detail .visita:hover{text-decoration-color:var(--svh-ink)}
 .detail .visita .fl{display:inline-block;margin-left:.3em;
@@ -320,11 +320,11 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   display:flex;align-items:baseline;justify-content:flex-end;gap:var(--s4) var(--s6);
   flex-wrap:wrap;width:100%;margin-top:clamp(3rem,8vw,5.5rem);
   padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
-  background:var(--lugar);color:rgba(242,239,234,.70)}
+  background:var(--lugar);color:var(--svh-on-tint)}
 /* 44px de alto real en los dos controles, con margen negativo que devuelve
    el ritmo óptico de la barra. Medían 35 y 26px. */
 .cierre button,.cierre a{background:none;border:0;font:inherit;color:inherit;
-  display:inline-flex;align-items:center;min-height:44px;padding:0;margin-block:-.35rem;
+  display:inline-flex;align-items:center;min-height:var(--touch);padding:0;margin-block:-.35rem;
   cursor:pointer;text-decoration:none;transition:color var(--motion-fast)}
 .cierre button:hover,.cierre a:hover{color:var(--svh-on-tint)}
 .cierre .et{font-family:var(--svh-serif);font-size:var(--t-value);
@@ -346,16 +346,17 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
    como dirección —se copia— y el verbo se comporta como acción —abre el
    correo—. Cada uno hace lo que su nombre promete. */
 .row--cta{padding-block:clamp(1.25rem,4vw,2.25rem)}
-.row--cta .copiar{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;
+.row--cta .copiar{background:none;border:0;padding:0;margin:0;color:inherit;
   cursor:pointer;text-align:left;-webkit-appearance:none;appearance:none;
+  display:inline-flex;align-items:center;min-height:var(--touch);
   transition:opacity var(--motion-fast)}
 .row--cta .copiar:hover{opacity:.58}
 .row--cta .copiar[data-hecho]{color:var(--svh-dim)}
-.row--cta .v.act{display:inline-flex;align-items:center;min-height:44px;
+.row--cta .v.act{display:inline-flex;align-items:center;min-height:var(--touch);
   text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
-  text-decoration-color:rgba(16,16,16,.3);transition:text-decoration-color var(--motion-fast)}
+  text-decoration-color:var(--svh-subraya);transition:text-decoration-color var(--motion-fast)}
 .row--cta .v.act:hover{text-decoration-color:var(--svh-ink)}
-.row--cta .n{font-size:clamp(1.5rem,6.6vw,3rem)}
+.row--cta .n{font-size:var(--t-row)}
 a.row--cta:hover .n{text-decoration:none}
 a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
 a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
