@@ -38,16 +38,18 @@
   --svh-sans:  "Archivo", "Archivo respaldo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
 
   /* Escala fluida — móvil primero. min → max en px al margen. */
-  --t-display:  clamp(2.125rem, 8.6vw, 5.75rem);   /*  34 →  92  frontispicio */
-  --t-row:      clamp(1.375rem, 6.2vw, 2.75rem);   /*  22 →  44  nombre de fila */
+  --t-display:  clamp(2rem, 8.6vw, 6rem);          /*  32 →  96  frontispicio */
+  --t-capitulo: clamp(1.75rem, 6.6vw, 3.5rem);     /*  28 →  56  título de capítulo */
+  --t-row:      clamp(1.5rem, 6.2vw, 2.75rem);     /*  24 →  44  nombre de fila */
+  --t-matiz:    clamp(1rem, 3.9vw, 1.75rem);       /*  16 →  28  el resultado, en itálica */
+  --t-flecha:   clamp(0.75rem, 2.5vw, 1.5rem);     /*  12 →  24  flechas de acción */
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  precio / año */
-  --t-lede:     clamp(1rem, 3.7vw, 1.1875rem);     /*  16 →  19  entrada */
-  --t-body:     clamp(0.9375rem, 3.4vw, 1.0625rem);/*  15 →  17  cuerpo */
-  --t-plain:    clamp(1rem, 3.9vw, 1.3125rem);     /*  16 →  21  nombre de fila llana */
-  --t-desc:     clamp(0.8125rem, 3.1vw, 0.9375rem);/*  13 →  15  descripción de fila */
-  --t-small:    clamp(0.75rem, 2.9vw, 0.8125rem);  /*  12 →  13  pie, secundario */
-  --t-label:    clamp(0.625rem, 2.5vw, 0.6875rem); /*  10 →  11  etiqueta de grupo */
-  --t-eyebrow:  clamp(0.6875rem, 2.7vw, 0.75rem);  /*  11 →  12  ojo superior */
+  --t-lede:     clamp(1rem, 3.7vw, 1.25rem);       /*  16 →  20  entrada */
+  --t-body:     1rem;                              /*        16  cuerpo */
+  --t-desc:     1rem;                              /*        16  descripción de fila */
+  --t-small:    0.75rem;                           /*        12  pie, secundario */
+  --t-label:    0.75rem;                           /*        12  etiqueta de grupo */
+  --t-eyebrow:  0.75rem;                           /*        12  ojo superior */
 
   /* Tracking */
   --ls-display: -.022em;
@@ -70,7 +72,7 @@
 
   /* Ritmo vertical — el índice respira por grupo, no por elemento */
   --rhythm-group: clamp(2.5rem, 8vw, 4.5rem);    /* entre grupos */
-  --rhythm-row:   clamp(1.0625rem, 2.6vw, 1.5rem);/* alto de la fila */
+  --rhythm-row:   clamp(1rem, 2.6vw, 1.5rem);     /* alto de la fila · 16 → 24 */
   --rhythm-page:  clamp(2rem, 6vw, 4rem);         /* margen superior */
   --rhythm-foot:  clamp(4rem, 12vw, 9rem);        /* margen inferior */
   --rhythm-front: clamp(3.25rem, 11vw, 6.5rem);   /* frontispicio → índice */

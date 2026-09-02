@@ -72,11 +72,11 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
   .front h1{grid-column:1;grid-row:2}
   .front .lede{grid-column:1;grid-row:3}
   .dateline{grid-column:2;grid-row:2/span 2;flex-direction:column;align-items:flex-start;
-    gap:var(--s3);margin-top:0;padding:.85rem 0 0 clamp(1.5rem,2.5vw,2.5rem);
+    gap:var(--s3);margin-top:0;padding:1rem 0 0 clamp(1.5rem,2.5vw,2.5rem);
     border-top:0;border-left:1px solid var(--svh-rule);align-self:stretch}
   .names{flex-direction:column;gap:.45em}
   .names li::after{content:""}
-  .dateline .loc{margin-top:auto;padding-bottom:.35rem}
+  .dateline .loc{margin-top:auto;padding-bottom:.25rem}
 }
 
 /* ── grupos del índice ────────────────────────────────────────────────── */
@@ -86,7 +86,7 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
   display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);
   font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--svh-dim);padding-bottom:var(--s2);
-  border-bottom:1.5px solid var(--svh-rule-hard);
+  border-bottom:2px solid var(--svh-rule-hard);
 }
 
 /* ── la fila ──────────────────────────────────────────────────────────── */
@@ -96,7 +96,7 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
    138px de vacío antes del precio: se leía como tabla rota. */
 .row{
   display:grid;grid-template-columns:auto minmax(1.5rem,1fr) auto;
-  column-gap:clamp(.5rem,2vw,1.125rem);row-gap:.72em;align-items:baseline;
+  column-gap:clamp(.5rem,2vw,1rem);row-gap:.72em;align-items:baseline;
   padding:var(--rhythm-row) 0;border-bottom:1px solid var(--svh-rule);
   width:100%;text-align:left;background:none;border-left:0;border-right:0;border-top:0;
   font:inherit;color:inherit;text-decoration:none;
@@ -116,7 +116,7 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
   letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim)}
 .row .v.act{font-family:var(--svh-serif);font-size:var(--t-value);letter-spacing:var(--ls-row);
   text-transform:none;font-weight:400;color:inherit}
-.row .v.act .fl{display:inline-block;margin-left:.28em;font-size:.72em;
+.row .v.act .fl{display:inline-block;margin-left:.28em;font-size:var(--t-flecha);
   transition:transform var(--motion-fast)}
 button.row:hover .v.act .fl{transform:translateY(2px)}
 button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
@@ -140,14 +140,13 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 /* El resultado que compra el dueño, colgado del nombre del paquete: en
    itálica y a menor cuerpo, para que se lea como aclaración y no compita
    con el nombre. El eje del nivel es lo que consigue, no cuántas páginas. */
-.row.sin-cifra .n em{font-style:italic;font-size:.66em;letter-spacing:0;
+.row.sin-cifra .n em{font-style:italic;font-size:var(--t-matiz);letter-spacing:0;
   color:var(--svh-dim);white-space:nowrap}
 .row.sin-cifra .n{grid-column:1;white-space:normal}
 .row.sin-cifra .d{grid-column:1;grid-row:2}
 .row.sin-cifra.row--reco .rec{grid-column:1;grid-row:1}
 .row.sin-cifra.row--reco .n{grid-row:2}
 .row.sin-cifra.row--reco .d{grid-row:3}
-.row.sin-cifra.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
 
 /* Apiladas, con la descripción a todo el ancho de la columna. La medida
    larga no estorba porque estas descripciones son de uno o dos renglones,
@@ -155,18 +154,19 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row.sin-cifra .d{max-width:none}
 
 /* fila de texto llano — "Cómo funciona" */
-.row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
-  letter-spacing:0;line-height:var(--lh-snug);white-space:normal}
+/* UN SOLO NOMBRE DE FILA. Sin excepciones de fuente ni de tamaño.
 
-/* fila que se agrega — colgada del nivel de arriba */
-.row.add{padding-top:.55rem;padding-bottom:.55rem}
-/* Cuelga del renglón de arriba con su propia guía y un signo +. El
-   border-left + indent era el patrón de sub-ítem más genérico que existe. */
-.row.add{padding-left:clamp(1rem,3.5vw,2.25rem)}
-.row.add .n{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;letter-spacing:0;
-  color:var(--svh-dim);white-space:normal}
-.row.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
-.row.add .v{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;color:var(--svh-dim)}
+   Antes "Cómo funciona" iba en sans a 21px y era la única sección distinta.
+   Probé un tamaño intermedio y quedó peor: ligeramente distinto se lee como
+   error, deliberadamente distinto se lee como sistema, y aquí no había
+   razón para lo segundo. La dirección se llama Índice, así que todo es una
+   fila y todas las filas se ven igual.
+
+   Lo que sí varía sigue una regla dicha: la guía de puntos y el valor van
+   juntos —o están los dos o no está ninguno—, y el valor va en serif si es
+   una acción y en versalitas si es un dato. */
+.row.plain .n{white-space:normal}
+
 
 /* ── el único movimiento: la fila que se abre ─────────────────────────── */
 a.row{display:grid}
@@ -180,7 +180,7 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
    exactamente lo que va a inundar la pantalla al hacer clic. */
 .row{position:relative}
 .row::before{content:"";position:absolute;top:.6em;bottom:.6em;
-  left:calc(-1 * clamp(.625rem,2vw,1.125rem));width:2px;background:var(--lugar);
+  left:calc(-1 * clamp(.5rem,2vw,1rem));width:2px;background:var(--lugar);
   transform:scaleY(0);transform-origin:center top;
   transition:transform var(--motion-fast)}
 button.row:hover::before,a.row:hover::before,
@@ -201,7 +201,7 @@ button.row.armada,
 button.row[aria-expanded="true"]{
   background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:transparent;
   width:100vw;margin-inline:calc(50% - 50vw);
-  padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
+  padding:clamp(1rem,3.2vw,2rem) var(--edge);
 }
 button.row.armada::before,
 button.row[aria-expanded="true"]::before{display:none}
@@ -281,8 +281,12 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-sof
 /* detalle del lugar, ya dentro del papel */
 .detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0;
   animation:detalle-sube var(--motion) var(--retraso-detalle) both}
+/* El título del capítulo estaba a 40px contra 44 del nombre de fila, y en
+   móvil a 24 contra 23: un píxel de diferencia se lee como error. Sube un
+   escalón completo, que además es lo que le toca — encabeza un capítulo,
+   no es una entrada de lista. */
 .detail h3{margin:0;font-family:var(--svh-serif);font-weight:400;
-  font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
+  font-size:var(--t-capitulo);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body);text-wrap:pretty}
 /* Cada entregable sobre su propio filete: es una hoja de especificación y
    reusa el filete del índice. Las versalitas separadas por punto medio son
@@ -297,7 +301,7 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-sof
 /* 44px de alto real sin mover el ritmo óptico: el relleno se compensa
    con margen negativo, así el subrayado sigue donde estaba. */
 .detail .visita{display:inline-flex;align-items:center;min-height:var(--touch);
-  padding-block:.55rem;margin-block:calc(clamp(1.75rem,5vw,2.75rem) - .55rem) -.55rem;
+  padding-block:.5rem;margin-block:calc(clamp(1.75rem,5vw,2.75rem) - .5rem) -.5rem;
   font-size:var(--t-body);font-weight:600;letter-spacing:.01em;
   text-decoration:underline;text-underline-offset:.34em;text-decoration-thickness:1px;
   text-decoration-color:var(--svh-subraya);
@@ -319,18 +323,18 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-sof
 .cierre{
   display:flex;align-items:baseline;justify-content:flex-end;gap:var(--s4) var(--s6);
   flex-wrap:wrap;width:100%;margin-top:clamp(3rem,8vw,5.5rem);
-  padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
+  padding:clamp(1rem,3.2vw,2rem) var(--edge);
   background:var(--lugar);color:var(--svh-on-tint)}
 /* 44px de alto real en los dos controles, con margen negativo que devuelve
    el ritmo óptico de la barra. Medían 35 y 26px. */
 .cierre button,.cierre a{background:none;border:0;font:inherit;color:inherit;
-  display:inline-flex;align-items:center;min-height:var(--touch);padding:0;margin-block:-.35rem;
+  display:inline-flex;align-items:center;min-height:var(--touch);padding:0;margin-block:-.5rem;
   cursor:pointer;text-decoration:none;transition:color var(--motion-fast)}
 .cierre button:hover,.cierre a:hover{color:var(--svh-on-tint)}
 .cierre .et{font-family:var(--svh-serif);font-size:var(--t-value);
   line-height:var(--lh-tight);letter-spacing:var(--ls-row);color:var(--svh-on-tint)}
 .cierre .de{font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase}
-.cierre .fl{display:inline-block;margin-left:.35em;font-size:.72em;
+.cierre .fl{display:inline-block;margin-left:.35em;font-size:.75em;
   transition:transform var(--motion-fast)}
 .cierre button:hover .fl{transform:translateY(-3px)}
 .cierre a:hover .fl{transform:translateY(3px)}
@@ -372,9 +376,9 @@ a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
 /* Colofón. Lo último que se ve, con el mismo filete de 1.5px que abre cada
    grupo del índice, no dos spans a 13px en un flex sin decidir. */
 .colofon{margin-top:clamp(3.5rem,11vw,6.5rem);padding-top:clamp(1rem,2.5vw,1.5rem);
-  border-top:1.5px solid var(--svh-rule-hard);display:grid;gap:var(--s4) var(--s8)}
+  border-top:2px solid var(--svh-rule-hard);display:grid;gap:var(--s4) var(--s8)}
 @media (min-width:640px){.colofon{grid-template-columns:minmax(0,1fr) auto;align-items:baseline}}
-.colofon .frase{margin:0;font-family:var(--svh-serif);font-size:var(--t-plain);
+.colofon .frase{margin:0;font-family:var(--svh-serif);font-size:var(--t-value);
   line-height:1.28;letter-spacing:-.01em;max-width:34ch;color:var(--svh-ink);text-wrap:balance}
 .colofon .dom{margin:0;font-size:var(--t-label);letter-spacing:var(--ls-label);
   text-transform:uppercase;color:var(--svh-dim);justify-self:start}
