@@ -340,7 +340,21 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 /* El último renglón de la página es la dirección de correo, puesta como
    el nombre de una fila. No hay botón: la acción es leer una línea y
    escribirla. Por eso pesa más que cualquier otra fila del índice. */
+/* Dos salidas, no una. El mailto falla en silencio cuando el navegador no
+   tiene manejador de correo: la pestaña se queda en blanco y la única
+   llamada a la acción del sitio se pierde. Así que la dirección se comporta
+   como dirección —se copia— y el verbo se comporta como acción —abre el
+   correo—. Cada uno hace lo que su nombre promete. */
 .row--cta{padding-block:clamp(1.25rem,4vw,2.25rem)}
+.row--cta .copiar{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;
+  cursor:pointer;text-align:left;-webkit-appearance:none;appearance:none;
+  transition:opacity var(--motion-fast)}
+.row--cta .copiar:hover{opacity:.58}
+.row--cta .copiar[data-hecho]{color:var(--svh-dim)}
+.row--cta .v.act{display:inline-flex;align-items:center;min-height:44px;
+  text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
+  text-decoration-color:rgba(16,16,16,.3);transition:text-decoration-color var(--motion-fast)}
+.row--cta .v.act:hover{text-decoration-color:var(--svh-ink)}
 .row--cta .n{font-size:clamp(1.5rem,6.6vw,3rem)}
 a.row--cta:hover .n{text-decoration:none}
 a.row--cta .v.act .fl{transition:transform var(--motion-fast)}

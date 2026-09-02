@@ -145,3 +145,53 @@
     if (cierre) cierre.addEventListener('click', function () { cerrar(cap); });
   });
 })();
+
+/* La dirección se copia al tocarla. Es el respaldo del mailto, que se cae
+   sin ruido cuando el navegador no tiene con qué abrir el correo. */
+(function () {
+  var boton = document.querySelector('[data-copiar]');
+  if (!boton) return;
+  var original = boton.textContent, temporizador;
+
+  function avisar(texto) {
+    clearTimeout(temporizador);
+    boton.textContent = texto;
+    boton.dataset.hecho = '';
+    temporizador = setTimeout(function () {
+      boton.textContent = original;
+      delete boton.dataset.hecho;
+    }, 1800);
+  }
+
+  /* Si el navegador niega el portapapeles —pasa cuando la pestaña no tiene
+     el foco— hay que decirlo y dejar el texto seleccionado. Antes el
+     respaldo volvía a mostrar la dirección, que se ve idéntica al estado
+     normal: el usuario no se enteraba de que había fallado. */
+  function aMano() {
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(boton);
+      var sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+    } catch (e) {}
+    avisar('Cópiala a mano');
+  }
+
+  boton.addEventListener('click', function () {
+    var texto = boton.getAttribute('data-copiar');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(function () { avisar('Copiado'); }, aMano);
+      return;
+    }
+    /* Respaldo para navegadores sin portapapeles moderno. */
+    var caja = document.createElement('textarea');
+    caja.value = texto;
+    caja.setAttribute('readonly', '');
+    caja.style.cssText = 'position:fixed;top:-1000px';
+    document.body.appendChild(caja);
+    caja.select();
+    try { document.execCommand('copy'); avisar('Copiado'); } catch (e) { aMano(); }
+    document.body.removeChild(caja);
+  });
+})();
