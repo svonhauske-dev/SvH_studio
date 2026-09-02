@@ -36,7 +36,7 @@
   /* Escala fluida — móvil primero. min → max en px al margen. */
   --t-display:  clamp(2.125rem, 8.6vw, 5.75rem);   /*  34 →  92  frontispicio */
   --t-row:      clamp(1.375rem, 6.2vw, 2.75rem);   /*  22 →  44  nombre de fila */
-  --t-value:    clamp(1.0625rem, 4.4vw, 2rem);     /*  17 →  32  precio / año */
+  --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  precio / año */
   --t-open:     clamp(2.5rem, 13vw, 8.5rem);       /*  40 → 136  wordmark abierto */
   --t-lede:     clamp(1rem, 3.7vw, 1.1875rem);     /*  16 →  19  entrada */
   --t-body:     clamp(0.9375rem, 3.4vw, 1.0625rem);/*  15 →  17  cuerpo */
@@ -67,14 +67,14 @@
 
   /* Ritmo vertical — el índice respira por grupo, no por elemento */
   --rhythm-group: clamp(2.5rem, 8vw, 4.5rem);    /* entre grupos */
-  --rhythm-row:   clamp(.8125rem, 2.6vw, 1.5rem); /* alto de la fila */
+  --rhythm-row:   clamp(1.0625rem, 2.6vw, 1.5rem);/* alto de la fila */
   --rhythm-page:  clamp(2rem, 6vw, 4rem);         /* margen superior */
   --rhythm-foot:  clamp(4rem, 12vw, 9rem);        /* margen inferior */
   --rhythm-front: clamp(3.25rem, 11vw, 6.5rem);   /* frontispicio → índice */
 
   /* --------------------------------------------------------------- LAYOUT */
   --maxw:   920px;    /* medida de índice, no de tabla. 1120 estiraba las filas. */
-  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --gutter: clamp(1.5rem, 5vw, 3.5rem);
   --bp:     760px;    /* único salto: lista apilada → lista en tres columnas */
   --touch:  44px;
   /* Borde izquierdo real de la columna de contenido. Lo usa todo lo que
