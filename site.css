@@ -149,6 +149,20 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row.sin-cifra.row--reco .d{grid-row:3}
 .row.sin-cifra.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
 
+/* Sin cifra a la derecha, la columna se quedaba medio vacía. Pero soltar el
+   texto a todo lo ancho da 108 caracteres por renglón, ilegible. Dos
+   columnas resuelven las dos cosas: llenan el ancho y la medida aterriza
+   sola en unos 62 caracteres, sin necesidad de tope. */
+@media (min-width:760px){
+  .row.sin-cifra{grid-template-columns:minmax(0,auto) minmax(0,1fr);
+    column-gap:clamp(2rem,5vw,4rem);row-gap:0}
+  .row.sin-cifra .n{grid-column:1;grid-row:1}
+  .row.sin-cifra .d{grid-column:2;grid-row:1;max-width:none}
+  .row.sin-cifra.row--reco .rec{grid-column:1/-1;grid-row:1}
+  .row.sin-cifra.row--reco .n{grid-column:1;grid-row:2}
+  .row.sin-cifra.row--reco .d{grid-column:2;grid-row:2}
+}
+
 /* fila de texto llano — "Cómo funciona" */
 .row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
   letter-spacing:0;line-height:var(--lh-snug);white-space:normal}
