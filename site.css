@@ -63,52 +63,49 @@ a{color:inherit}
 }
 
 /* ── la fila ──────────────────────────────────────────────────────────── */
+/* La fila de una carta impresa: nombre — guía de puntos — valor,
+   y la descripción abajo, con medida corta. Igual en toda anchura.
+   El modelo de tres columnas estiraba la descripción a 676px y dejaba
+   138px de vacío antes del precio: se leía como tabla rota. */
 .row{
-  display:grid;grid-template-columns:1fr auto;
-  column-gap:var(--s4);row-gap:.35em;align-items:baseline;
+  display:grid;grid-template-columns:auto minmax(1.5rem,1fr) auto;
+  column-gap:clamp(.5rem,2vw,1.125rem);row-gap:.5em;align-items:baseline;
   padding:var(--rhythm-row) 0;border-bottom:1px solid var(--svh-rule);
   width:100%;text-align:left;background:none;border-left:0;border-right:0;border-top:0;
   font:inherit;color:inherit;text-decoration:none;
 }
-.row .n{grid-column:1;font-family:var(--svh-serif);font-size:var(--t-row);
-  line-height:var(--lh-tight);letter-spacing:var(--ls-row)}
-.row .v{grid-column:2;justify-self:end;font-family:var(--svh-serif);font-size:var(--t-value);
+.row .n{grid-column:1;grid-row:1;font-family:var(--svh-serif);font-size:var(--t-row);
+  line-height:var(--lh-tight);letter-spacing:var(--ls-row);white-space:nowrap}
+.row .lead{grid-column:2;grid-row:1;align-self:baseline;transform:translateY(-.34em);
+  border-bottom:1px dotted rgba(16,16,16,.19)}
+.row .v{grid-column:3;grid-row:1;justify-self:end;font-family:var(--svh-serif);font-size:var(--t-value);
   line-height:var(--lh-tight);font-variant-numeric:tabular-nums;white-space:nowrap}
-.row .d{grid-column:1/-1;font-size:var(--t-desc);color:var(--svh-dim);line-height:var(--lh-snug)}
-
-@media (min-width:760px){
-  .row{grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;column-gap:var(--s8);row-gap:0}
-  .row .d{grid-column:2}
-  .row .v{grid-column:3}
-}
-
-/* Todas las filas de un grupo comparten pistas: los nombres se alinean a la
-   izquierda, las descripciones arrancan en la misma x y los valores cuelgan
-   de un mismo eje derecho. Es lo que separa un índice de una lista. */
-@supports (grid-template-columns:subgrid){
-  @media (min-width:760px){
-    .grp{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;column-gap:var(--s8)}
-    .grp-label,.panel{grid-column:1/-1}
-    .row{grid-column:1/-1;grid-template-columns:subgrid;column-gap:var(--s8)}
-  }
-}
+.row .d{grid-column:1/-1;grid-row:2;font-size:var(--t-desc);color:var(--svh-dim);
+  line-height:var(--lh-snug);max-width:58ch}
 
 /* variantes de valor */
 .row .v.sm{font-family:var(--svh-sans);font-size:var(--t-label);font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim)}
+.row .v.act{font-family:var(--svh-serif);font-size:var(--t-value);letter-spacing:var(--ls-row);
+  text-transform:none;font-weight:400;color:inherit}
+.row .v.act .fl{display:inline-block;margin-left:.28em;font-size:.72em;
+  transition:transform var(--motion-fast)}
+button.row:hover .v.act .fl{transform:translateY(2px)}
+button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row .v.link{font-family:var(--svh-sans);font-size:var(--t-small);font-weight:600;
   letter-spacing:.03em;border-bottom:1px solid currentColor;padding-bottom:.12em}
 
 /* fila de texto llano — "Cómo funciona" */
 .row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
-  letter-spacing:0;line-height:var(--lh-snug)}
+  letter-spacing:0;line-height:var(--lh-snug);white-space:normal}
 
 /* fila que se agrega — colgada del nivel de arriba */
 .row.add{padding-top:.55rem;padding-bottom:.55rem}
 .row.add .n{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;letter-spacing:0;
-  color:var(--svh-dim);padding-left:var(--s4);border-left:1px solid var(--svh-rule)}
+  color:var(--svh-dim);padding-left:var(--s4);border-left:1px solid var(--svh-rule);white-space:normal}
 .row.add .v{font-family:var(--svh-sans);font-size:var(--t-desc);font-weight:600;color:var(--svh-dim)}
-@media (min-width:760px){.row.add .d{padding-left:0}}
+.row.add .d{padding-left:var(--s4)}
+.row.add .lead{border-bottom-color:transparent}
 
 /* ── el único movimiento: la fila que se abre ─────────────────────────── */
 a.row{display:grid}
@@ -117,53 +114,73 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
   transition:background var(--motion-fast),color var(--motion-fast),
              border-color var(--motion-fast),margin var(--motion-fast),padding var(--motion-fast)}
 
-/* Afordancia tipográfica: el filete se cierra y la etiqueta se subraya.
-   Sin caja gris — el sistema no tiene rellenos que no sean el color del lugar. */
-button.row:hover{border-bottom-color:var(--svh-ink)}
-button.row:hover .v{border-bottom:1px solid currentColor;padding-bottom:.12em}
+/* El hover no es un estilo: es un anticipo. La fila se tiñe apenas con el
+   color del lugar y aparece un tick de ese mismo color en el margen, que es
+   exactamente lo que va a inundar la pantalla al hacer clic. */
+.row{position:relative}
+.row::before{content:"";position:absolute;top:.6em;bottom:.6em;
+  left:calc(-1 * clamp(.625rem,2vw,1.125rem));width:2px;background:var(--lugar);
+  transform:scaleY(0);transform-origin:center top;
+  transition:transform var(--motion-fast)}
+button.row:hover::before,a.row:hover::before,
+button.row:focus-visible::before,a.row:focus-visible::before{transform:scaleY(1)}
 
-/* Abierta: la fila toma el color del lugar y respira 20px más allá del texto,
-   sin salirse de la columna. Lo único que sangra en todo el sitio es la foto. */
+button.row:hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
+button.row:hover .lead,a.row:hover .lead{border-bottom-color:rgba(16,16,16,.4)}
+button.row:hover .n,a.row:hover .n{color:var(--lugar)}
+.row .n,.row .lead{transition:color var(--motion-fast),border-color var(--motion-fast)}
+
+/* El sitio tiene dos anchos y sólo dos: la columna y la pantalla.
+   Cerrada, la fila pertenece al índice y mide la columna. Abierta, el
+   proyecto SALE del índice: la barra se va a pantalla completa y arrastra
+   la fotografía con ella. Barra y foto son una sola masa; el texto de
+   adentro sigue colgando del eje del índice, así que nada se desalinea y
+   la barra tiene aire propio. */
 button.row[aria-expanded="true"]{
   background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:transparent;
-  width:auto;margin-inline:calc(-1 * var(--s5));padding-inline:var(--s5);
+  width:100vw;margin-inline:calc(50% - 50vw);
+  padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
 }
+button.row[aria-expanded="true"]::before{display:none}
 button.row[aria-expanded="true"] .d,
 button.row[aria-expanded="true"] .v{color:rgba(242,239,234,.74)}
 button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
+button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)}
 
 /* El único movimiento del sitio.
    Sin JS el panel queda abierto y el contenido es alcanzable; el script lo
    cierra al cargar y a partir de ahí anima el alto con grid-template-rows,
    que recorta como telón en vez de aplastar. */
-.panel{display:grid;grid-template-rows:1fr;transition:grid-template-rows var(--motion)}
+.panel{display:grid;grid-template-rows:1fr;transition:grid-template-rows var(--motion);
+  width:100vw;margin-inline:calc(50% - 50vw)}
 .panel[data-open="false"]{grid-template-rows:0fr}
 .panel > .inner{min-height:0;overflow:hidden;padding-bottom:clamp(3rem,9vw,6rem);
   opacity:1;transition:opacity var(--motion)}
 .panel[data-open="false"] > .inner{opacity:0;padding-bottom:0}
 
-/* imagen que abre el lugar — a sangre, oscura, con el texto abajo */
+/* La foto del lugar. Lo único que sangra en todo el sitio.
+   Capas en orden de pintado, sin z-index negativos: foto → velo → texto. */
 .open{
-  margin:0;position:relative;isolation:isolate;
-  width:100vw;margin-inline:calc(50% - 50vw);
-  min-height:clamp(19rem,72vh,44rem);
+  margin:0;position:relative;overflow:hidden;
+  min-height:clamp(19rem,68vh,42rem);
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:clamp(1.75rem,5vw,3.5rem) var(--edge);color:var(--svh-on-tint);background:var(--lugar);
-  overflow:hidden;
+  padding:clamp(3rem,9vw,6rem) var(--edge) clamp(2rem,5vw,3.25rem);
+  color:var(--svh-on-tint);background:var(--lugar);
 }
-.open picture,.open img{position:absolute;inset:0;z-index:-2}
+.open picture,.open img{position:absolute;inset:0}
 .open img{width:100%;height:100%;object-fit:cover;
   transform:scale(1.045);transition:transform var(--motion-slow)}
 .panel[data-open="true"] .open img{transform:scale(1)}
-.open::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(to top,rgba(8,12,8,.82) 0%,rgba(8,12,8,.30) 46%,rgba(8,12,8,0) 76%)}
-.open .wm{font-family:var(--svh-sans);font-weight:700;font-size:var(--t-open);
-  line-height:.82;letter-spacing:-.035em}
-.open .cp{margin-top:.35em;font-size:var(--t-label);letter-spacing:.24em;text-transform:uppercase;
-  color:rgba(242,239,234,.72)}
+.open::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,10,6,.72) 0%,rgba(6,10,6,.22) 34%,rgba(6,10,6,0) 62%)}
+/* Sin wordmark encima. La barra ya dijo el nombre ochenta píxeles arriba;
+   repetirlo a 136px era adorno de diseñadora. La foto es la foto. */
+.open .cp{position:relative;z-index:1;
+  font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
+  color:rgba(242,239,234,.86)}
 
 /* detalle del lugar, ya dentro del papel */
-.detail{padding-top:clamp(2rem,6vw,3.5rem)}
+.detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0}
 .detail h2{margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:clamp(1.5rem,5.4vw,2.5rem);line-height:1.02;letter-spacing:var(--ls-row);max-width:20ch}
 .detail p{margin:var(--s4) 0 0;max-width:52ch;color:var(--svh-dim);font-size:var(--t-body)}
@@ -173,9 +190,13 @@ button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
 .detail .hizo li:last-child::after{content:""}
 .detail .visita{display:inline-block;margin-top:clamp(1.75rem,5vw,2.75rem);
   font-size:var(--t-body);font-weight:600;letter-spacing:.01em;
-  border-bottom:1px solid var(--svh-ink);padding-bottom:.18em;
-  transition:opacity var(--motion-fast)}
-.detail .visita:hover{opacity:.55}
+  text-decoration:underline;text-underline-offset:.34em;text-decoration-thickness:1px;
+  text-decoration-color:rgba(16,16,16,.32);
+  transition:text-decoration-color var(--motion-fast)}
+.detail .visita:hover{text-decoration-color:var(--svh-ink)}
+.detail .visita .fl{display:inline-block;margin-left:.3em;
+  transition:transform var(--motion-fast)}
+.detail .visita:hover .fl{transform:translate(2px,-2px)}
 
 /* par de imágenes claras — viven en el papel, sin marco */
 .pale{display:grid;gap:var(--s4);margin-top:clamp(2.25rem,7vw,4rem)}
@@ -183,6 +204,24 @@ button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
 .pale img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
 
 /* ── pie ──────────────────────────────────────────────────────────────── */
+/* Un proyecto abierto es un capítulo: abre con una barra del color del lugar
+   y cierra con su gemela. Sin ese cierre no se sabe dónde termina, y el
+   índice de abajo parece parte del proyecto. */
+.cierre{
+  display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);
+  width:100%;margin-top:clamp(3rem,8vw,5.5rem);
+  padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
+  background:var(--lugar);color:rgba(242,239,234,.68);border:0;
+  font:inherit;text-align:left;cursor:pointer;
+  transition:color var(--motion-fast)}
+.cierre:hover{color:var(--svh-on-tint)}
+.cierre .et{font-family:var(--svh-serif);font-size:var(--t-value);
+  line-height:var(--lh-tight);letter-spacing:var(--ls-row);color:var(--svh-on-tint)}
+.cierre .de{font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase}
+.cierre .fl{display:inline-block;margin-left:.3em;font-size:.72em;
+  transition:transform var(--motion-fast)}
+.cierre:hover .fl{transform:translateY(-3px)}
+
 .sig{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--rhythm-group);padding-top:var(--s3);border-top:1px solid var(--svh-rule);
   font-size:var(--t-small);color:var(--svh-dim)}

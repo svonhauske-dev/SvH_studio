@@ -30,8 +30,18 @@ sin sombra y sin esquina redondeada.
 
 1. Deja las imágenes en `images/<lugar>/` en WebP y JPEG.
 2. Duplica el bloque `button.row` + `div.panel` de Jabalí en `index.html`.
-3. Pon el color de la marca del cliente en `style="--lugar:#XXXXXX"`
-   (en los dos elementos) y enlaza el panel con `aria-controls`.
+3. Pon el color de la marca del cliente en `style="--lugar:#XXXXXX"` en el
+   `button.row` y en el `div.panel`. Todo lo de adentro lo hereda: el hover,
+   la barra abierta, el fondo de la foto y la barra de cierre.
+4. Enlaza los dos con `aria-controls` / `id`.
+
+## Dos anchos, y sólo dos
+
+La columna y la pantalla. Una fila cerrada pertenece al índice y mide la
+columna. Al abrirse, el proyecto sale del índice: la barra se va a pantalla
+completa y arrastra la fotografía con ella, mientras el texto de adentro
+sigue colgando del eje del índice con `--edge`. El capítulo cierra con la
+barra gemela, para que se vea dónde termina.
 
 ## Pendientes
 

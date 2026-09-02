@@ -65,13 +65,13 @@
 
   /* Ritmo vertical — el índice respira por grupo, no por elemento */
   --rhythm-group: clamp(2.5rem, 8vw, 4.5rem);    /* entre grupos */
-  --rhythm-row:   clamp(.8125rem, 2.9vw, 1.75rem);/* alto de la fila */
+  --rhythm-row:   clamp(.8125rem, 2.6vw, 1.5rem); /* alto de la fila */
   --rhythm-page:  clamp(2rem, 6vw, 4rem);         /* margen superior */
   --rhythm-foot:  clamp(4rem, 12vw, 9rem);        /* margen inferior */
   --rhythm-front: clamp(3.25rem, 11vw, 6.5rem);   /* frontispicio → índice */
 
   /* --------------------------------------------------------------- LAYOUT */
-  --maxw:   1120px;
+  --maxw:   920px;    /* medida de índice, no de tabla. 1120 estiraba las filas. */
   --gutter: clamp(1.25rem, 5vw, 3.5rem);
   --bp:     760px;    /* único salto: lista apilada → lista en tres columnas */
   --touch:  44px;
