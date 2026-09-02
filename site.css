@@ -81,6 +81,17 @@ a{color:inherit}
   .row .v{grid-column:3}
 }
 
+/* Todas las filas de un grupo comparten pistas: los nombres se alinean a la
+   izquierda, las descripciones arrancan en la misma x y los valores cuelgan
+   de un mismo eje derecho. Es lo que separa un índice de una lista. */
+@supports (grid-template-columns:subgrid){
+  @media (min-width:760px){
+    .grp{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto;column-gap:var(--s8)}
+    .grp-label,.panel{grid-column:1/-1}
+    .row{grid-column:1/-1;grid-template-columns:subgrid;column-gap:var(--s8)}
+  }
+}
+
 /* variantes de valor */
 .row .v.sm{font-family:var(--svh-sans);font-size:var(--t-label);font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim)}
@@ -106,13 +117,14 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
 button.row:hover{background:rgba(16,16,16,.04)}
 button.row[aria-expanded="true"]{
   background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:var(--lugar);
-  margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);
+  width:100vw;margin-inline:calc(50% - 50vw);padding-inline:var(--edge);
 }
 button.row[aria-expanded="true"] .d,
 button.row[aria-expanded="true"] .v{color:rgba(242,239,234,.74)}
 button.row[aria-expanded="true"]:hover{background:var(--lugar)}
 
 .panel[hidden]{display:none}
+.panel{padding-bottom:clamp(2.5rem,8vw,5rem)}
 
 /* imagen que abre el lugar — a sangre, oscura, con el texto abajo */
 .open{
@@ -120,7 +132,7 @@ button.row[aria-expanded="true"]:hover{background:var(--lugar)}
   width:100vw;margin-inline:calc(50% - 50vw);
   min-height:clamp(19rem,72vh,44rem);
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:var(--gutter);color:var(--svh-on-tint);background:var(--lugar);
+  padding:var(--gutter) var(--edge);color:var(--svh-on-tint);background:var(--lugar);
 }
 .open picture,.open img{position:absolute;inset:0;z-index:-2}
 .open img{width:100%;height:100%;object-fit:cover}
@@ -140,15 +152,13 @@ button.row[aria-expanded="true"]:hover{background:var(--lugar)}
   font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--svh-dim)}
 .detail .hizo li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
 .detail .hizo li:last-child::after{content:""}
-.detail .visita{display:inline-block;margin-top:var(--s6);font-size:var(--t-small);font-weight:600;
+.detail .visita{display:inline-block;margin-top:var(--s8);font-size:var(--t-small);font-weight:600;
   letter-spacing:.03em;border-bottom:1px solid var(--svh-ink);padding-bottom:.12em}
 
 /* par de imágenes claras — viven en el papel, sin marco */
-.pale figure{margin:0}
 .pale{display:grid;gap:var(--s4);margin-top:var(--s10)}
-@media (min-width:760px){.pale{grid-template-columns:1.3fr 1fr;align-items:end;gap:var(--s6)}}
-.pale figcaption{font-size:var(--t-small);color:var(--svh-dim);line-height:var(--lh-snug);
-  max-width:36ch;padding-top:var(--s3);border-top:1px solid var(--svh-rule)}
+@media (min-width:600px){.pale{grid-template-columns:1fr 1fr;gap:var(--s6)}}
+.pale img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
 
 /* ── pie ──────────────────────────────────────────────────────────────── */
 .sig{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;

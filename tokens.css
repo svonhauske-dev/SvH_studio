@@ -72,6 +72,9 @@
   --gutter: clamp(1.25rem, 5vw, 3.5rem);
   --bp:     760px;    /* único salto: lista apilada → lista en tres columnas */
   --touch:  44px;
+  /* Borde izquierdo real de la columna de contenido. Lo usa todo lo que
+     sangra a 100vw pero cuyo TEXTO debe seguir alineado con el índice. */
+  --edge:   max(var(--gutter), calc(50vw - (var(--maxw) / 2) + var(--gutter)));
 
   /* -------------------------------------------------------------- BORDES */
   --radius: 0;        /* el sistema es cuadrado. sin excepciones. */
