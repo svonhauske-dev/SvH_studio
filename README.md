@@ -45,12 +45,16 @@ barra gemela, para que se vea dónde termina.
 
 ## Pendientes
 
-- [ ] **Número de WhatsApp.** `index.html` trae `52XXXXXXXXXX` de relleno.
-- [ ] **Correo.** Está `hola@svh.studio`; confirmar cuál se publica.
-- [ ] **Derechos de la fotografía de la finca.** `finca-*` viene de
-      `finca-2.jpg` del repo de Jabalí. En ese mismo repo, `finca-1.jpg` y
-      `finca-coyametla.jpg` son el mismo archivo y traen quemada la marca de
-      agua *© Copyright H. Fadanelli*. Confirmar por escrito que `finca-2`
-      es de uso libre antes de difundir el sitio.
-- [ ] **Madrizza.** Cambiar "En construcción" por su fila abierta al salir.
 - [ ] **Dominio.** Apuntar `svh.studio` al proyecto en Vercel.
+- [ ] **Madrizza.** Cambiar "En construcción" por su fila abierta al salir:
+      duplicar el bloque `button.row` + `div.panel` de Jabalí y poner el
+      color de la marca en `--lugar` de los dos.
+- [ ] **WhatsApp.** Fuera del sitio a propósito: no se publica un número
+      personal. Cuando haya una línea aparte con WhatsApp Business, entra
+      como una fila más del grupo *Escríbeme*.
+
+## Fotografía
+
+Las imágenes de Jabalí las entregó la clienta y hay permiso de uso.
+No usar `finca-1.jpg` ni `finca-coyametla.jpg` del repo de Jabalí: son el
+mismo archivo y traen quemada una marca de agua de terceros.

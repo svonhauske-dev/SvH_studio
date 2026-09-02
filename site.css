@@ -222,6 +222,15 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   transition:transform var(--motion-fast)}
 .cierre:hover .fl{transform:translateY(-3px)}
 
+/* El último renglón de la página es la dirección de correo, puesta como
+   el nombre de una fila. No hay botón: la acción es leer una línea y
+   escribirla. Por eso pesa más que cualquier otra fila del índice. */
+.row--cta{padding-block:clamp(1.25rem,4vw,2.25rem)}
+.row--cta .n{font-size:clamp(1.5rem,6.6vw,3rem)}
+a.row--cta:hover .n{text-decoration:none}
+a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
+a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
+
 .sig{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--rhythm-group);padding-top:var(--s3);border-top:1px solid var(--svh-rule);
   font-size:var(--t-small);color:var(--svh-dim)}
