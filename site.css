@@ -133,6 +133,17 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row--reco .n,.row--reco .lead,.row--reco .v{grid-row:2}
 .row--reco .d{grid-row:3}
 
+/* Fila sin cifra. Sin valor a la derecha, la guía de puntos se queda sin
+   trabajo: unía el nombre con el precio. Se va con él, y la fila queda como
+   lo que es — un nombre y lo que incluye. */
+.row.sin-cifra{grid-template-columns:1fr}
+.row.sin-cifra .n{grid-column:1;white-space:normal}
+.row.sin-cifra .d{grid-column:1;grid-row:2}
+.row.sin-cifra.row--reco .rec{grid-column:1;grid-row:1}
+.row.sin-cifra.row--reco .n{grid-row:2}
+.row.sin-cifra.row--reco .d{grid-row:3}
+.row.sin-cifra.add .n::before{content:"+";margin-right:.55em;color:var(--svh-faint);font-weight:400}
+
 /* fila de texto llano — "Cómo funciona" */
 .row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
   letter-spacing:0;line-height:var(--lh-snug);white-space:normal}
@@ -220,6 +231,17 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
    alto final desde el primer cuadro; lo que se mueve es el recorte. */
 @keyframes telon{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes detalle-sube{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* El cierre es el mismo telón al revés, más corto: abrir invita, cerrar
+   resuelve. El texto se va primero —está abajo, es lo primero que sobra— y
+   el recorte sube detrás tapando la foto. Cuando termina, el panel se
+   oculta; para entonces la fila ya está pegada arriba y el desplome de
+   cuatro mil píxeles ocurre fuera de pantalla. */
+.panel.cerrando .detail{animation:detalle-baja calc(var(--motion-cierre) * .62) both}
+.panel.cerrando .open{animation:telon-cierra var(--motion-cierre) both}
+.panel.cerrando .cierre{animation:detalle-baja calc(var(--motion-cierre) * .5) both}
+@keyframes telon-cierra{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0)}}
+@keyframes detalle-baja{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px)}}
 
 /* La foto del lugar. Lo único que sangra en todo el sitio.
    Capas en orden de pintado, sin z-index negativos: foto → velo → texto. */

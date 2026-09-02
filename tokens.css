@@ -89,6 +89,7 @@
      Sin fade-up al hacer scroll, sin cursor propio, sin marquesina. */
   --motion:      .52s cubic-bezier(.22,1,.36,1);  /* la fila que se abre */
   --motion-telon: .72s cubic-bezier(.22,1,.36,1);  /* el recorte que descubre la foto */
+  --motion-cierre:.40s cubic-bezier(.55,0,.45,1);  /* el telón al revés — cerrar es firme */
   --retraso-detalle:.26s;                          /* el texto entra detrás del telón */
   --motion-lento:1.1s cubic-bezier(.22,1,.36,1);  /* el asentamiento de la foto */
   --motion-fast: .18s cubic-bezier(.4,0,.2,1);    /* hover, foco */

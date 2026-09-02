@@ -109,12 +109,37 @@
       deslizarHasta(scrollY + falta, abrirYa);
     });
 
+    /* Cerrar es el mismo viaje al revés: primero se sube a la fila, y sólo
+       al llegar se corre el telón en reversa. Así el desplome de cuatro mil
+       píxeles vuelve a ocurrir fuera de pantalla, igual que al abrir. */
     function cerrar(c) {
-      c.estado(false);
-      /* Al cerrar desaparece todo lo de abajo y el scroll se acomoda solo.
-         Aquí el corte seco es lo correcto: cerrar debe sentirse firme. */
-      c.fila.scrollIntoView({ block: 'start' });
-      c.fila.focus();
+      if (c.cerrando) return;
+      c.cerrando = true;
+
+      var margen = parseFloat(getComputedStyle(c.fila).scrollMarginTop) || 0;
+
+      function replegar() {
+        if (!suave) { rematar(); return; }
+        c.panel.classList.add('cerrando');
+        var telon = c.panel.querySelector('.open');
+        if (!telon) { rematar(); return; }
+        telon.addEventListener('animationend', rematar, { once: true });
+        setTimeout(rematar, 700);            /* respaldo */
+      }
+
+      var rematado = false;
+      function rematar() {
+        if (rematado) return;
+        rematado = true;
+        c.panel.classList.remove('cerrando');
+        c.estado(false);
+        c.cerrando = false;
+        c.fila.focus({ preventScroll: true });
+      }
+
+      var falta = c.fila.getBoundingClientRect().top - margen;
+      if (!suave || Math.abs(falta) < 4) { scrollBy(0, falta); replegar(); return; }
+      deslizarHasta(scrollY + falta, replegar);
     }
 
     if (cierre) cierre.addEventListener('click', function () { cerrar(cap); });
