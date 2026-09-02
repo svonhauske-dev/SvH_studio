@@ -212,12 +212,15 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   transform:scale(1.045);transition:transform var(--motion-slow)}
 .panel[data-open="true"] .open img{transform:scale(1)}
 .open::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(6,10,6,.72) 0%,rgba(6,10,6,.22) 34%,rgba(6,10,6,0) 62%)}
+  background:linear-gradient(to top,
+    rgba(var(--velo,6,10,6), var(--velo-fuerza,.72)) 0%,
+    rgba(var(--velo,6,10,6), calc(var(--velo-fuerza,.72) * .3)) 34%,
+    rgba(var(--velo,6,10,6), 0) 62%)}
 /* Sin wordmark encima. La barra ya dijo el nombre ochenta píxeles arriba;
    repetirlo a 136px era adorno de diseñadora. La foto es la foto. */
 .open .cp{position:relative;z-index:1;
   font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:rgba(242,239,234,.86)}
+  color:var(--pie-foto,rgba(242,239,234,.86))}
 
 /* detalle del lugar, ya dentro del papel */
 .detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0}
