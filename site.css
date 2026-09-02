@@ -164,9 +164,9 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
 button.row:hover::before,a.row:hover::before,
 button.row:focus-visible::before,a.row:focus-visible::before{transform:scaleY(1)}
 
-button.row:hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
+button.row:not([aria-expanded="true"]):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
 button.row:hover .lead,a.row:hover .lead{border-bottom-color:rgba(16,16,16,.4)}
-button.row:hover .n,a.row:hover .n{color:var(--lugar)}
+button.row:not([aria-expanded="true"]):hover .n,a.row:hover .n{color:var(--lugar)}
 .row .n,.row .lead{transition:color var(--motion-fast),border-color var(--motion-fast)}
 
 /* El sitio tiene dos anchos y sólo dos: la columna y la pantalla.
@@ -260,7 +260,7 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
    y cierra con su gemela. Sin ese cierre no se sabe dónde termina, y el
    índice de abajo parece parte del proyecto. */
 .cierre{
-  display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4) var(--s6);
+  display:flex;align-items:baseline;justify-content:flex-end;gap:var(--s4) var(--s6);
   flex-wrap:wrap;width:100%;margin-top:clamp(3rem,8vw,5.5rem);
   padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
   background:var(--lugar);color:rgba(242,239,234,.70)}
