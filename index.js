@@ -32,9 +32,7 @@
     function estado(abierta) {
       cap.abierta = abierta;
       fila.setAttribute('aria-expanded', String(abierta));
-      panel.dataset.open = String(abierta);
-      /* Cerrado el panel sigue en el DOM con alto 0. Sin inert, sus enlaces
-         se podían alcanzar con Tab: el foco desaparecía de la pantalla. */
+      panel.hidden = !abierta;
       panel.inert = !abierta;
       if (etiqueta) etiqueta.firstChild.nodeValue = abierta ? 'Cerrar' : 'Ver';
     }

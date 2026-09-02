@@ -187,15 +187,27 @@ button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}
 button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)}
 
 /* El único movimiento del sitio.
-   Sin JS el panel queda abierto y el contenido es alcanzable; el script lo
-   cierra al cargar y a partir de ahí anima el alto con grid-template-rows,
-   que recorta como telón en vez de aplastar. */
-.panel{display:grid;grid-template-rows:1fr;transition:grid-template-rows var(--motion);
-  width:100vw;margin-inline:calc(50% - 50vw)}
-.panel[data-open="false"]{grid-template-rows:0fr}
-.panel > .inner{min-height:0;overflow:hidden;padding-bottom:clamp(3rem,9vw,6rem);
-  opacity:1;transition:opacity var(--motion)}
-.panel[data-open="false"] > .inner{opacity:0;padding-bottom:0}
+
+   NO se anima la altura. Animar grid-template-rows obliga al navegador a
+   rehacer la maquetación de todo el documento en cada cuadro, con dos mil
+   píxeles de contenido adentro — en un celular eso tartamudea siempre, y
+   el salto de dos mil píxeles en medio segundo es violento de por sí.
+
+   En su lugar el capítulo aparece de una vez, en una sola pasada de layout,
+   con la fila ya anclada arriba por el scroll: nada de lo que el ojo está
+   mirando se mueve. Lo que se anima es sólo opacidad y escala, que corren
+   en el compositor y no tocan el layout. Dos velocidades encimadas: el
+   capítulo entra en .52s, la foto se asienta en 1.1s.
+
+   Sin JS el panel queda abierto y el contenido es alcanzable; el script le
+   pone [hidden] al cargar. */
+.panel{width:100vw;margin-inline:calc(50% - 50vw);
+  animation:capitulo-entra var(--motion) both}
+.panel[hidden]{display:none}
+.panel > .inner{padding-bottom:clamp(3rem,9vw,6rem)}
+
+@keyframes capitulo-entra{from{opacity:0}to{opacity:1}}
+@keyframes foto-asienta{from{transform:scale(1.05)}to{transform:scale(1)}}
 
 /* La foto del lugar. Lo único que sangra en todo el sitio.
    Capas en orden de pintado, sin z-index negativos: foto → velo → texto. */
@@ -209,8 +221,7 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 }
 .open picture,.open img{position:absolute;inset:0}
 .open img{width:100%;height:100%;object-fit:cover;
-  transform:scale(1.045);transition:transform var(--motion-slow)}
-.panel[data-open="true"] .open img{transform:scale(1)}
+  animation:foto-asienta var(--motion-lento) .04s both}
 .open::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to top,
     rgba(var(--velo,6,10,6), var(--velo-fuerza,.72)) 0%,
