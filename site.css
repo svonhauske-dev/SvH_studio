@@ -119,6 +119,16 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
 .row .v.link{font-family:var(--svh-sans);font-size:var(--t-small);font-weight:600;
   letter-spacing:.03em;border-bottom:1px solid currentColor;padding-bottom:.12em}
 
+/* La marca de la casa: un consejo en versalitas sobre el nombre, como el
+   plato recomendado de una carta impresa. No una etiqueta de "más popular",
+   que es lenguaje de SaaS y aquí se vería fatal. */
+.row--reco{grid-template-rows:auto auto auto}
+.row--reco .rec{grid-column:1/-1;grid-row:1;margin-bottom:.2em;
+  font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
+  color:var(--svh-dim)}
+.row--reco .n,.row--reco .lead,.row--reco .v{grid-row:2}
+.row--reco .d{grid-row:3}
+
 /* fila de texto llano — "Cómo funciona" */
 .row.plain .n{font-family:var(--svh-sans);font-size:var(--t-plain);font-weight:600;
   letter-spacing:0;line-height:var(--lh-snug);white-space:normal}
