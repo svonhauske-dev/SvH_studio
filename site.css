@@ -165,9 +165,9 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
 button.row:hover::before,a.row:hover::before,
 button.row:focus-visible::before,a.row:focus-visible::before{transform:scaleY(1)}
 
-button.row:not([aria-expanded="true"]):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
+button.row:not([aria-expanded="true"]):not(.armada):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
 button.row:hover .lead,a.row:hover .lead{border-bottom-color:rgba(16,16,16,.4)}
-button.row:not([aria-expanded="true"]):hover .n,a.row:hover .n{color:var(--lugar)}
+button.row:not([aria-expanded="true"]):not(.armada):hover .n,a.row:hover .n{color:var(--lugar)}
 .row .n,.row .lead{transition:color var(--motion-fast),border-color var(--motion-fast)}
 
 /* El sitio tiene dos anchos y sólo dos: la columna y la pantalla.
@@ -176,12 +176,15 @@ button.row:not([aria-expanded="true"]):hover .n,a.row:hover .n{color:var(--lugar
    la fotografía con ella. Barra y foto son una sola masa; el texto de
    adentro sigue colgando del eje del índice, así que nada se desalinea y
    la barra tiene aire propio. */
+button.row.armada,
 button.row[aria-expanded="true"]{
   background:var(--lugar);color:var(--svh-on-tint);border-bottom-color:transparent;
   width:100vw;margin-inline:calc(50% - 50vw);
   padding:clamp(1.125rem,3.2vw,2rem) var(--edge);
 }
+button.row.armada::before,
 button.row[aria-expanded="true"]::before{display:none}
+button.row.armada .d,button.row.armada .v,
 button.row[aria-expanded="true"] .d,
 button.row[aria-expanded="true"] .v{color:rgba(242,239,234,.74)}
 button.row[aria-expanded="true"] .v{border-bottom-color:rgba(242,239,234,.5)}

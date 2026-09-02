@@ -6,13 +6,42 @@
   var suave = !matchMedia('(prefers-reduced-motion: reduce)').matches;
   var capitulos = [];
 
-  /* Espera a que termine un scroll suave. scrollend es lo correcto; el
-     temporizador es el respaldo para navegadores que aún no lo tienen. */
-  function alTerminarElScroll(fn) {
-    var hecho = false;
-    function una() { if (hecho) return; hecho = true; removeEventListener('scrollend', una); fn(); }
-    addEventListener('scrollend', una, { once: true });
-    setTimeout(una, 900);
+  /* Scroll con curva propia.
+
+     El scroll suave nativo de Chrome tiene una curva fija que no se puede
+     editar: para distancias largas arranca a más de cien píxeles por cuadro
+     y frena de golpe. Se lee como un tirón, no como un deslizamiento.
+
+     Éste usa la misma salida cúbica que el resto del sitio y una duración
+     proporcional a la distancia. Se cancela al primer toque o rueda del
+     usuario: nunca hay que pelearse con la página. */
+  function deslizarHasta(destino, listo) {
+    var y0 = scrollY,
+        dy = destino - y0,
+        ms = Math.min(980, Math.max(520, Math.abs(dy) * 0.85)),
+        t0 = performance.now(),
+        vivo = true;
+
+    function rendirse() { vivo = false; }
+    addEventListener('wheel', rendirse, { once: true, passive: true });
+    addEventListener('touchstart', rendirse, { once: true, passive: true });
+
+    function limpiar() {
+      removeEventListener('wheel', rendirse);
+      removeEventListener('touchstart', rendirse);
+    }
+
+    (function paso(ahora) {
+      if (!vivo) { limpiar(); listo(); return; }
+      var t = Math.min(1, (ahora - t0) / ms),
+          /* Entrada y salida cúbica: arranca desde cero y llega a cero. La
+             salida sola partía a 94 px por cuadro, que se siente como
+             tirón. La respuesta inmediata ya la da la fila al pintarse. */
+          e = t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      scrollTo(0, y0 + dy * e);
+      if (t < 1) requestAnimationFrame(paso);
+      else { limpiar(); listo(); }
+    })(t0);
   }
 
   document.querySelectorAll('button.row[aria-controls]').forEach(function (fila) {
@@ -52,19 +81,22 @@
       if (cap.abierta) { cerrar(cap); return; }
       adelantar();
 
+      /* Respuesta inmediata: la fila toma el color del lugar en el mismo
+         cuadro del toque, aunque el capítulo todavía no exista. Cuesta un
+         píxel de alto y evita que el toque se sienta muerto. */
+      fila.classList.add('armada');
+
       var otros = capitulos.filter(function (o) { return o !== cap && o.abierta; });
+      var margen = parseFloat(getComputedStyle(fila).scrollMarginTop) || 0;
 
-      /* Se abre primero. El panel va DEBAJO de su fila, así que abrirlo no
-         mueve la fila: el destino del scroll queda fijo desde el cuadro uno. */
-      estado(true);
-
-      /* El otro capítulo se cierra HASTA EL FINAL, no al principio. Cerrarlo
-         antes quita dos mil píxeles por encima de esta fila y la avienta de
-         golpe — ése era el brinco. Y compensar ahí no siempre alcanza,
-         porque puede no haber scroll suficiente arriba para corregir.
-         Cerrándolo cuando la fila ya está pegada al borde superior, la
-         corrección siempre cabe y no se ve. */
-      function cerrarLosOtros() {
+      /* Abrir un panel de cuatro mil píxeles desplaza de un tirón todo lo
+         que está debajo. Correrlo a 60 fps no lo arregla: el salto es real.
+         La única forma de que no se vea es que la fila ya esté pegada al
+         borde superior cuando el capítulo aparece — así todo lo que se
+         desplaza queda fuera de pantalla. Por eso el scroll va PRIMERO. */
+      function abrirYa() {
+        fila.classList.remove('armada');
+        estado(true);
         if (!otros.length) return;
         var antes = fila.getBoundingClientRect().top;
         otros.forEach(function (o) { o.estado(false); });
@@ -72,9 +104,9 @@
         if (despues !== antes) scrollBy(0, despues - antes);
       }
 
-      if (!suave) { fila.scrollIntoView({ block: 'start' }); cerrarLosOtros(); return; }
-      fila.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      alTerminarElScroll(cerrarLosOtros);
+      var falta = fila.getBoundingClientRect().top - margen;
+      if (!suave || Math.abs(falta) < 4) { scrollBy(0, falta); abrirYa(); return; }
+      deslizarHasta(scrollY + falta, abrirYa);
     });
 
     function cerrar(c) {
