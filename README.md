@@ -8,6 +8,7 @@ HTML, CSS y JavaScript planos. Sin build, sin dependencias.
 ## Estructura
 
     index.html      El sitio completo: frontispicio + índice.
+    404.html        La misma retícula, una entrada que no existe.
     tokens.css      Sistema de diseño. Color, tipo, espacio, movimiento.
     site.css        Estilos. Depende de tokens.css.
     index.js        El único movimiento del sitio: la fila que se abre.

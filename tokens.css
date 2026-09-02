@@ -17,8 +17,10 @@
   /* ---------------------------------------------------------------- COLOR */
   --svh-paper:      #FAFAF8;   /* papel — nunca blanco puro */
   --svh-ink:        #101010;   /* tinta — nunca #000 */
-  --svh-dim:        rgba(16,16,16,.54);   /* descripciones, etiquetas */
-  --svh-faint:      rgba(16,16,16,.34);   /* estados apagados */
+  /* .62 no es estético: es el mínimo que pasa WCAG AA sobre el papel.
+     A .54 daba 4.02:1 y toda la letra secundaria del sitio reprobaba. */
+  --svh-dim:        rgba(16,16,16,.62);   /* descripciones, etiquetas — 5.2:1 */
+  --svh-faint:      rgba(16,16,16,.40);   /* separadores, nunca texto */
   --svh-rule:       rgba(16,16,16,.15);   /* filete del índice */
   --svh-rule-hard:  #101010;              /* filete que abre un grupo */
   --svh-on-tint:    #F2EFEA;              /* texto sobre el color del lugar */

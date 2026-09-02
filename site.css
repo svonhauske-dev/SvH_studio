@@ -18,6 +18,9 @@ body{
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:var(--focus);outline-offset:3px}
+/* Sobre el color del lugar la tinta desaparece: el anillo se invierte. */
+button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
+  outline:2px solid var(--svh-on-tint);outline-offset:-5px}
 
 .page{max-width:var(--maxw);margin:0 auto;padding:var(--rhythm-page) var(--gutter) var(--rhythm-foot)}
 .front + .grp{margin-top:var(--rhythm-front)}
@@ -188,7 +191,10 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
   font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--svh-dim);line-height:1.5}
 .detail .hizo li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
 .detail .hizo li:last-child::after{content:""}
-.detail .visita{display:inline-block;margin-top:clamp(1.75rem,5vw,2.75rem);
+/* 44px de alto real sin mover el ritmo óptico: el relleno se compensa
+   con margen negativo, así el subrayado sigue donde estaba. */
+.detail .visita{display:inline-flex;align-items:center;min-height:44px;
+  padding-block:.55rem;margin-block:calc(clamp(1.75rem,5vw,2.75rem) - .55rem) -.55rem;
   font-size:var(--t-body);font-weight:600;letter-spacing:.01em;
   text-decoration:underline;text-underline-offset:.34em;text-decoration-thickness:1px;
   text-decoration-color:rgba(16,16,16,.32);
@@ -230,6 +236,8 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:rgba(242,239,234,.42)
 a.row--cta:hover .n{text-decoration:none}
 a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
 a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
+
+.grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
 
 .sig{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
   margin-top:var(--rhythm-group);padding-top:var(--s3);border-top:1px solid var(--svh-rule);
