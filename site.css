@@ -89,6 +89,20 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
   border-bottom:2px solid var(--svh-rule-hard);
 }
 
+/* SEGUNDO NIVEL.
+
+   "Se agrega" cuelga de "Qué construyo" —no puedes comprar Reservaciones
+   sola— y "Cómo funciona" son las condiciones, no la oferta. Los dos son
+   subordinados y hasta hoy pesaban igual que los tres principales.
+
+   El rango se marca dos veces, para que no quede como casi-diferencia: el
+   nombre baja un escalón completo de la rampa (44 → 32, no un ajuste de
+   unos píxeles) y el filete de la etiqueta pasa de 2px en tinta a la
+   hairline del índice. Dos señales, ningún punto medio. */
+.grp--sec .grp-label{border-bottom:1px solid var(--svh-rule)}
+.grp--sec .row .n{font-size:var(--t-value)}
+.grp--sec .row .n em{font-size:var(--t-small)}
+
 /* ── la fila ──────────────────────────────────────────────────────────── */
 /* La fila de una carta impresa: nombre — guía de puntos — valor,
    y la descripción abajo, con medida corta. Igual en toda anchura.
