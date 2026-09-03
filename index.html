@@ -49,7 +49,7 @@
     </p>
 
     <div class="dateline">
-      <span class="tag">Antes</span>
+      <span class="tag">Clientes</span>
       <ul class="names">
         <li>Disney</li>
         <li>CAMP</li>
@@ -62,9 +62,53 @@
     </div>
   </header>
 
-  <!-- ══════════ LUGARES ══════════ -->
+<section class="grp" id="precios">
+    <h2 class="grp-label"><span>Qué construyo</span> <span>Se cotiza por proyecto</span></h2>
+
+    <div class="row sin-cifra">
+      <span class="n">Esencial <em>· que te encuentren</em></span>
+      <span class="d">Tu carta, horarios, mapa, fotos y WhatsApp. En orden para que Google te encuentre.</span>
+    </div>
+    <div class="row sin-cifra row--reco">
+      <span class="rec">El que casi siempre conviene</span>
+      <span class="n">Completo <em>· que te elijan</em></span>
+      <span class="d">Todo lo anterior, más tu historia, galería, y el panel donde cambias carta, precios y fotos tú.</span>
+    </div>
+    <div class="row sin-cifra">
+      <span class="n">Con pedidos <em>· que te compren</em></span>
+      <span class="d">Pedidos que se cierran por WhatsApp, sin comisión de aplicación. Catálogo con inventario si vendes producto.</span>
+    </div>
+    <div class="row sin-cifra">
+      <span class="n">Grupos <em>· que las manejes juntas</em></span>
+      <span class="d">Varias sucursales bajo una misma marca, cada una con su carta, sus horarios y su ficha, en un solo sitio.</span>
+    </div>
+  </section>
+
+  <!-- ══════════ SE AGREGA ══════════ -->
   <section class="grp">
-    <h2 class="grp-label"><span>Lugares</span> <span>Diseño + código</span></h2>
+    <h2 class="grp-label"><span>Se agrega</span> <span>A cualquier paquete</span></h2>
+
+    <div class="row sin-cifra">
+      <span class="n">Reservaciones</span>
+      <span class="d">Por WhatsApp con el mensaje armado, o una solicitud que llega a tu panel para que confirmes tú. También conecto el servicio que ya uses.</span>
+    </div>
+    <div class="row sin-cifra">
+      <span class="n">Pago en línea</span>
+      <span class="d">Tarjeta, meses sin intereses, transferencia y OXXO. Va con pedidos, y con mantenimiento el primer año.</span>
+    </div>
+    <div class="row sin-cifra">
+      <span class="n">En dos idiomas</span>
+      <span class="d">Para los lugares que reciben turistas.</span>
+    </div>
+    <div class="row sin-cifra">
+      <span class="n">Se conecta con lo que ya usas</span>
+      <span class="d">Punto de venta, repartidores, Google, Instagram, listas de correo.</span>
+    </div>
+  </section>
+
+  <!-- ══════════ TRABAJO ══════════ -->
+  <section class="grp">
+    <h2 class="grp-label"><span>Trabajo</span> <span>Diseño + código</span></h2>
 
     <button class="row" type="button" style="--lugar:#4F0D00"
             aria-expanded="false" aria-controls="jabali">
@@ -110,20 +154,17 @@
 
         <a class="visita" href="https://www.jabali.mx" target="_blank" rel="noopener">Ver el sitio · jabali.mx<span class="fl" aria-hidden="true">↗</span></a>
 
-        <div class="pale">
+        <figure class="pantalla">
           <picture>
-            <source type="image/webp" srcset="/images/jabali/cafe-700.webp 700w, /images/jabali/cafe-916.webp 916w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="655" height="916" src="/images/jabali/cafe-916.jpg" srcset="/images/jabali/cafe-700.jpg 700w, /images/jabali/cafe-916.jpg 916w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="Dos bolsas de café Jabalí sobre una mesa clara">
+            <source media="(max-width:599px)" type="image/webp" srcset="/images/sitios/jabali-mov-600.webp">
+            <source media="(max-width:599px)" srcset="/images/sitios/jabali-mov-600.jpg">
+            <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="100vw">
+            <img width="1600" height="1000" src="/images/sitios/jabali-esc-1600.jpg"
+                 srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w"
+                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de jabali.mx: el wordmark en blanco sobre oxblood">
           </picture>
-          <picture>
-            <source type="image/webp" srcset="/images/jabali/secado-700.webp 700w, /images/jabali/secado-1200.webp 1200w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="900" height="1200" src="/images/jabali/secado-1200.jpg" srcset="/images/jabali/secado-700.jpg 700w, /images/jabali/secado-1200.jpg 1200w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="Alexia Zavaleta revisando el café en las camas de secado de la finca">
-          </picture>
-        </div>
+          <figcaption class="cp">jabali.mx</figcaption>
+        </figure>
       </div>
 
       <div class="cierre">
@@ -176,20 +217,17 @@
 
         <a class="visita" href="https://madrizza.vercel.app" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
 
-        <div class="pale">
+        <figure class="pantalla">
           <picture>
-            <source type="image/webp" srcset="/images/madrizza/cargando-700.webp 700w, /images/madrizza/cargando-935.webp 935w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="736" height="935" src="/images/madrizza/cargando-935.jpg" srcset="/images/madrizza/cargando-700.jpg 700w, /images/madrizza/cargando-935.jpg 935w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="Una persona cargando una torre de cajas de Madrizza que le tapa la cara">
+            <source media="(max-width:599px)" type="image/webp" srcset="/images/sitios/madrizza-mov-600.webp">
+            <source media="(max-width:599px)" srcset="/images/sitios/madrizza-mov-600.jpg">
+            <source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="100vw">
+            <img width="1600" height="1000" src="/images/sitios/madrizza-esc-1600.jpg"
+                 srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w"
+                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de Madrizza: rosa mexicano, azul y el personaje de la marca">
           </picture>
-          <picture>
-            <source type="image/webp" srcset="/images/madrizza/carta-700.webp 700w, /images/madrizza/carta-1200.webp 1200w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="1160" height="1450" src="/images/madrizza/carta-1200.jpg" srcset="/images/madrizza/carta-700.jpg 700w, /images/madrizza/carta-1200.jpg 1200w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="La carta de Madrizza: nombres, guía de puntos y precios">
-          </picture>
-        </div>
+          <figcaption class="cp">madrizza.vercel.app</figcaption>
+        </figure>
       </div>
 
       <div class="cierre">
@@ -242,20 +280,17 @@
 
         <a class="visita" href="https://finca-coyametla.vercel.app/es" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
 
-        <div class="pale">
+        <figure class="pantalla">
           <picture>
-            <source type="image/webp" srcset="/images/coyametla/grano-700.webp 700w, /images/coyametla/grano-1200.webp 1200w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="800" height="1200" src="/images/coyametla/grano-1200.jpg" srcset="/images/coyametla/grano-700.jpg 700w, /images/coyametla/grano-1200.jpg 1200w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="Un grano de café verde en la palma de una mano abierta">
+            <source media="(max-width:599px)" type="image/webp" srcset="/images/sitios/coyametla-mov-600.webp">
+            <source media="(max-width:599px)" srcset="/images/sitios/coyametla-mov-600.jpg">
+            <source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="100vw">
+            <img width="1600" height="1000" src="/images/sitios/coyametla-esc-1600.jpg"
+                 srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w"
+                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de Finca Coyametla: la mano abierta con el grano de café">
           </picture>
-          <picture>
-            <source type="image/webp" srcset="/images/coyametla/secado-700.webp 700w, /images/coyametla/secado-1200.webp 1200w" sizes="(min-width:600px) 46vw, 88vw">
-            <img width="1200" height="800" src="/images/coyametla/secado-1200.jpg" srcset="/images/coyametla/secado-700.jpg 700w, /images/coyametla/secado-1200.jpg 1200w"
-                 sizes="(min-width:600px) 46vw, 88vw" loading="lazy" decoding="async"
-                 alt="Camas de secado de madera con el café extendido al sol">
-          </picture>
-        </div>
+          <figcaption class="cp">finca-coyametla.vercel.app</figcaption>
+        </figure>
       </div>
 
       <div class="cierre">
@@ -270,51 +305,7 @@
   </section>
 
   <!-- ══════════ EL SITIO ══════════ -->
-  <section class="grp" id="precios">
-    <h2 class="grp-label"><span>El sitio</span> <span>Se cotiza por proyecto</span></h2>
-
-    <div class="row sin-cifra">
-      <span class="n">Esencial <em>· que te encuentren</em></span>
-      <span class="d">Tu carta, horarios, mapa, fotos y WhatsApp. En orden para que Google te encuentre.</span>
-    </div>
-    <div class="row sin-cifra row--reco">
-      <span class="rec">El que casi siempre conviene</span>
-      <span class="n">Completo <em>· que te elijan</em></span>
-      <span class="d">Todo lo anterior, más tu historia, galería, y el panel donde cambias carta, precios y fotos tú.</span>
-    </div>
-    <div class="row sin-cifra">
-      <span class="n">Con pedidos <em>· que te compren</em></span>
-      <span class="d">Pedidos que se cierran por WhatsApp, sin comisión de aplicación. Catálogo con inventario si vendes producto.</span>
-    </div>
-    <div class="row sin-cifra">
-      <span class="n">Grupos <em>· que las manejes juntas</em></span>
-      <span class="d">Varias sucursales bajo una misma marca, cada una con su carta, sus horarios y su ficha, en un solo sitio.</span>
-    </div>
-  </section>
-
-  <!-- ══════════ SE AGREGA ══════════ -->
-  <section class="grp">
-    <h2 class="grp-label"><span>Se agrega</span> <span>A cualquier paquete</span></h2>
-
-    <div class="row sin-cifra">
-      <span class="n">Reservaciones</span>
-      <span class="d">Por WhatsApp con el mensaje armado, o una solicitud que llega a tu panel para que confirmes tú. También conecto el servicio que ya uses.</span>
-    </div>
-    <div class="row sin-cifra">
-      <span class="n">Pago en línea</span>
-      <span class="d">Tarjeta, meses sin intereses, transferencia y OXXO. Va con pedidos, y con mantenimiento el primer año.</span>
-    </div>
-    <div class="row sin-cifra">
-      <span class="n">En dos idiomas</span>
-      <span class="d">Para los lugares que reciben turistas.</span>
-    </div>
-    <div class="row sin-cifra">
-      <span class="n">Se conecta con lo que ya usas</span>
-      <span class="d">Punto de venta, repartidores, Google, Instagram, listas de correo.</span>
-    </div>
-  </section>
-
-  <!-- ══════════ CÓMO FUNCIONA ══════════ -->
+    <!-- ══════════ CÓMO FUNCIONA ══════════ -->
   <section class="grp">
     <h2 class="grp-label"><span>Cómo funciona</span> <span>Sin sorpresas</span></h2>
 

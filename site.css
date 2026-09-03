@@ -311,10 +311,20 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-sof
   transition:transform var(--motion-fast)}
 .detail .visita:hover .fl{transform:translate(2px,-2px)}
 
-/* par de imágenes claras — viven en el papel, sin marco */
-.pale{display:grid;gap:var(--s4);margin-top:clamp(2.25rem,7vw,4rem)}
-@media (min-width:600px){.pale{grid-template-columns:1fr 1fr;gap:var(--s6)}}
-.pale img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+/* El sitio del cliente, a sangre y sin marco de dispositivo.
+
+   Faltaba lo más importante: se abría un capítulo y no se veía un solo
+   sitio web —sólo fotos del lugar— así que el trabajo no se podía juzgar
+   y los capítulos se leían como más de svh.studio. Aquí el visitante ve
+   el rosa de Madrizza y el oxblood de Jabalí, y entiende de un golpe que
+   ella no impone su estilo. Un mockup de laptop sobre gris haría lo
+   contrario: es el delator de plantilla número uno. */
+.pantalla{margin:clamp(2rem,6vw,3.5rem) 0 0;position:relative;
+  width:100vw;margin-inline:calc(50% - 50vw)}
+.pantalla img{width:100%;height:auto;display:block}
+.pantalla .cp{display:block;padding:var(--s3) var(--edge) 0;
+  font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
+  color:var(--svh-dim)}
 
 /* ── pie ──────────────────────────────────────────────────────────────── */
 /* Un proyecto abierto es un capítulo: abre con una barra del color del lugar
@@ -369,7 +379,7 @@ a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
    la letra chica va más apretada, y el cierre pide el doble de aire. */
 /* "Se agrega" respira menos que los demás a propósito: pertenece al grupo
    de arriba y el aire corto los une sin necesidad de decirlo. */
-.grp:nth-of-type(3){margin-top:clamp(1.75rem,5vw,3rem)}
+.grp:nth-of-type(2){margin-top:clamp(1.75rem,5vw,3rem)}
 .grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
 .grp[id]{scroll-margin-top:clamp(1rem,4vw,2.5rem)}
 
