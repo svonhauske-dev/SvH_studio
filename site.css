@@ -175,16 +175,29 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
   transition:background var(--motion-fast),color var(--motion-fast),
              border-color var(--motion-fast),margin var(--motion-fast),padding var(--motion-fast)}
 
-/* El hover no es un estilo: es un anticipo. La fila se tiñe apenas con el
-   color del lugar y aparece un tick de ese mismo color en el margen, que es
-   exactamente lo que va a inundar la pantalla al hacer clic. */
+/* EL COLOR DEL CLIENTE, VISIBLE EN REPOSO.
+
+   Sólo las filas de Trabajo llevan tick, y sólo ellas tienen color. Con eso
+   se distinguen de las otras doce sin cambiar de fuente ni de tamaño —una
+   diferencia de un píxel se lee como error, ésta se lee como sistema— y el
+   motivo queda legible sin explicarlo: cada una pertenece a alguien.
+
+   De paso la idea del sitio deja de activarse sólo al tocar. El índice es
+   tinta sobre papel salvo tres slivers de oxblood, azul y olive: el estudio
+   no tiene color, el color lo ponen los clientes, y ahora se ve desde que
+   abres la página.
+
+   El hover ya no hace aparecer el tick de la nada: lo engorda y lo estira. */
 .row{position:relative}
 .row::before{content:"";position:absolute;top:.6em;bottom:.6em;
   left:calc(-1 * clamp(.5rem,2vw,1rem));width:2px;background:var(--lugar);
   transform:scaleY(0);transform-origin:center top;
-  transition:transform var(--motion-fast)}
+  transition:transform var(--motion-fast),width var(--motion-fast)}
+button.row[aria-controls]::before{transform:scaleY(1)}
 button.row:hover::before,a.row:hover::before,
 button.row:focus-visible::before,a.row:focus-visible::before{transform:scaleY(1)}
+button.row[aria-controls]:hover::before,
+button.row[aria-controls]:focus-visible::before{width:4px}
 
 button.row:not([aria-expanded="true"]):not(.armada):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
 button.row:hover .lead,a.row:hover .lead{border-bottom-color:var(--svh-guia-viva)}
