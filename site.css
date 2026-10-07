@@ -203,8 +203,11 @@ button.row{cursor:pointer;-webkit-appearance:none;appearance:none;border-radius:
 
    El hover ya no hace aparecer el tick de la nada: lo engorda y lo estira. */
 .row{position:relative}
+/* --tick: cuando el color del lugar es casi tinta (El Algo es madera), el
+   tick y el hover toman el acento de su marca; el capítulo abierto sigue
+   siendo del color del lugar. */
 .row::before{content:"";position:absolute;top:.6em;bottom:.6em;
-  left:calc(-1 * clamp(.5rem,2vw,1rem));width:2px;background:var(--lugar);
+  left:calc(-1 * clamp(.5rem,2vw,1rem));width:2px;background:var(--tick,var(--lugar));
   transform:scaleY(0);transform-origin:center top;
   transition:transform var(--motion-fast),width var(--motion-fast)}
 button.row[aria-controls]::before{transform:scaleY(1)}
@@ -215,7 +218,7 @@ button.row[aria-controls]:focus-visible::before{width:4px}
 
 button.row:not([aria-expanded="true"]):not(.armada):hover,a.row:hover{background:color-mix(in oklab, var(--lugar) 6%, transparent)}
 button.row:hover .lead,a.row:hover .lead{border-bottom-color:var(--svh-guia-viva)}
-button.row:not([aria-expanded="true"]):not(.armada):hover .n,a.row:hover .n{color:var(--lugar)}
+button.row:not([aria-expanded="true"]):not(.armada):hover .n,a.row:hover .n{color:var(--tick,var(--lugar))}
 .row .n,.row .lead{transition:color var(--motion-fast),border-color var(--motion-fast)}
 
 /* El sitio tiene dos anchos y sólo dos: la columna y la pantalla.
