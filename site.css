@@ -308,6 +308,42 @@ button.row[aria-expanded="true"] .lead{border-bottom-color:var(--svh-on-tint-sof
   font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--pie-foto,rgba(242,239,234,.86))}
 
+/* Celita no tiene foto del lugar: abre con la taza de su sitio, a escala,
+   sobre su beige. Sin velo —no hay foto que oscurecer— y el pie va en su
+   negro. La taza se sirve cada vez que el capítulo se abre: el panel pasa
+   de display:none a visible y eso reinicia las animaciones, sin JS. Mismos
+   tiempos que celita.mx: 1.4s de servir, vapor a los 250ms de llenarse. */
+.open--taza{background:#E6D9C0;--velo-fuerza:0;--pie-foto:rgba(12,8,3,.72);align-items:center}
+.open--taza .cp{text-align:center}
+.taza{position:absolute;left:50%;top:44%;translate:-50% -50%;
+  height:min(72%,30rem);width:auto;overflow:visible;color:#0C0803}
+.taza__brush{fill:currentColor}
+.taza__coffee,.taza__ring{fill:#896545}
+.taza__crema{fill:none;stroke:#E6D9C0;stroke-width:.8;stroke-linecap:round;opacity:.75}
+.taza__cafe{transform:translateY(20.5px);animation:taza-sirve 1.4s cubic-bezier(.33,1,.68,1) .9s both}
+.taza__stream{stroke:#896545;stroke-width:1.3;stroke-linecap:round;opacity:0;
+  animation:taza-chorro 1.6s linear .8s both}
+.taza__steam{opacity:0;animation:taza-vapor 1.2s cubic-bezier(.22,1,.36,1) 2.55s both}
+.taza__aire{animation:taza-vaiven 7s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.taza__wisp{fill:none;stroke:currentColor;stroke-linecap:round;stroke-dasharray:17 13;opacity:.5}
+.taza__wisp--a{stroke-width:1.6;animation:taza-fluye 4.2s linear infinite}
+.taza__wisp--b{stroke-width:2.1;animation:taza-fluye 5.1s linear infinite -1.7s;opacity:.55}
+.taza__wisp--c{stroke-width:1.4;animation:taza-fluye 4.6s linear infinite -3.1s;opacity:.4}
+@keyframes taza-sirve{from{transform:translateY(20.5px)}to{transform:translateY(16.6px)}}
+@keyframes taza-chorro{0%{opacity:0}8%,85%{opacity:1}100%{opacity:0}}
+@keyframes taza-vapor{from{opacity:0}to{opacity:1}}
+@keyframes taza-fluye{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+@keyframes taza-vaiven{
+  0%,100%{transform:translateX(0) skewX(0deg)}
+  35%{transform:translateX(.7px) skewX(-3deg)}
+  70%{transform:translateX(-.5px) skewX(2deg)}}
+@media (prefers-reduced-motion:reduce){
+  /* taza llena y vapor quieto, como en celita.mx */
+  .taza__aire,.taza__wisp{animation:none!important}
+  .taza__wisp{stroke-dasharray:none}
+  .taza__cafe,.taza__stream,.taza__steam{animation-delay:0s!important}
+}
+
 /* detalle del lugar, ya dentro del papel */
 .detail{padding:clamp(2.25rem,6vw,3.75rem) var(--edge) 0;
   animation:detalle-sube var(--motion) var(--retraso-detalle) both}
