@@ -249,7 +249,9 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    mismo color (--pagina, la mezcla que pone el script). El velo va en cada
    pantalla y no en la lámina: el celular se corre y se salía de debajo. */
 .esc,.mov{position:relative}
-.esc::after,.mov::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+/* Sin z-index: con z-index:1 el velo del escritorio se pintaba por encima
+   del celular, y donde se enciman el celular quedaba velado dos veces. */
+.esc::after,.mov::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:var(--pagina,var(--lugar));opacity:calc(.58 * var(--ad,0))}
 .esc,.mov{display:block;overflow:hidden;background:var(--lugar);
   outline:1px solid rgba(242,239,234,.22);outline-offset:-1px}
