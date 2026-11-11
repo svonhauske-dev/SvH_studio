@@ -75,7 +75,7 @@ a{color:inherit}
   line-height:var(--lh-tight);letter-spacing:var(--ls-row)}
 .row .d,.cap .ctx{font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);
   max-width:40ch;text-wrap:pretty}
-.meta,.names{font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;
+.meta{font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;
   line-height:1.6;color:var(--svh-ink)}
 
 /* Fila: nombre — guía de puntos — acción, y la frase debajo. */
@@ -88,10 +88,16 @@ a{color:inherit}
 .row .v{grid-column:3;grid-row:1;justify-self:end}
 .row .d{grid-column:1/-1;grid-row:2;margin:0}
 .row.sin-cifra{grid-template-columns:1fr}
-.names{grid-row:3;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);list-style:none;
-  margin:var(--s1) 0 0;padding:0}
-.names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
-.names li:last-child::after{content:""}
+/* Fichas: Capacidades y Clientes, como la hoja técnica de un proyecto.
+   La etiqueta atenuada a la izquierda, el dato en tinta; en el celular,
+   una encima de otra. Comparten tipo con .meta: versalitas de 12px. */
+.fichas{grid-row:3;margin:var(--s4) 0 0;display:grid;gap:var(--s3)}
+.fichas div{display:grid;gap:var(--s1);padding-top:var(--s3);border-top:1px solid var(--svh-rule)}
+.fichas dt,.fichas dd{margin:0;font-size:var(--t-label);letter-spacing:var(--ls-names);
+  text-transform:uppercase;line-height:1.6}
+.fichas dt{color:var(--svh-dim)}
+.fichas dd{color:var(--svh-ink);max-width:62ch}
+@media (min-width:640px){.fichas div{grid-template-columns:10rem 1fr;gap:var(--s4)}}
 
 /* Correo: la dirección se copia; el verbo abre el correo. Dos salidas,
    porque el mailto falla en silencio cuando no hay app de correo. */
