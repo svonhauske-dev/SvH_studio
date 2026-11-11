@@ -6,7 +6,7 @@
 <title>Sitios web para restaurantes en CDMX — SvH Studio</title>
 <meta name="description" content="Diseño y programo sitios web a la medida para restaurantes, cafés y bares en la Ciudad de México. Con panel propio para que lo manejes tú.">
 <link rel="canonical" href="https://svh.studio/">
-<meta name="theme-color" content="#FAFAF8">
+<meta name="theme-color" content="#4F0D00">
 <meta name="color-scheme" content="light">
 
 <meta property="og:type" content="website">
@@ -25,6 +25,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="/fonts.css">
 <link rel="stylesheet" href="/tokens.css">
 <link rel="stylesheet" href="/site.css">
@@ -231,7 +232,7 @@
 }
 </script>
 </head>
-<body>
+<body class="tinto" style="--lugar:#4F0D00">
 
 <main class="page">
 
@@ -250,328 +251,111 @@
   </header>
 
   <!-- ══════════ TRABAJO ══════════ -->
-  <section class="grp">
-    <h2 class="grp-label"><span>Trabajo</span> <span>2026</span></h2>
+  <!-- Una tira que se desliza con el pulgar: cada sitio en escritorio, con su
+       versión de celular encimada, y la página toma el color del que está al
+       frente. Sin JS es un carrusel nativo con scroll-snap y todo el texto. -->
+  <section class="grp trabajo" aria-labelledby="t-trabajo">
+    <div class="grp-label">
+      <h2 id="t-trabajo">Trabajo</h2>
+      <div class="mando">
+        <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" hidden>←</button>
+        <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente" hidden>→</button>
+        <span class="cont" aria-hidden="true">5 sitios</span>
+      </div>
+    </div>
 
-    <button class="row" type="button" style="--lugar:#4F0D00"
-            aria-expanded="false" aria-controls="jabali">
-      <span class="n">Jabalí</span>
-      <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Café de especialidad · Tienda con pedidos por WhatsApp · Panel</span>
-      <span class="v act">Ver<span class="fl" aria-hidden="true">↓</span></span>
-      <span class="mini" aria-hidden="true"><picture><source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="(min-width:760px) 18rem, 100vw"><img width="1600" height="1000" src="/images/sitios/jabali-esc-900.jpg" srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w" sizes="(min-width:760px) 18rem, 100vw" loading="lazy" decoding="async" alt=""></picture></span>
-    </button>
-
-    <div class="panel" id="jabali" style="--lugar:#4F0D00">
-      <div class="inner">
-      <figure class="open">
-        <picture>
-          <source type="image/webp"
-            srcset="/images/jabali/finca-900.webp 900w,
-                    /images/jabali/finca-1500.webp 1500w,
-                    /images/jabali/finca-2200.webp 2200w"
-            sizes="100vw">
-          <img width="1108" height="1500" src="/images/jabali/finca-1500.jpg"
-               srcset="/images/jabali/finca-900.jpg 900w,
-                       /images/jabali/finca-1500.jpg 1500w,
-                       /images/jabali/finca-2200.jpg 2200w"
-               sizes="100vw" loading="lazy" decoding="async"
-               alt="La Hacienda El Jabalí entre la selva de la sierra de Zongolica, Veracruz">
+    <ol class="tira" tabindex="0" aria-label="Cinco sitios, se desliza a los lados">
+    <li class="lamina" style="--lugar:#4F0D00" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
+      <div class="comp">
+        <picture class="esc">
+          <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
+          <img width="1600" height="1000" src="/images/sitios/jabali-esc-900.jpg" srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="eager" decoding="async" alt="Jabalí en escritorio">
         </picture>
-        <figcaption class="cp">Finca Coyametla · Zongolica, Veracruz</figcaption>
-      </figure>
-
-      <div class="detail">
-        <h3>Vender en línea sin dejar WhatsApp</h3>
-        <p>
-          La Hacienda El Jabalí lleva tres generaciones sembrando café en Zongolica, y sus pedidos siempre han pasado por WhatsApp.
-        </p>
-        <ul class="hizo">
-          <li>Marca: colores y tipografía</li>
-          <li>El pedido llega escrito a WhatsApp</li>
-          <li>Inventario y precios desde su panel</li>
-        </ul>
-
+        <picture class="mov">
+          <source type="image/webp" srcset="/images/sitios/jabali-mov-600.webp 600w, /images/sitios/jabali-mov-900.webp 900w" sizes="min(21vw, 12rem)">
+          <img width="600" height="1200" src="/images/sitios/jabali-mov-600.jpg" srcset="/images/sitios/jabali-mov-600.jpg 600w, /images/sitios/jabali-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="eager" decoding="async" alt="Jabalí en celular">
+        </picture>
+      </div>
+      <div class="cap">
+        <h3 class="n">Jabalí</h3>
+        <p class="d">Café de especialidad · Tienda con pedidos por WhatsApp · Panel</p>
+        <p class="ctx">La Hacienda El Jabalí lleva tres generaciones sembrando café en Zongolica, y sus pedidos siempre han pasado por WhatsApp.</p>
         <a class="visita" href="https://www.jabali.mx" target="_blank" rel="noopener">Ver el sitio · jabali.mx<span class="fl" aria-hidden="true">↗</span></a>
-
-        <figure class="pantalla">
-          <picture>
-            <source media="(max-width:599px)" type="image/webp" width="600" height="1200"
-                    srcset="/images/sitios/jabali-mov-600.webp 600w, /images/sitios/jabali-mov-900.webp 900w" sizes="100vw">
-            <source media="(max-width:599px)" width="600" height="1200"
-                    srcset="/images/sitios/jabali-mov-600.jpg 600w, /images/sitios/jabali-mov-900.jpg 900w" sizes="100vw">
-            <source type="image/webp" width="1600" height="1000"
-                    srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="100vw">
-            <img width="1600" height="1000" src="/images/sitios/jabali-esc-1600.jpg"
-                 srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w"
-                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de jabali.mx: el wordmark en blanco sobre oxblood">
-          </picture>
-          <figcaption class="cp">jabali.mx</figcaption>
-        </figure>
       </div>
-
-      <div class="cierre">
-        <button type="button" data-cierra="jabali">
-          <span class="et">Cerrar Jabalí</span><span class="fl" aria-hidden="true">↑</span>
-        </button>
-      </div>
-      </div>
-    </div>
-
-
-    <button class="row" type="button" style="--lugar:#2A5280"
-            aria-expanded="false" aria-controls="madrizza">
-      <span class="n">Madrizza</span>
-      <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Pizzería de barrio · Logotipo, carta y pedidos</span>
-      <span class="v act">Ver<span class="fl" aria-hidden="true">↓</span></span>
-      <span class="mini" aria-hidden="true"><picture><source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="(min-width:760px) 18rem, 100vw"><img width="1600" height="1000" src="/images/sitios/madrizza-esc-900.jpg" srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w" sizes="(min-width:760px) 18rem, 100vw" loading="lazy" decoding="async" alt=""></picture></span>
-    </button>
-
-    <div class="panel" id="madrizza" style="--lugar:#2A5280">
-      <div class="inner">
-      <figure class="open">
-        <picture>
-          <source type="image/webp"
-            srcset="/images/madrizza/noche-900.webp 900w,
-                    /images/madrizza/noche-1456.webp 1456w"
-            sizes="100vw">
-          <img width="1456" height="1092" src="/images/madrizza/noche-1456.jpg"
-               srcset="/images/madrizza/noche-900.jpg 900w,
-                       /images/madrizza/noche-1456.jpg 1456w"
-               sizes="100vw" loading="lazy" decoding="async"
-               alt="Cajas rosas de Madrizza apiladas de noche, entre palmas">
+    </li>
+    <li class="lamina" style="--lugar:#2A5280" aria-roledescription="sitio" aria-label="2 de 5: Madrizza">
+      <div class="comp">
+        <picture class="esc">
+          <source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
+          <img width="1600" height="1000" src="/images/sitios/madrizza-esc-900.jpg" srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="eager" decoding="async" alt="Madrizza en escritorio">
         </picture>
-        <figcaption class="cp">Madrizza · Ciudad de México</figcaption>
-      </figure>
-
-      <div class="detail">
-        <h3>Una pizzería nueva, desde el nombre</h3>
-        <p>
-          Abrieron dentro de un mercado y todavía no tenían logotipo.
-        </p>
-        <ul class="hizo">
-          <li>Logotipo y color</li>
-          <li>Carta con precios, pensada para el celular</li>
-          <li>Pedido por Uber Eats y Rappi</li>
-        </ul>
-
+        <picture class="mov">
+          <source type="image/webp" srcset="/images/sitios/madrizza-mov-600.webp 600w, /images/sitios/madrizza-mov-900.webp 900w" sizes="min(21vw, 12rem)">
+          <img width="600" height="1200" src="/images/sitios/madrizza-mov-600.jpg" srcset="/images/sitios/madrizza-mov-600.jpg 600w, /images/sitios/madrizza-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="eager" decoding="async" alt="Madrizza en celular">
+        </picture>
+      </div>
+      <div class="cap">
+        <h3 class="n">Madrizza</h3>
+        <p class="d">Pizzería de barrio · Logotipo, carta y pedidos</p>
+        <p class="ctx">Abrieron dentro de un mercado y todavía no tenían logotipo.</p>
         <a class="visita" href="https://madrizza.vercel.app" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
-
-        <figure class="pantalla">
-          <picture>
-            <source media="(max-width:599px)" type="image/webp" width="600" height="1200"
-                    srcset="/images/sitios/madrizza-mov-600.webp 600w, /images/sitios/madrizza-mov-900.webp 900w" sizes="100vw">
-            <source media="(max-width:599px)" width="600" height="1200"
-                    srcset="/images/sitios/madrizza-mov-600.jpg 600w, /images/sitios/madrizza-mov-900.jpg 900w" sizes="100vw">
-            <source type="image/webp" width="1600" height="1000"
-                    srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="100vw">
-            <img width="1600" height="1000" src="/images/sitios/madrizza-esc-1600.jpg"
-                 srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w"
-                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de Madrizza: rosa mexicano, azul y el personaje de la marca">
-          </picture>
-          <figcaption class="cp">madrizza.vercel.app</figcaption>
-        </figure>
       </div>
-
-      <div class="cierre">
-        <button type="button" data-cierra="madrizza">
-          <span class="et">Cerrar Madrizza</span><span class="fl" aria-hidden="true">↑</span>
-        </button>
-      </div>
-      </div>
-    </div>
-
-    <button class="row" type="button" style="--lugar:#57573C"
-            aria-expanded="false" aria-controls="coyametla">
-      <span class="n">Finca Coyametla</span>
-      <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Finca de café · Sitio en español e inglés</span>
-      <span class="v act">Ver<span class="fl" aria-hidden="true">↓</span></span>
-      <span class="mini" aria-hidden="true"><picture><source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="(min-width:760px) 18rem, 100vw"><img width="1600" height="1000" src="/images/sitios/coyametla-esc-900.jpg" srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w" sizes="(min-width:760px) 18rem, 100vw" loading="lazy" decoding="async" alt=""></picture></span>
-    </button>
-
-    <div class="panel" id="coyametla" style="--lugar:#57573C">
-      <div class="inner">
-      <figure class="open">
-        <picture>
-          <source type="image/webp"
-            srcset="/images/coyametla/cerezas-900.webp 900w,
-                    /images/coyametla/cerezas-1600.webp 1600w"
-            sizes="100vw">
-          <img width="1600" height="1067" src="/images/coyametla/cerezas-1600.jpg"
-               srcset="/images/coyametla/cerezas-900.jpg 900w,
-                       /images/coyametla/cerezas-1600.jpg 1600w"
-               sizes="100vw" loading="lazy" decoding="async"
-               alt="Dos manos levantando cerezas de café rojas del agua de lavado">
+    </li>
+    <li class="lamina" style="--lugar:#57573C" aria-roledescription="sitio" aria-label="3 de 5: Finca Coyametla">
+      <div class="comp">
+        <picture class="esc">
+          <source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
+          <img width="1600" height="1000" src="/images/sitios/coyametla-esc-900.jpg" srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="Finca Coyametla en escritorio">
         </picture>
-        <figcaption class="cp">Finca Coyametla · Zongolica, Veracruz</figcaption>
-      </figure>
-
-      <div class="detail">
-        <h3>Una finca que le vende a tostadores de fuera</h3>
-        <p>
-          Coyametla le vende grano a tostadores de México y de&nbsp;fuera.
-        </p>
-        <ul class="hizo">
-          <li>Español e inglés, escrito para cada uno</li>
-          <li>La historia de la finca, desde 1830</li>
-          <li>Galería de la finca</li>
-        </ul>
-
+        <picture class="mov">
+          <source type="image/webp" srcset="/images/sitios/coyametla-mov-600.webp 600w, /images/sitios/coyametla-mov-900.webp 900w" sizes="min(21vw, 12rem)">
+          <img width="600" height="1200" src="/images/sitios/coyametla-mov-600.jpg" srcset="/images/sitios/coyametla-mov-600.jpg 600w, /images/sitios/coyametla-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="Finca Coyametla en celular">
+        </picture>
+      </div>
+      <div class="cap">
+        <h3 class="n">Finca Coyametla</h3>
+        <p class="d">Finca de café · Sitio en español e inglés</p>
+        <p class="ctx">Coyametla le vende grano a tostadores de México y de&nbsp;fuera.</p>
         <a class="visita" href="https://finca-coyametla.vercel.app/es" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
-
-        <figure class="pantalla">
-          <picture>
-            <source media="(max-width:599px)" type="image/webp" width="600" height="1200"
-                    srcset="/images/sitios/coyametla-mov-600.webp 600w, /images/sitios/coyametla-mov-900.webp 900w" sizes="100vw">
-            <source media="(max-width:599px)" width="600" height="1200"
-                    srcset="/images/sitios/coyametla-mov-600.jpg 600w, /images/sitios/coyametla-mov-900.jpg 900w" sizes="100vw">
-            <source type="image/webp" width="1600" height="1000"
-                    srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="100vw">
-            <img width="1600" height="1000" src="/images/sitios/coyametla-esc-1600.jpg"
-                 srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w"
-                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de Finca Coyametla: la mano abierta con el grano de café">
-          </picture>
-          <figcaption class="cp">finca-coyametla.vercel.app</figcaption>
-        </figure>
       </div>
-
-      <div class="cierre">
-        <button type="button" data-cierra="coyametla">
-          <span class="et">Cerrar Finca Coyametla</span><span class="fl" aria-hidden="true">↑</span>
-        </button>
-      </div>
-      </div>
-    </div>
-
-    <button class="row" type="button" style="--lugar:#27120D;--tick:#D33D24"
-            aria-expanded="false" aria-controls="elalgo">
-      <span class="n">El Algo</span>
-      <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Wine bar, antes de abrir · Sitio sobre la marca de IS&nbsp;A&nbsp;JAR</span>
-      <span class="v act">Ver<span class="fl" aria-hidden="true">↓</span></span>
-      <span class="mini" aria-hidden="true"><picture><source type="image/webp" srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="(min-width:760px) 18rem, 100vw"><img width="1600" height="1000" src="/images/sitios/elalgo-esc-900.jpg" srcset="/images/sitios/elalgo-esc-900.jpg 900w, /images/sitios/elalgo-esc-1600.jpg 1600w" sizes="(min-width:760px) 18rem, 100vw" loading="lazy" decoding="async" alt=""></picture></span>
-    </button>
-
-    <div class="panel" id="elalgo" style="--lugar:#27120D">
-      <div class="inner">
-      <figure class="open">
-        <picture>
-          <source media="(max-width:599px)" type="image/webp"
-            srcset="/images/elalgo/copa-mov-600.webp 600w, /images/elalgo/copa-mov-900.webp 900w"
-            sizes="100vw">
-          <source media="(max-width:599px)"
-            srcset="/images/elalgo/copa-mov-600.jpg 600w, /images/elalgo/copa-mov-900.jpg 900w"
-            sizes="100vw">
-          <source type="image/webp"
-            srcset="/images/elalgo/copa-900.webp 900w,
-                    /images/elalgo/copa-1600.webp 1600w,
-                    /images/elalgo/copa-2200.webp 2200w"
-            sizes="100vw">
-          <img width="2200" height="1100" src="/images/elalgo/copa-1600.jpg"
-               srcset="/images/elalgo/copa-900.jpg 900w,
-                       /images/elalgo/copa-1600.jpg 1600w,
-                       /images/elalgo/copa-2200.jpg 2200w"
-               sizes="100vw" loading="lazy" decoding="async"
-               alt="Ilustración de El Algo: una mano sostiene una copa de vino tinto">
+    </li>
+    <li class="lamina" style="--lugar:#27120D" aria-roledescription="sitio" aria-label="4 de 5: El Algo">
+      <div class="comp">
+        <picture class="esc">
+          <source type="image/webp" srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
+          <img width="1600" height="1000" src="/images/sitios/elalgo-esc-900.jpg" srcset="/images/sitios/elalgo-esc-900.jpg 900w, /images/sitios/elalgo-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="El Algo en escritorio">
         </picture>
-        <figcaption class="cp">Ilustración de la marca El Algo, por IS&nbsp;A&nbsp;JAR</figcaption>
-      </figure>
-
-      <div class="detail">
-        <h3>Un bar que todavía no&nbsp;existe</h3>
-        <p>
-          Un bar donde eliges la botella y te sirves tú, que todavía no abre. El sitio va sobre la marca de IS&nbsp;A&nbsp;JAR.
-        </p>
-        <ul class="hizo">
-          <li>Cómo funciona, en tres pasos</li>
-          <li>Una copa que se llena mientras bajas</li>
-          <li>Listo para Google antes de abrir</li>
-        </ul>
-
+        <picture class="mov">
+          <source type="image/webp" srcset="/images/sitios/elalgo-mov-600.webp 600w, /images/sitios/elalgo-mov-900.webp 900w" sizes="min(21vw, 12rem)">
+          <img width="600" height="1200" src="/images/sitios/elalgo-mov-600.jpg" srcset="/images/sitios/elalgo-mov-600.jpg 600w, /images/sitios/elalgo-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="El Algo en celular">
+        </picture>
+      </div>
+      <div class="cap">
+        <h3 class="n">El Algo</h3>
+        <p class="d">Wine bar, antes de abrir · Sitio sobre la marca de IS&nbsp;A&nbsp;JAR</p>
+        <p class="ctx">Un bar donde eliges la botella y te sirves tú, que todavía no abre. El sitio va sobre la marca de IS&nbsp;A&nbsp;JAR.</p>
         <a class="visita" href="https://www.elalgo.mx" target="_blank" rel="noopener">Ver el sitio · elalgo.mx<span class="fl" aria-hidden="true">↗</span></a>
-
-        <figure class="pantalla">
-          <picture>
-            <source media="(max-width:599px)" type="image/webp" width="600" height="1200"
-                    srcset="/images/sitios/elalgo-mov-600.webp 600w, /images/sitios/elalgo-mov-900.webp 900w" sizes="100vw">
-            <source media="(max-width:599px)" width="600" height="1200"
-                    srcset="/images/sitios/elalgo-mov-600.jpg 600w, /images/sitios/elalgo-mov-900.jpg 900w" sizes="100vw">
-            <source type="image/webp" width="1600" height="1000"
-                    srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="100vw">
-            <img width="1600" height="1000" src="/images/sitios/elalgo-esc-1600.jpg"
-                 srcset="/images/sitios/elalgo-esc-900.jpg 900w, /images/sitios/elalgo-esc-1600.jpg 1600w"
-                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de elalgo.mx: “Tomarse el Algo, tomarse el tiempo” en rojo sobre marfil, junto al perro de la marca con botella y copa en un arco dorado">
-          </picture>
-          <figcaption class="cp">elalgo.mx</figcaption>
-        </figure>
       </div>
-
-      <div class="cierre">
-        <button type="button" data-cierra="elalgo">
-          <span class="et">Cerrar El Algo</span><span class="fl" aria-hidden="true">↑</span>
-        </button>
+    </li>
+    <li class="lamina" style="--lugar:#896545;--fondo:#7A5A3D" aria-roledescription="sitio" aria-label="5 de 5: Celita">
+      <div class="comp">
+        <picture class="esc">
+          <source type="image/webp" srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
+          <img width="1600" height="1000" src="/images/sitios/celita-esc-900.jpg" srcset="/images/sitios/celita-esc-900.jpg 900w, /images/sitios/celita-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="Celita en escritorio">
+        </picture>
+        <picture class="mov">
+          <source type="image/webp" srcset="/images/sitios/celita-mov-600.webp 600w, /images/sitios/celita-mov-900.webp 900w" sizes="min(21vw, 12rem)">
+          <img width="600" height="1200" src="/images/sitios/celita-mov-600.jpg" srcset="/images/sitios/celita-mov-600.jpg 600w, /images/sitios/celita-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="Celita en celular">
+        </picture>
       </div>
-      </div>
-    </div>
-
-    <button class="row" type="button" style="--lugar:#896545"
-            aria-expanded="false" aria-controls="celita">
-      <span class="n">Celita</span>
-      <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Café y pan en la Condesa · Carta y cómo llegar</span>
-      <span class="v act">Ver<span class="fl" aria-hidden="true">↓</span></span>
-      <span class="mini" aria-hidden="true"><picture><source type="image/webp" srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="(min-width:760px) 18rem, 100vw"><img width="1600" height="1000" src="/images/sitios/celita-esc-900.jpg" srcset="/images/sitios/celita-esc-900.jpg 900w, /images/sitios/celita-esc-1600.jpg 1600w" sizes="(min-width:760px) 18rem, 100vw" loading="lazy" decoding="async" alt=""></picture></span>
-    </button>
-
-    <div class="panel" id="celita" style="--lugar:#896545">
-      <div class="inner">
-      <!-- Sin foto del lugar: abre con la taza del sitio, a escala, sirviéndose
-           cada vez que se abre el capítulo. El SVG es el de celita.mx. -->
-      <figure class="open open--taza" role="img" aria-label="La taza de celita.mx, dibujada a pincel, se llena de café y echa vapor">
-        <svg class="taza" viewBox="0 -9 48 55" focusable="false" aria-hidden="true"> <defs> <clipPath id="celita-boca"><ellipse cx="22" cy="16.4" rx="11.6" ry="2.8"/></clipPath> <filter id="celita-pincel" x="-20%" y="-20%" width="140%" height="140%"> <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/> <feDisplacementMap in="SourceGraphic" in2="n" scale="0.7" xChannelSelector="R" yChannelSelector="G"/> </filter> <linearGradient id="celita-vapor-fade" x1="0" y1="16" x2="0" y2="-6" gradientUnits="userSpaceOnUse"> <stop offset="0" stop-color="#fff" stop-opacity="0"/> <stop offset="0.14" stop-color="#fff" stop-opacity="1"/> <stop offset="0.55" stop-color="#fff" stop-opacity="0.75"/> <stop offset="1" stop-color="#fff" stop-opacity="0"/> </linearGradient> <mask id="celita-vapor-mask" maskUnits="userSpaceOnUse" x="0" y="-8" width="48" height="26"> <rect x="0" y="-8" width="48" height="26" fill="url(#celita-vapor-fade)"/> </mask> <filter id="celita-aire" x="-60%" y="-30%" width="220%" height="160%"> <feTurbulence type="fractalNoise" baseFrequency="0.07 0.16" numOctaves="2" seed="4" result="air"> <animate attributeName="baseFrequency" dur="11s" values="0.07 0.16;0.09 0.21;0.06 0.14;0.07 0.16" repeatCount="indefinite"/> </feTurbulence> <feDisplacementMap in="SourceGraphic" in2="air" scale="4" xChannelSelector="R" yChannelSelector="G"/> <feGaussianBlur stdDeviation="0.4"/> </filter> </defs> <g class="taza__steam" mask="url(#celita-vapor-mask)"> <g class="taza__aire" filter="url(#celita-aire)"> <path class="taza__wisp taza__wisp--a" pathLength="30" d="M18.2 15.4C15.6 11.6 20.6 8.6 18.2 4.6C16 1.2 19.6 -1.8 17.8 -5.6"/> <path class="taza__wisp taza__wisp--b" pathLength="30" d="M22.4 15.8C25 11.8 19.9 8.2 22.4 4.2C24.8 0.4 21 -2.4 22.8 -6"/> <path class="taza__wisp taza__wisp--c" pathLength="30" d="M26.4 15.4C24.4 12 28.6 8.8 26.4 5.4C24.6 2.6 27.8 -0.4 26.2 -4.4"/> </g> </g> <line class="taza__stream" x1="22" y1="-6" x2="22" y2="18"/> <g class="taza__v"><path d="M5.4 40.9A16.6 2.7 0 1 0 38.6 40.9A16.6 2.7 0 1 0 5.4 40.9Z" fill="#E6D9C0"/><path d="M8.9 16.4A13.1 3.7 0 0 0 35.1 16.4C34.6 26 32.8 33.6 29 37C26 39.3 18 39.3 15 37C11.2 33.6 9.4 26 8.9 16.4Z" fill="#E6D9C0"/><path class="taza__ring" filter="url(#celita-pincel)" d="M8.8 20.2 L8.7 20.3 L8.6 20.5 L8.5 20.7 L8.5 20.9 L8.6 21.1 L8.7 21.3 L8.8 21.5 L8.9 21.6 L9.1 21.8 L9.3 21.9 L9.5 22.0 L9.7 22.2 L9.9 22.3 L10.1 22.5 L10.3 22.6 L10.6 22.8 L10.8 22.9 L11.1 23.0 L11.4 23.1 L11.7 23.3 L12.0 23.4 L12.4 23.5 L12.7 23.6 L13.1 23.7 L13.5 23.8 L13.9 23.9 L14.2 23.9 L14.6 24.0 L15.1 24.1 L15.5 24.2 L15.9 24.2 L16.3 24.3 L16.8 24.3 L17.2 24.4 L17.7 24.4 L18.2 24.5 L18.6 24.5 L19.1 24.5 L19.6 24.6 L20.0 24.6 L20.5 24.6 L21.0 24.6 L21.5 24.6 L22.0 24.6 L22.5 24.6 L23.0 24.6 L23.5 24.6 L24.0 24.6 L24.4 24.6 L24.9 24.5 L25.4 24.5 L25.9 24.5 L26.3 24.5 L26.8 24.4 L27.2 24.4 L27.7 24.3 L28.1 24.3 L28.5 24.2 L29.0 24.2 L29.4 24.1 L29.8 24.0 L30.2 24.0 L30.6 23.9 L30.9 23.8 L31.3 23.7 L31.7 23.6 L32.0 23.5 L32.3 23.4 L32.7 23.3 L33.0 23.2 L33.3 23.1 L33.6 23.0 L33.8 22.9 L34.1 22.8 L34.3 22.7 L34.6 22.6 L34.8 22.4 L35.0 22.3 L35.2 22.1 L35.3 21.9 L35.4 21.7 L35.5 21.4 L35.5 21.2 L35.5 20.9 L35.5 20.7 L35.4 20.5 L35.3 20.3 L35.1 20.2 L34.8 20.2 L34.7 20.4 L34.6 20.4 L34.5 20.5 L34.4 20.5 L34.2 20.5 L34.1 20.6 L34.0 20.6 L33.9 20.6 L33.8 20.7 L33.7 20.7 L33.6 20.8 L33.5 20.9 L33.3 21.0 L33.2 21.1 L33.0 21.2 L32.8 21.4 L32.6 21.5 L32.3 21.6 L32.1 21.7 L31.8 21.8 L31.5 21.9 L31.2 22.0 L30.9 22.1 L30.5 22.2 L30.2 22.3 L29.8 22.4 L29.5 22.4 L29.1 22.5 L28.7 22.6 L28.3 22.7 L27.9 22.7 L27.5 22.8 L27.0 22.9 L26.6 22.9 L26.2 23.0 L25.7 23.0 L25.3 23.0 L24.8 23.1 L24.4 23.1 L23.9 23.1 L23.4 23.2 L23.0 23.2 L22.5 23.2 L22.0 23.2 L21.5 23.2 L21.0 23.2 L20.6 23.2 L20.1 23.2 L19.6 23.1 L19.2 23.1 L18.7 23.1 L18.3 23.0 L17.8 23.0 L17.4 22.9 L17.0 22.9 L16.5 22.8 L16.1 22.8 L15.7 22.7 L15.3 22.7 L14.9 22.6 L14.5 22.5 L14.1 22.5 L13.8 22.4 L13.4 22.3 L13.1 22.2 L12.8 22.1 L12.4 22.1 L12.1 22.0 L11.9 21.9 L11.6 21.8 L11.3 21.7 L11.1 21.6 L10.9 21.5 L10.6 21.5 L10.4 21.4 L10.3 21.3 L10.1 21.2 L10.0 21.1 L9.9 21.0 L9.8 20.8 L9.8 20.7 L9.7 20.7 L9.7 20.6 L9.6 20.5 L9.5 20.5 L9.4 20.4 L9.3 20.4 L9.2 20.2Z"/></g> <g clip-path="url(#celita-boca)"> <g class="taza__cafe"> <rect class="taza__coffee" x="6" y="0" width="32" height="12"/> <ellipse class="taza__coffee" cx="22" cy="0" rx="12" ry="2.8"/> <path class="taza__crema" d="M15.2 -0.5C18.4 -1.7 25.4 -1.7 28.6 -0.6"/> </g> </g> <g class="taza__v taza__brush" filter="url(#celita-pincel)"><path d="M9.7 17.3 L9.5 17.1 L9.5 16.8 L9.5 16.6 L9.5 16.4 L9.7 16.3 L9.8 16.2 L9.9 16.2 L10.0 16.2 L10.0 16.2 L10.0 16.2 L10.1 16.2 L10.1 16.1 L10.2 16.0 L10.4 15.9 L10.6 15.7 L10.8 15.6 L11.0 15.4 L11.3 15.3 L11.6 15.1 L12.0 15.0 L12.4 14.8 L12.8 14.7 L13.3 14.6 L13.8 14.4 L14.3 14.3 L14.8 14.2 L15.4 14.1 L15.9 14.0 L16.5 13.9 L17.1 13.8 L17.7 13.7 L18.3 13.7 L18.9 13.6 L19.6 13.6 L20.2 13.5 L20.9 13.5 L21.5 13.5 L22.2 13.5 L22.8 13.5 L23.5 13.5 L24.1 13.5 L24.8 13.5 L25.4 13.6 L26.1 13.6 L26.7 13.7 L27.3 13.7 L27.9 13.8 L28.5 13.9 L29.0 14.0 L29.6 14.1 L30.1 14.2 L30.6 14.3 L31.1 14.4 L31.5 14.5 L31.9 14.6 L32.3 14.7 L32.7 14.8 L33.0 15.0 L33.3 15.1 L33.6 15.2 L33.9 15.3 L34.0 15.5 L34.2 15.7 L34.2 15.9 L34.2 16.0 L34.2 16.1 L34.1 16.2 L34.0 16.2 L33.9 16.2 L33.9 16.1 L33.9 16.1 L33.9 16.1 L33.8 16.2 L33.8 16.3 L33.7 16.4 L33.5 16.5 L33.3 16.7 L33.1 16.8 L32.9 17.0 L32.6 17.1 L32.2 17.3 L31.9 17.4 L31.5 17.6 L31.1 17.7 L30.6 17.9 L30.1 18.0 L29.6 18.1 L29.1 18.2 L28.5 18.3 L27.9 18.4 L27.3 18.5 L26.7 18.6 L26.1 18.7 L25.5 18.7 L24.9 18.8 L24.2 18.8 L23.6 18.9 L22.9 18.9 L22.3 18.9 L21.6 18.9 L21.0 18.9 L20.3 18.9 L19.7 18.9 L19.1 18.8 L18.4 18.8 L17.8 18.7 L17.2 18.7 L16.6 18.6 L16.0 18.5 L15.4 18.5 L14.8 18.4 L14.3 18.3 L13.8 18.2 L13.3 18.1 L12.8 18.0 L12.3 17.9 L11.9 17.8 L11.5 17.7 L11.2 17.6 L10.8 17.5 L10.5 17.4 L10.2 17.3 L10.0 17.2 L9.8 17.0 L9.6 16.9 L9.5 16.7 L9.4 16.6 L9.3 16.5 L9.2 16.4 L9.1 16.2 L9.0 16.1 L9.0 15.9 L8.7 15.8 L8.6 16.0 L8.5 16.3 L8.5 16.5 L8.5 16.8 L8.6 17.0 L8.8 17.3 L9.0 17.5 L9.2 17.7 L9.4 17.9 L9.7 18.1 L10.0 18.4 L10.3 18.6 L10.6 18.8 L11.0 19.0 L11.4 19.2 L11.9 19.4 L12.4 19.6 L12.8 19.7 L13.4 19.9 L13.9 20.0 L14.5 20.2 L15.1 20.3 L15.7 20.4 L16.3 20.5 L17.0 20.6 L17.6 20.7 L18.3 20.7 L18.9 20.8 L19.6 20.8 L20.3 20.9 L20.9 20.9 L21.6 20.9 L22.3 20.9 L23.0 20.9 L23.6 20.9 L24.3 20.9 L25.0 20.8 L25.7 20.8 L26.3 20.7 L27.0 20.7 L27.6 20.6 L28.2 20.5 L28.8 20.4 L29.4 20.3 L30.0 20.2 L30.6 20.1 L31.1 20.0 L31.7 19.9 L32.2 19.8 L32.6 19.6 L33.1 19.5 L33.5 19.3 L33.9 19.2 L34.3 19.0 L34.7 18.8 L35.0 18.6 L35.3 18.4 L35.6 18.2 L35.9 17.9 L36.1 17.6 L36.3 17.2 L36.4 16.8 L36.5 16.4 L36.4 16.0 L36.2 15.6 L36.0 15.3 L35.7 15.0 L35.5 14.8 L35.2 14.6 L34.9 14.5 L34.6 14.3 L34.3 14.1 L34.0 13.8 L33.6 13.6 L33.3 13.4 L32.9 13.3 L32.4 13.1 L32.0 12.9 L31.5 12.8 L31.0 12.6 L30.5 12.5 L29.9 12.3 L29.4 12.2 L28.8 12.1 L28.2 12.0 L27.5 11.9 L26.9 11.8 L26.2 11.8 L25.6 11.7 L24.9 11.6 L24.2 11.6 L23.5 11.6 L22.8 11.5 L22.2 11.5 L21.5 11.5 L20.8 11.5 L20.1 11.5 L19.5 11.6 L18.8 11.6 L18.1 11.6 L17.5 11.7 L16.8 11.7 L16.2 11.8 L15.6 11.9 L15.0 12.0 L14.4 12.1 L13.8 12.2 L13.3 12.3 L12.7 12.4 L12.2 12.5 L11.7 12.7 L11.2 12.8 L10.8 13.0 L10.4 13.2 L10.0 13.3 L9.6 13.5 L9.3 13.7 L8.9 13.9 L8.6 14.1 L8.4 14.4 L8.1 14.7 L7.9 15.0 L7.7 15.3 L7.7 15.7 L7.7 16.1 L7.8 16.5 L8.1 16.8 L8.3 17.0 L8.6 17.2 L8.9 17.4 L9.2 17.5 L9.5 17.6Z"/><path d="M8.6 16.8 L8.4 18.1 L8.2 19.3 L8.1 20.6 L8.1 21.8 L8.2 23.0 L8.3 24.1 L8.5 25.2 L8.7 26.3 L9.0 27.4 L9.3 28.4 L9.6 29.4 L9.9 30.4 L10.3 31.3 L10.7 32.2 L11.1 33.0 L11.5 33.8 L11.9 34.6 L12.4 35.3 L12.9 36.0 L13.5 36.6 L14.1 37.2 L14.7 37.7 L15.2 38.0 L15.6 38.3 L16.1 38.5 L16.6 38.7 L17.1 39.0 L17.6 39.1 L18.1 39.3 L18.6 39.4 L19.1 39.6 L19.6 39.7 L20.2 39.8 L20.7 39.9 L21.2 40.0 L21.7 40.1 L22.3 40.1 L22.8 40.0 L23.3 39.9 L23.8 39.8 L24.2 39.7 L24.7 39.5 L25.1 39.3 L25.5 39.1 L25.5 38.7 L25.0 38.7 L24.6 38.6 L24.1 38.5 L23.7 38.4 L23.2 38.3 L22.8 38.2 L22.3 38.2 L21.8 38.1 L21.4 38.1 L20.9 38.1 L20.4 38.1 L19.9 38.1 L19.4 38.0 L19.0 38.0 L18.5 37.9 L18.0 37.7 L17.6 37.6 L17.2 37.4 L16.8 37.2 L16.4 37.0 L16.0 36.8 L15.7 36.5 L15.3 36.0 L14.8 35.5 L14.4 34.9 L14.0 34.3 L13.6 33.6 L13.3 32.9 L12.9 32.2 L12.6 31.4 L12.3 30.5 L12.1 29.7 L11.8 28.8 L11.6 27.8 L11.4 26.8 L11.2 25.8 L11.0 24.8 L10.8 23.7 L10.7 22.6 L10.5 21.5 L10.2 20.4 L9.9 19.2 L9.5 18.0 L9.2 16.8Z"/><path d="M34.8 16.8 L34.5 18.0 L34.2 19.2 L33.9 20.4 L33.7 21.5 L33.5 22.6 L33.3 23.7 L33.1 24.8 L32.9 25.8 L32.8 26.8 L32.6 27.8 L32.3 28.7 L32.1 29.6 L31.8 30.5 L31.5 31.3 L31.2 32.1 L30.8 32.8 L30.5 33.5 L30.1 34.1 L29.6 34.7 L29.2 35.3 L28.7 35.8 L28.3 36.2 L28.1 36.3 L28.0 36.5 L27.8 36.6 L27.6 36.7 L27.4 36.8 L27.2 37.0 L27.0 37.1 L26.8 37.2 L26.6 37.2 L26.3 37.3 L26.1 37.4 L25.9 37.5 L25.6 37.6 L25.4 37.7 L25.2 37.8 L24.9 38.0 L24.7 38.2 L24.4 38.4 L24.2 38.5 L23.9 38.7 L23.7 38.9 L23.4 39.0 L23.4 39.4 L23.7 39.4 L24.1 39.5 L24.4 39.6 L24.7 39.6 L25.0 39.7 L25.4 39.7 L25.7 39.7 L26.0 39.7 L26.3 39.7 L26.6 39.6 L26.9 39.5 L27.2 39.4 L27.4 39.2 L27.7 39.1 L28.0 38.9 L28.2 38.8 L28.5 38.6 L28.7 38.5 L29.0 38.3 L29.2 38.2 L29.5 38.0 L29.7 37.8 L30.3 37.2 L30.8 36.6 L31.3 35.9 L31.8 35.2 L32.2 34.5 L32.6 33.7 L33.0 32.9 L33.4 32.0 L33.7 31.2 L34.1 30.2 L34.4 29.3 L34.7 28.3 L35.0 27.3 L35.2 26.3 L35.4 25.2 L35.6 24.1 L35.7 22.9 L35.8 21.7 L35.8 20.5 L35.7 19.3 L35.6 18.1 L35.4 16.8Z"/><path d="M34.7 20.6 L35.4 20.6 L36.1 20.6 L36.7 20.6 L37.3 20.7 L37.8 20.9 L38.3 21.0 L38.7 21.1 L39.1 21.3 L39.5 21.6 L39.7 22.0 L39.9 22.4 L40.1 22.8 L40.2 23.2 L40.3 23.6 L40.4 24.0 L40.3 24.4 L40.2 24.8 L40.1 25.3 L39.9 25.7 L39.7 26.1 L39.4 26.5 L39.1 26.9 L39.0 27.1 L38.8 27.3 L38.6 27.5 L38.4 27.7 L38.2 27.9 L38.0 28.1 L37.8 28.2 L37.6 28.4 L37.3 28.5 L37.1 28.6 L36.8 28.7 L36.6 28.8 L36.3 28.9 L36.0 28.9 L35.7 29.0 L35.4 29.0 L35.1 29.1 L34.8 29.1 L34.5 29.1 L34.1 29.2 L33.8 29.2 L33.4 29.2 L33.4 29.4 L33.7 29.6 L34.0 29.8 L34.3 29.9 L34.7 30.0 L35.0 30.1 L35.4 30.2 L35.7 30.2 L36.1 30.3 L36.4 30.3 L36.8 30.3 L37.2 30.2 L37.5 30.2 L37.9 30.1 L38.2 30.0 L38.6 29.8 L39.0 29.7 L39.3 29.5 L39.6 29.3 L40.0 29.1 L40.3 28.9 L40.6 28.6 L40.9 28.3 L41.3 27.7 L41.6 27.1 L41.9 26.4 L42.1 25.8 L42.1 25.1 L42.1 24.4 L42.0 23.8 L41.9 23.2 L41.7 22.6 L41.5 22.1 L41.1 21.6 L40.7 21.1 L40.3 20.7 L39.8 20.4 L39.3 20.0 L38.7 19.7 L38.1 19.5 L37.4 19.4 L36.7 19.4 L36.0 19.6 L35.3 19.8 L34.5 20.2Z"/><path d="M5.7 41.1 L5.7 40.9 L5.8 40.9 L5.9 40.9 L6.0 40.9 L6.1 40.9 L6.3 40.9 L6.4 40.8 L6.6 40.8 L6.9 40.7 L7.1 40.6 L7.4 40.5 L7.8 40.4 L8.2 40.3 L8.6 40.2 L9.1 40.1 L9.6 40.0 L10.1 39.9 L10.7 39.8 L11.2 39.7 L11.9 39.7 L12.5 39.6 L13.2 39.5 L13.9 39.4 L14.6 39.4 L15.4 39.3 L16.1 39.3 L16.9 39.2 L17.7 39.2 L18.5 39.1 L19.2 39.1 L20.0 39.1 L20.8 39.1 L21.6 39.1 L22.4 39.1 L23.2 39.1 L24.0 39.1 L24.8 39.1 L25.6 39.1 L26.4 39.1 L27.2 39.2 L28.0 39.2 L28.7 39.2 L29.5 39.3 L30.2 39.3 L30.9 39.4 L31.6 39.5 L32.2 39.5 L32.8 39.6 L33.4 39.7 L34.0 39.7 L34.5 39.8 L35.0 39.9 L35.5 40.0 L35.9 40.1 L36.3 40.2 L36.7 40.2 L37.0 40.3 L37.3 40.4 L37.5 40.5 L37.8 40.6 L37.9 40.7 L38.0 40.8 L38.0 40.9 L37.9 40.9 L37.9 40.9 L37.8 40.8 L37.8 40.8 L37.8 40.8 L37.7 40.8 L37.6 40.9 L37.5 41.0 L37.2 41.1 L37.0 41.2 L36.7 41.3 L36.3 41.4 L36.0 41.5 L35.6 41.6 L35.1 41.7 L34.6 41.8 L34.1 41.9 L33.6 42.0 L33.0 42.1 L32.4 42.2 L31.7 42.2 L31.1 42.3 L30.4 42.4 L29.7 42.4 L28.9 42.5 L28.2 42.5 L27.4 42.6 L26.6 42.7 L25.8 42.7 L25.0 42.7 L24.2 42.8 L23.4 42.8 L22.6 42.8 L21.8 42.8 L21.0 42.8 L20.2 42.8 L19.4 42.8 L18.6 42.8 L17.8 42.8 L17.1 42.8 L16.3 42.8 L15.6 42.7 L14.8 42.7 L14.1 42.6 L13.4 42.6 L12.7 42.5 L12.0 42.5 L11.4 42.4 L10.8 42.3 L10.2 42.2 L9.6 42.1 L9.1 42.0 L8.6 41.9 L8.2 41.9 L7.8 41.8 L7.4 41.7 L7.1 41.6 L6.8 41.5 L6.5 41.4 L6.2 41.4 L6.0 41.3 L5.9 41.2 L5.8 41.1 L5.8 41.0 L5.8 40.9 L5.8 40.9 L5.7 40.8 L5.8 40.7 L5.8 40.5 L5.7 40.4 L5.5 40.5 L5.4 40.6 L5.3 40.8 L5.2 41.0 L5.3 41.2 L5.4 41.4 L5.6 41.5 L5.8 41.7 L6.0 41.8 L6.2 42.0 L6.5 42.2 L6.8 42.3 L7.2 42.5 L7.6 42.6 L8.0 42.7 L8.4 42.9 L8.9 43.0 L9.5 43.1 L10.0 43.2 L10.6 43.3 L11.2 43.4 L11.9 43.5 L12.6 43.6 L13.3 43.6 L14.0 43.7 L14.7 43.8 L15.5 43.9 L16.2 43.9 L17.0 44.0 L17.8 44.0 L18.6 44.1 L19.4 44.1 L20.2 44.1 L21.0 44.1 L21.8 44.2 L22.6 44.2 L23.4 44.2 L24.3 44.2 L25.1 44.2 L25.9 44.2 L26.7 44.1 L27.5 44.1 L28.3 44.1 L29.0 44.0 L29.8 44.0 L30.5 43.9 L31.2 43.8 L31.9 43.7 L32.6 43.7 L33.2 43.6 L33.8 43.5 L34.4 43.4 L34.9 43.3 L35.4 43.2 L35.9 43.1 L36.3 42.9 L36.8 42.8 L37.1 42.7 L37.5 42.6 L37.8 42.4 L38.1 42.3 L38.4 42.1 L38.6 42.0 L38.9 41.8 L39.0 41.5 L39.2 41.2 L39.1 40.9 L39.0 40.6 L38.8 40.3 L38.6 40.2 L38.4 40.1 L38.2 39.9 L37.9 39.7 L37.7 39.6 L37.3 39.4 L37.0 39.3 L36.6 39.1 L36.2 39.0 L35.7 38.9 L35.3 38.8 L34.8 38.6 L34.2 38.5 L33.6 38.4 L33.0 38.3 L32.4 38.2 L31.7 38.1 L31.0 38.0 L30.3 37.9 L29.6 37.9 L28.8 37.8 L28.1 37.8 L27.3 37.7 L26.5 37.7 L25.7 37.6 L24.9 37.6 L24.1 37.6 L23.3 37.6 L22.5 37.6 L21.6 37.5 L20.8 37.5 L20.0 37.6 L19.2 37.6 L18.4 37.6 L17.6 37.6 L16.8 37.6 L16.0 37.7 L15.3 37.7 L14.5 37.8 L13.8 37.8 L13.1 37.9 L12.4 38.0 L11.7 38.1 L11.0 38.2 L10.4 38.2 L9.8 38.3 L9.3 38.4 L8.8 38.6 L8.3 38.7 L7.8 38.8 L7.4 38.9 L7.0 39.0 L6.6 39.1 L6.3 39.3 L6.0 39.4 L5.7 39.6 L5.5 39.8 L5.3 40.0 L5.2 40.3 L5.1 40.6 L5.2 40.8 L5.3 41.0 L5.4 41.2Z"/></g> </svg>
-        <figcaption class="cp">La taza de celita.mx · Marca: Acuña&nbsp;Studio</figcaption>
-      </figure>
-
-      <div class="detail">
-        <h3>Lo que preguntas antes de&nbsp;entrar</h3>
-        <p>
-          Un café en Pachuca 13, en la Condesa, sobre la marca de Acuña&nbsp;Studio.
-        </p>
-        <ul class="hizo">
-          <li>La carta con precios, como la impresa</li>
-          <li>Cómo llegar en Google o Apple Maps</li>
-          <li>Se comparte por WhatsApp con su propia tarjeta</li>
-        </ul>
-
+      <div class="cap">
+        <h3 class="n">Celita</h3>
+        <p class="d">Café y pan en la Condesa · Carta y cómo llegar</p>
+        <p class="ctx">Un café en Pachuca 13, en la Condesa, sobre la marca de Acuña&nbsp;Studio.</p>
         <a class="visita" href="https://www.celita.mx" target="_blank" rel="noopener">Ver el sitio · celita.mx<span class="fl" aria-hidden="true">↗</span></a>
-
-        <figure class="pantalla">
-          <picture>
-            <source media="(max-width:599px)" type="image/webp" width="600" height="1200"
-                    srcset="/images/sitios/celita-mov-600.webp 600w, /images/sitios/celita-mov-900.webp 900w" sizes="100vw">
-            <source media="(max-width:599px)" width="600" height="1200"
-                    srcset="/images/sitios/celita-mov-600.jpg 600w, /images/sitios/celita-mov-900.jpg 900w" sizes="100vw">
-            <source type="image/webp" width="1600" height="1000"
-                    srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="100vw">
-            <img width="1600" height="1000" src="/images/sitios/celita-esc-1600.jpg"
-                 srcset="/images/sitios/celita-esc-900.jpg 900w, /images/sitios/celita-esc-1600.jpg 1600w"
-                 sizes="100vw" loading="lazy" decoding="async" alt="La portada de celita.mx: el nombre escrito a pincel en negro sobre beige, “Tu casa en Pachuca 13.” a mano y la taza arriba">
-          </picture>
-          <figcaption class="cp">celita.mx</figcaption>
-        </figure>
       </div>
-
-      <div class="cierre">
-        <button type="button" data-cierra="celita">
-          <span class="et">Cerrar Celita</span><span class="fl" aria-hidden="true">↑</span>
-        </button>
-      </div>
-      </div>
-    </div>
-
-
+    </li>
+    </ol>
   </section>
 
   <!-- ══════════ QUIÉN SOY ══════════ -->
