@@ -25,6 +25,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="/fonts.css">
 <link rel="stylesheet" href="/tokens.css">
@@ -243,7 +244,7 @@
       <span>Ciudad de México</span>
     </div>
 
-    <h1>Tu sitio debería verse <em>tan bueno</em> como tu lugar.</h1>
+    <h1><span>Tu sitio debería</span> <span>verse <em>tan bueno</em></span> <span>como tu lugar.</span></h1>
 
     <p class="lede">
       Diseño y programo sitios para restaurantes, cafés y bares en la Ciudad de México.
@@ -258,14 +259,14 @@
     <div class="grp-label">
       <h2 id="t-trabajo">Trabajo</h2>
       <div class="mando">
-        <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" hidden>←</button>
-        <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente" hidden>→</button>
-        <span class="cont" aria-hidden="true">5 sitios</span>
+        <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" disabled>←</button>
+        <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente">→</button>
+        <span class="cont" aria-hidden="true">1/5</span>
       </div>
     </div>
 
     <ol class="tira" tabindex="0" aria-label="Cinco sitios, se desliza a los lados">
-    <li class="lamina" style="--lugar:#4F0D00" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
+    <li class="lamina activa" style="--lugar:#4F0D00" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">

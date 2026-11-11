@@ -53,9 +53,6 @@
     });
   });
 
-  /* Las flechas sólo aparecen con cursor: en el celular sobra el pulgar. */
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches)
-    flechas.forEach(function (f) { f.hidden = false; });
   flechas.forEach(function (f) {
     f.addEventListener('click', function () { ir(actual + Number(f.dataset.paso)); });
   });

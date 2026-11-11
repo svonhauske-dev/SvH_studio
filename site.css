@@ -33,9 +33,13 @@ a{color:inherit}
 .front h1{
   margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:var(--t-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);
-  text-wrap:balance;max-width:17ch;
+  text-wrap:balance;
 }
 .front h1 em{font-style:italic}
+/* Tres renglones fijos, a toda anchura. Con text-wrap:balance el corte
+   dependía del ancho exacto de la letra: mientras llegaba la itálica el
+   titular salía en dos renglones y luego en tres, y la página brincaba 90px. */
+.front h1 span{display:block}
 .front .lede{
   margin:clamp(1rem,3.6vw,1.75rem) 0 0;max-width:46ch;
   font-size:var(--t-lede);line-height:1.5;color:var(--svh-dim);text-wrap:pretty;
@@ -196,7 +200,10 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
   width:var(--touch);height:var(--touch);border-radius:50%;border:1px solid var(--svh-rule-hard);
   background:none;color:inherit;cursor:pointer;transition:opacity var(--motion-fast)}
 .flecha:disabled{opacity:.25;cursor:default}
-.flecha[hidden]{display:none}
+/* Las flechas sólo existen con cursor, y las decide el CSS, no el script:
+   si aparecieran al correr el JS, la etiqueta crecería y todo brincaría. */
+.flecha{display:none}
+@media (hover:hover) and (pointer:fine){.js .flecha{display:inline-block}}
 .cont{font-variant-numeric:tabular-nums;min-width:2.5em;text-align:right}
 
 /* La tira sale de la columna a todo el ancho y centra cada lámina. */
