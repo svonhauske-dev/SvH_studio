@@ -240,7 +240,7 @@
   <!-- ══════════ FRONTISPICIO ══════════ -->
   <header class="front">
     <div class="eye">
-      <span><strong>svh.studio</strong> — Sofía von Hauske</span>
+      <span><strong>svh.studio</strong><span class="quien"> — Sofía von Hauske</span></span>
       <span>Ciudad de México <span class="hora" aria-hidden="true">· 00<span class="dos">:</span>00</span></span>
     </div>
 
@@ -256,123 +256,124 @@
        versión de celular encimada, y la página toma el color del que está al
        frente. Sin JS es un carrusel nativo con scroll-snap y todo el texto. -->
   <section class="grp trabajo" aria-labelledby="t-trabajo">
-    <div class="grp-label">
-      <h2 id="t-trabajo">Trabajo</h2>
-      <div class="mando">
-        <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" disabled>←</button>
-        <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente">→</button>
-        <div class="puntos">
-          <button type="button" class="punto" data-ir="0" aria-label="Ver Jabalí" style="--p:1" aria-current="true"></button>
-          <button type="button" class="punto" data-ir="1" aria-label="Ver Madrizza"></button>
-          <button type="button" class="punto" data-ir="2" aria-label="Ver Finca Coyametla"></button>
-          <button type="button" class="punto" data-ir="3" aria-label="Ver El Algo"></button>
-          <button type="button" class="punto" data-ir="4" aria-label="Ver Celita"></button>
-        </div>
-      </div>
-    </div>
+    <h2 class="grp-label" id="t-trabajo"><span>Trabajo</span></h2>
 
     <ol class="tira" tabindex="0" aria-label="Cinco sitios, se desliza a los lados">
     <li class="lamina activa" style="--lugar:#4F0D00;--d:0;--ad:0" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
       <div class="comp">
         <picture class="esc">
-          <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
-          <img width="1600" height="1000" src="/images/sitios/jabali-esc-900.jpg" srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="eager" decoding="async" alt="Jabalí en escritorio">
+          <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="(min-width: 920px) 44rem, 76vw">
+          <img width="1600" height="1000" src="/images/sitios/jabali-esc-900.jpg" srcset="/images/sitios/jabali-esc-900.jpg 900w, /images/sitios/jabali-esc-1600.jpg 1600w" sizes="(min-width: 920px) 44rem, 76vw" loading="eager" decoding="async" alt="Jabalí en escritorio">
         </picture>
         <picture class="mov">
-          <source type="image/webp" srcset="/images/sitios/jabali-mov-600.webp 600w, /images/sitios/jabali-mov-900.webp 900w" sizes="min(21vw, 12rem)">
-          <img width="600" height="1200" src="/images/sitios/jabali-mov-600.jpg" srcset="/images/sitios/jabali-mov-600.jpg 600w, /images/sitios/jabali-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="eager" decoding="async" alt="Jabalí en celular">
+          <source type="image/webp" srcset="/images/sitios/jabali-mov-600.webp 600w, /images/sitios/jabali-mov-900.webp 900w" sizes="(min-width: 920px) 13rem, 22vw">
+          <img width="600" height="1200" src="/images/sitios/jabali-mov-600.jpg" srcset="/images/sitios/jabali-mov-600.jpg 600w, /images/sitios/jabali-mov-900.jpg 900w" sizes="(min-width: 920px) 13rem, 22vw" loading="eager" decoding="async" alt="Jabalí en celular">
         </picture>
       </div>
       <div class="cap">
         <h3 class="n">Jabalí</h3>
-        <p class="d">Café de especialidad · Tienda con pedidos por WhatsApp · Panel</p>
         <p class="ctx">La Hacienda El Jabalí lleva tres generaciones sembrando café en Zongolica, y sus pedidos siempre han pasado por WhatsApp.</p>
-        <a class="visita" href="https://www.jabali.mx" target="_blank" rel="noopener">Ver el sitio · jabali.mx<span class="fl" aria-hidden="true">↗</span></a>
+        <p class="meta">Café de especialidad · Tienda con pedidos por WhatsApp · Panel</p>
+        <a class="visita" href="https://www.jabali.mx" target="_blank" rel="noopener">Ver el sitio · jabali.mx<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
       </div>
     </li>
     <li class="lamina" style="--lugar:#2A5280;--d:1;--ad:1" aria-roledescription="sitio" aria-label="2 de 5: Madrizza">
       <div class="comp">
         <picture class="esc">
-          <source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
-          <img width="1600" height="1000" src="/images/sitios/madrizza-esc-900.jpg" srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="eager" decoding="async" alt="Madrizza en escritorio">
+          <source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="(min-width: 920px) 44rem, 76vw">
+          <img width="1600" height="1000" src="/images/sitios/madrizza-esc-900.jpg" srcset="/images/sitios/madrizza-esc-900.jpg 900w, /images/sitios/madrizza-esc-1600.jpg 1600w" sizes="(min-width: 920px) 44rem, 76vw" loading="eager" decoding="async" alt="Madrizza en escritorio">
         </picture>
         <picture class="mov">
-          <source type="image/webp" srcset="/images/sitios/madrizza-mov-600.webp 600w, /images/sitios/madrizza-mov-900.webp 900w" sizes="min(21vw, 12rem)">
-          <img width="600" height="1200" src="/images/sitios/madrizza-mov-600.jpg" srcset="/images/sitios/madrizza-mov-600.jpg 600w, /images/sitios/madrizza-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="eager" decoding="async" alt="Madrizza en celular">
+          <source type="image/webp" srcset="/images/sitios/madrizza-mov-600.webp 600w, /images/sitios/madrizza-mov-900.webp 900w" sizes="(min-width: 920px) 13rem, 22vw">
+          <img width="600" height="1200" src="/images/sitios/madrizza-mov-600.jpg" srcset="/images/sitios/madrizza-mov-600.jpg 600w, /images/sitios/madrizza-mov-900.jpg 900w" sizes="(min-width: 920px) 13rem, 22vw" loading="eager" decoding="async" alt="Madrizza en celular">
         </picture>
       </div>
       <div class="cap">
         <h3 class="n">Madrizza</h3>
-        <p class="d">Pizzería de barrio · Logotipo, carta y pedidos</p>
         <p class="ctx">Abrieron dentro de un mercado y todavía no tenían logotipo.</p>
-        <a class="visita" href="https://madrizza.vercel.app" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
+        <p class="meta">Pizzería de barrio · Logotipo, carta y pedidos</p>
+        <a class="visita" href="https://madrizza.vercel.app" target="_blank" rel="noopener">Ver el sitio<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
       </div>
     </li>
     <li class="lamina" style="--lugar:#57573C;--d:2;--ad:1" aria-roledescription="sitio" aria-label="3 de 5: Finca Coyametla">
       <div class="comp">
         <picture class="esc">
-          <source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
-          <img width="1600" height="1000" src="/images/sitios/coyametla-esc-900.jpg" srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="Finca Coyametla en escritorio">
+          <source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="(min-width: 920px) 44rem, 76vw">
+          <img width="1600" height="1000" src="/images/sitios/coyametla-esc-900.jpg" srcset="/images/sitios/coyametla-esc-900.jpg 900w, /images/sitios/coyametla-esc-1600.jpg 1600w" sizes="(min-width: 920px) 44rem, 76vw" loading="lazy" decoding="async" alt="Finca Coyametla en escritorio">
         </picture>
         <picture class="mov">
-          <source type="image/webp" srcset="/images/sitios/coyametla-mov-600.webp 600w, /images/sitios/coyametla-mov-900.webp 900w" sizes="min(21vw, 12rem)">
-          <img width="600" height="1200" src="/images/sitios/coyametla-mov-600.jpg" srcset="/images/sitios/coyametla-mov-600.jpg 600w, /images/sitios/coyametla-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="Finca Coyametla en celular">
+          <source type="image/webp" srcset="/images/sitios/coyametla-mov-600.webp 600w, /images/sitios/coyametla-mov-900.webp 900w" sizes="(min-width: 920px) 13rem, 22vw">
+          <img width="600" height="1200" src="/images/sitios/coyametla-mov-600.jpg" srcset="/images/sitios/coyametla-mov-600.jpg 600w, /images/sitios/coyametla-mov-900.jpg 900w" sizes="(min-width: 920px) 13rem, 22vw" loading="lazy" decoding="async" alt="Finca Coyametla en celular">
         </picture>
       </div>
       <div class="cap">
         <h3 class="n">Finca Coyametla</h3>
-        <p class="d">Finca de café · Sitio en español e inglés</p>
         <p class="ctx">Coyametla le vende grano a tostadores de México y de&nbsp;fuera.</p>
-        <a class="visita" href="https://finca-coyametla.vercel.app/es" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
+        <p class="meta">Finca de café · Sitio en español e inglés</p>
+        <a class="visita" href="https://finca-coyametla.vercel.app/es" target="_blank" rel="noopener">Ver el sitio<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
       </div>
     </li>
     <li class="lamina" style="--lugar:#27120D;--d:3;--ad:1" aria-roledescription="sitio" aria-label="4 de 5: El Algo">
       <div class="comp">
         <picture class="esc">
-          <source type="image/webp" srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
-          <img width="1600" height="1000" src="/images/sitios/elalgo-esc-900.jpg" srcset="/images/sitios/elalgo-esc-900.jpg 900w, /images/sitios/elalgo-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="El Algo en escritorio">
+          <source type="image/webp" srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="(min-width: 920px) 44rem, 76vw">
+          <img width="1600" height="1000" src="/images/sitios/elalgo-esc-900.jpg" srcset="/images/sitios/elalgo-esc-900.jpg 900w, /images/sitios/elalgo-esc-1600.jpg 1600w" sizes="(min-width: 920px) 44rem, 76vw" loading="lazy" decoding="async" alt="El Algo en escritorio">
         </picture>
         <picture class="mov">
-          <source type="image/webp" srcset="/images/sitios/elalgo-mov-600.webp 600w, /images/sitios/elalgo-mov-900.webp 900w" sizes="min(21vw, 12rem)">
-          <img width="600" height="1200" src="/images/sitios/elalgo-mov-600.jpg" srcset="/images/sitios/elalgo-mov-600.jpg 600w, /images/sitios/elalgo-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="El Algo en celular">
+          <source type="image/webp" srcset="/images/sitios/elalgo-mov-600.webp 600w, /images/sitios/elalgo-mov-900.webp 900w" sizes="(min-width: 920px) 13rem, 22vw">
+          <img width="600" height="1200" src="/images/sitios/elalgo-mov-600.jpg" srcset="/images/sitios/elalgo-mov-600.jpg 600w, /images/sitios/elalgo-mov-900.jpg 900w" sizes="(min-width: 920px) 13rem, 22vw" loading="lazy" decoding="async" alt="El Algo en celular">
         </picture>
       </div>
       <div class="cap">
         <h3 class="n">El Algo</h3>
-        <p class="d">Wine bar, antes de abrir · Sitio sobre la marca de IS&nbsp;A&nbsp;JAR</p>
         <p class="ctx">Un bar donde eliges la botella y te sirves tú, que todavía no abre. El sitio va sobre la marca de IS&nbsp;A&nbsp;JAR.</p>
-        <a class="visita" href="https://www.elalgo.mx" target="_blank" rel="noopener">Ver el sitio · elalgo.mx<span class="fl" aria-hidden="true">↗</span></a>
+        <p class="meta">Wine bar, antes de abrir · Sitio sobre la marca de IS&nbsp;A&nbsp;JAR</p>
+        <a class="visita" href="https://www.elalgo.mx" target="_blank" rel="noopener">Ver el sitio · elalgo.mx<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
       </div>
     </li>
     <li class="lamina" style="--lugar:#896545;--fondo:#7A5A3D;--d:4;--ad:1" aria-roledescription="sitio" aria-label="5 de 5: Celita">
       <div class="comp">
         <picture class="esc">
-          <source type="image/webp" srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
-          <img width="1600" height="1000" src="/images/sitios/celita-esc-900.jpg" srcset="/images/sitios/celita-esc-900.jpg 900w, /images/sitios/celita-esc-1600.jpg 1600w" sizes="min(84vw, 40rem)" loading="lazy" decoding="async" alt="Celita en escritorio">
+          <source type="image/webp" srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="(min-width: 920px) 44rem, 76vw">
+          <img width="1600" height="1000" src="/images/sitios/celita-esc-900.jpg" srcset="/images/sitios/celita-esc-900.jpg 900w, /images/sitios/celita-esc-1600.jpg 1600w" sizes="(min-width: 920px) 44rem, 76vw" loading="lazy" decoding="async" alt="Celita en escritorio">
         </picture>
         <picture class="mov">
-          <source type="image/webp" srcset="/images/sitios/celita-mov-600.webp 600w, /images/sitios/celita-mov-900.webp 900w" sizes="min(21vw, 12rem)">
-          <img width="600" height="1200" src="/images/sitios/celita-mov-600.jpg" srcset="/images/sitios/celita-mov-600.jpg 600w, /images/sitios/celita-mov-900.jpg 900w" sizes="min(21vw, 12rem)" loading="lazy" decoding="async" alt="Celita en celular">
+          <source type="image/webp" srcset="/images/sitios/celita-mov-600.webp 600w, /images/sitios/celita-mov-900.webp 900w" sizes="(min-width: 920px) 13rem, 22vw">
+          <img width="600" height="1200" src="/images/sitios/celita-mov-600.jpg" srcset="/images/sitios/celita-mov-600.jpg 600w, /images/sitios/celita-mov-900.jpg 900w" sizes="(min-width: 920px) 13rem, 22vw" loading="lazy" decoding="async" alt="Celita en celular">
         </picture>
       </div>
       <div class="cap">
         <h3 class="n">Celita</h3>
-        <p class="d">Café y pan en la Condesa · Carta y cómo llegar</p>
         <p class="ctx">Un café en Pachuca 13, en la Condesa, sobre la marca de Acuña&nbsp;Studio.</p>
-        <a class="visita" href="https://www.celita.mx" target="_blank" rel="noopener">Ver el sitio · celita.mx<span class="fl" aria-hidden="true">↗</span></a>
+        <p class="meta">Café y pan en la Condesa · Carta y cómo llegar</p>
+        <a class="visita" href="https://www.celita.mx" target="_blank" rel="noopener">Ver el sitio · celita.mx<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
       </div>
     </li>
     </ol>
+
+    <div class="mando">
+      <div class="puntos">
+        <button type="button" class="punto" data-ir="0" aria-label="Ver Jabalí" style="--p:1" aria-current="true"></button>
+        <button type="button" class="punto" data-ir="1" aria-label="Ver Madrizza"></button>
+        <button type="button" class="punto" data-ir="2" aria-label="Ver Finca Coyametla"></button>
+        <button type="button" class="punto" data-ir="3" aria-label="Ver El Algo"></button>
+        <button type="button" class="punto" data-ir="4" aria-label="Ver Celita"></button>
+      </div>
+      <div class="flechas">
+        <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" disabled><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12h-15M10.5 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════ QUIÉN SOY ══════════ -->
-  <section class="grp grp--sec revela">
+  <section class="grp revela">
     <h2 class="grp-label"><span>Quién soy</span></h2>
 
     <div class="row sin-cifra">
       <span class="n">Sofía von Hauske</span>
       <span class="d">Fui la única diseñadora de una plataforma que usan 50 mil restaurantes en Estados Unidos. Estudié en Parsons.</span>
-      <ul class="names d">
+      <ul class="names">
         <li>Gia · Hipódromo Condesa</li>
         <li>Fishbowl</li>
         <li>Episcope Hospitality</li>
@@ -383,13 +384,13 @@
 
   <!-- ══════════ ESCRÍBEME ══════════ -->
   <section class="grp revela">
-    <h2 class="grp-label"><span>Escríbeme</span> <span>Te contesto el mismo día</span></h2>
+    <h2 class="grp-label"><span>Escríbeme</span></h2>
 
     <div class="row row--cta">
       <button class="n copiar" type="button" data-copiar="hola@svh.studio">hola@svh.studio</button>
       <i class="lead" aria-hidden="true">&#8203;</i>
-      <span class="d">Dime tu lugar y qué necesitas. Te mando precio y fecha.</span>
-      <a class="v act" href="mailto:hola@svh.studio?subject=Un%20sitio%20para%20mi%20lugar&amp;body=Hola%20Sof%C3%ADa.%0A%0AMi%20lugar%20es%20______%2C%20en%20______.%0ALo%20que%20necesito%3A%20______">Escribir<span class="fl" aria-hidden="true">→</span></a>
+      <span class="d">Dime tu lugar y qué necesitas. Te contesto el mismo día con precio y fecha.</span>
+      <a class="v act" href="mailto:hola@svh.studio?subject=Un%20sitio%20para%20mi%20lugar&amp;body=Hola%20Sof%C3%ADa.%0A%0AMi%20lugar%20es%20______%2C%20en%20______.%0ALo%20que%20necesito%3A%20______">Escribir<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 

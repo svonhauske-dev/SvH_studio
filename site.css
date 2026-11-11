@@ -1,6 +1,16 @@
 /* ==========================================================================
    SvH STUDIO — hoja del sitio. Depende de tokens.css.
-   Un solo documento: frontispicio + índice. Sin portada, sin nav, sin botón.
+   Un solo documento: frontispicio, Trabajo, Quién soy, Escríbeme, colofón.
+
+   EL SISTEMA, EN CUATRO REGLAS
+   1. Una columna. Todo lo que tiene texto empieza en el mismo borde
+      izquierdo (--edge), incluida cada lámina de Trabajo.
+   2. Un patrón de bloque: título (serif) · la frase (lede, atenuada) ·
+      el dato (versalitas). Lo siguen los pies de Trabajo, la bio y el correo.
+   3. Una etiqueta de sección: la palabra en versalitas sobre un filete de
+      2px. Sin texto a la derecha, sin controles adentro.
+   4. Dos espacios verticales: --rhythm-group entre secciones y
+      --after-label entre el filete y lo que etiqueta.
    ========================================================================== */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -19,366 +29,255 @@ img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:var(--focus);outline-offset:3px}
 
+/* Íconos: un solo trazo, del color del texto, centrados por geometría y no
+   por la métrica de una fuente. Las flechas tipográficas (← →) caían bajas
+   dentro del círculo porque la serif las dibuja sobre la línea base. */
+.ico{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+
 .page{max-width:var(--maxw);margin:0 auto;padding:var(--rhythm-page) var(--gutter) var(--rhythm-foot)}
-.front + .grp{margin-top:var(--rhythm-front)}
 
 /* ── frontispicio ─────────────────────────────────────────────────────── */
 .eye{
-  display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;
+  display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);
   font-size:var(--t-eyebrow);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;
-  color:var(--svh-dim);margin-bottom:clamp(3rem,14vw,7rem);
+  color:var(--svh-dim);margin-bottom:clamp(3rem,14vw,7rem);white-space:nowrap;
 }
 .eye strong{color:var(--svh-ink);font-weight:600;letter-spacing:.1em}
+/* En el celular el renglón no cabía y "Ciudad de México" bajaba sola a un
+   segundo renglón. El nombre ya está en Quién soy. */
+@media (max-width:479px){.eye .quien{display:none}}
 
 .front h1{
   margin:0;font-family:var(--svh-serif);font-weight:400;
   font-size:var(--t-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);
-  text-wrap:balance;
 }
 .front h1 em{font-style:italic}
-/* Tres renglones fijos, a toda anchura. Con text-wrap:balance el corte
-   dependía del ancho exacto de la letra: mientras llegaba la itálica el
-   titular salía en dos renglones y luego en tres, y la página brincaba 90px. */
+/* Tres renglones fijos a toda anchura: con balance el corte dependía del
+   ancho exacto de la letra y la página brincaba mientras llegaba la itálica. */
 .front h1 span{display:block}
 .front .lede{
-  margin:clamp(1rem,3.6vw,1.75rem) 0 0;max-width:46ch;
+  margin:clamp(1.25rem,3.6vw,2rem) 0 0;max-width:40ch;
   font-size:var(--t-lede);line-height:1.5;color:var(--svh-dim);text-wrap:pretty;
 }
-.front .lede strong{color:var(--svh-ink);font-weight:500}
 
-/* Clientes: nombres como tipografía, nunca como enlace. Viven en Quién
-   soy, una sola vez, después de la credencial que los explica. */
-.names{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);list-style:none;margin:0;padding:0;
-  font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;color:var(--svh-ink)}
-.names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
-.names li:last-child::after{content:""}
-.row.sin-cifra .names.d{grid-row:3;margin-top:var(--s2);color:var(--svh-ink);font-size:var(--t-label);line-height:1.6}
-
-/* ── grupos del índice ────────────────────────────────────────────────── */
-.grp{margin-top:var(--rhythm-group)}
+/* ── secciones ────────────────────────────────────────────────────────── */
+.grp,.colofon{margin-top:var(--rhythm-group)}
 .grp-label{
   margin:0;font-weight:400;
-  display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);
   font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--svh-dim);padding-bottom:var(--s2);
   border-bottom:2px solid var(--svh-rule-hard);
 }
 
-/* SEGUNDO NIVEL.
+/* ── el bloque: título · la frase · el dato ───────────────────────────── */
+.n{font-family:var(--svh-serif);font-weight:400;font-size:var(--t-row);
+  line-height:var(--lh-tight);letter-spacing:var(--ls-row)}
+.row .d,.cap .ctx{font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);
+  max-width:40ch;text-wrap:pretty}
+.meta,.names{font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;
+  line-height:1.6;color:var(--svh-ink)}
 
-   "Se agrega" cuelga de "Qué construyo" —no puedes comprar Reservaciones
-   sola— y "Cómo funciona" son las condiciones, no la oferta. Los dos son
-   subordinados y hasta hoy pesaban igual que los tres principales.
-
-   El rango se marca dos veces, para que no quede como casi-diferencia: el
-   nombre baja un escalón completo de la rampa (44 → 32, no un ajuste de
-   unos píxeles) y el filete de la etiqueta pasa de 2px en tinta a la
-   hairline del índice. Dos señales, ningún punto medio. */
-.grp--sec .grp-label{border-bottom:1px solid var(--svh-rule)}
-.grp--sec .row .n{font-size:var(--t-value)}
-.grp--sec .row .n em{font-size:var(--t-small)}
-
-/* ── la fila ──────────────────────────────────────────────────────────── */
-/* La fila de una carta impresa: nombre — guía de puntos — valor,
-   y la descripción abajo, con medida corta. Igual en toda anchura.
-   El modelo de tres columnas estiraba la descripción a 676px y dejaba
-   138px de vacío antes del precio: se leía como tabla rota. */
-.row{
-  display:grid;grid-template-columns:auto minmax(1.5rem,1fr) auto;
-  column-gap:clamp(.5rem,2vw,1rem);row-gap:.72em;align-items:baseline;
-  padding:var(--rhythm-row) 0;border-bottom:1px solid var(--svh-rule);
-  width:100%;text-align:left;background:none;border-left:0;border-right:0;border-top:0;
-  font:inherit;color:inherit;text-decoration:none;
-  scroll-margin-top:clamp(.75rem,3vw,1.5rem);
-}
-.row .n{grid-column:1;grid-row:1;font-family:var(--svh-serif);font-size:var(--t-row);
-  line-height:var(--lh-tight);letter-spacing:var(--ls-row);white-space:nowrap}
+/* Fila: nombre — guía de puntos — acción, y la frase debajo. */
+.row{display:grid;grid-template-columns:auto minmax(1.5rem,1fr) auto;
+  column-gap:clamp(.5rem,2vw,1rem);row-gap:var(--s3);align-items:baseline;
+  padding-top:var(--after-label)}
+.row .n{grid-column:1;grid-row:1}
 .row .lead{grid-column:2;grid-row:1;align-self:baseline;transform:translateY(-.34em);
   border-bottom:1px dotted var(--svh-guia)}
-.row .v{grid-column:3;grid-row:1;justify-self:end;font-family:var(--svh-serif);font-size:var(--t-value);
-  line-height:var(--lh-tight);font-variant-numeric:tabular-nums;white-space:nowrap}
-.row .d{grid-column:1/-1;grid-row:2;font-size:var(--t-desc);color:var(--svh-dim);
-  line-height:var(--lh-snug);max-width:58ch;text-wrap:pretty}
-
-/* variantes de valor */
-.row .v.sm{font-family:var(--svh-sans);font-size:var(--t-label);font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim)}
-.row .v.act{font-family:var(--svh-serif);font-size:var(--t-value);letter-spacing:var(--ls-row);
-  text-transform:none;font-weight:400;color:inherit}
-.row .v.act .fl{display:inline-block;margin-left:.28em;font-size:var(--t-flecha);
-  transition:transform var(--motion-fast)}
-button.row:hover .v.act .fl{transform:translateY(2px)}
-button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
-.row .v.link{font-family:var(--svh-sans);font-size:var(--t-small);font-weight:600;
-  letter-spacing:.03em;border-bottom:1px solid currentColor;padding-bottom:.12em}
-
-/* La marca de la casa: un consejo en versalitas sobre el nombre, como el
-   plato recomendado de una carta impresa. No una etiqueta de "más popular",
-   que es lenguaje de SaaS y aquí se vería fatal. */
-.row--reco{grid-template-rows:auto auto auto}
-.row--reco .rec{grid-column:1/-1;grid-row:1;margin-bottom:.2em;
-  font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:var(--svh-dim)}
-.row--reco .n,.row--reco .lead,.row--reco .v{grid-row:2}
-.row--reco .d{grid-row:3}
-
-/* Fila sin cifra. Sin valor a la derecha, la guía de puntos se queda sin
-   trabajo: unía el nombre con el precio. Se va con él, y la fila queda como
-   lo que es — un nombre y lo que incluye. */
+.row .v{grid-column:3;grid-row:1;justify-self:end}
+.row .d{grid-column:1/-1;grid-row:2;margin:0}
 .row.sin-cifra{grid-template-columns:1fr}
-/* El resultado que compra el dueño, colgado del nombre del paquete: en
-   itálica y a menor cuerpo, para que se lea como aclaración y no compita
-   con el nombre. El eje del nivel es lo que consigue, no cuántas páginas. */
-.row.sin-cifra .n em{font-style:italic;font-size:var(--t-matiz);letter-spacing:0;
-  color:var(--svh-dim);white-space:nowrap}
-.row.sin-cifra .n{grid-column:1;white-space:normal}
-.row.sin-cifra .d{grid-column:1;grid-row:2}
-.row.sin-cifra.row--reco .rec{grid-column:1;grid-row:1}
-.row.sin-cifra.row--reco .n{grid-row:2}
-.row.sin-cifra.row--reco .d{grid-row:3}
+.names{grid-row:3;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s3);list-style:none;
+  margin:var(--s1) 0 0;padding:0}
+.names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
+.names li:last-child::after{content:""}
 
-/* Apiladas, con la descripción a todo el ancho de la columna. La medida
-   larga no estorba porque estas descripciones son de uno o dos renglones,
-   no párrafos: el tope de 58ch existe para texto corrido, no para esto. */
-.row.sin-cifra .d{max-width:none}
+/* Correo: la dirección se copia; el verbo abre el correo. Dos salidas,
+   porque el mailto falla en silencio cuando no hay app de correo. */
+.copiar{background:none;border:0;padding:0;margin:0;color:inherit;cursor:pointer;text-align:left;
+  -webkit-appearance:none;appearance:none;display:inline-flex;align-items:center;min-height:var(--touch);
+  transition:opacity var(--motion-fast)}
+.copiar:hover{opacity:.6}
+.copiar[data-hecho]{color:var(--svh-dim)}
+.row .v.act{display:inline-flex;align-items:center;gap:.3em;min-height:var(--touch);
+  font-family:var(--svh-serif);font-size:var(--t-value);line-height:var(--lh-tight);letter-spacing:var(--ls-row);
+  text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
+  text-decoration-color:var(--svh-subraya);transition:text-decoration-color var(--motion-fast)}
+.row .v.act .ico{width:.62em;height:.62em;transition:transform var(--motion-fast)}
+.row .v.act:hover{text-decoration-color:currentColor}
+.row .v.act:hover .ico{transform:translateX(3px)}
 
-/* fila de texto llano — "Cómo funciona" */
-/* UN SOLO NOMBRE DE FILA. Sin excepciones de fuente ni de tamaño.
+/* ── el color de la página ────────────────────────────────────────────── */
 
-   Antes "Cómo funciona" iba en sans a 21px y era la única sección distinta.
-   Probé un tamaño intermedio y quedó peor: ligeramente distinto se lee como
-   error, deliberadamente distinto se lee como sistema, y aquí no había
-   razón para lo segundo. La dirección se llama Índice, así que todo es una
-   fila y todas las filas se ven igual.
-
-   Lo que sí varía sigue una regla dicha: la guía de puntos y el valor van
-   juntos —o están los dos o no está ninguno—, y el valor va en serif si es
-   una acción y en versalitas si es un dato. */
-.row.plain .n{white-space:normal}
-
-/* ── trabajo: la tira ─────────────────────────────────────────────────── */
-
-/* LA PÁGINA TOMA EL COLOR DEL SITIO AL FRENTE.
-
-   El estudio no tiene color; lo ponen los clientes. Antes eso pasaba sólo
-   al abrir un capítulo. Ahora pasa en toda la página: el sitio que está al
-   frente de la tira tiñe el papel, y la tinta se vuelve marfil.
-
-   Los tokens de color se registran con @property para que la tinta haga
-   la transición junto con el fondo. Sin eso el texto cambia de golpe y,
-   por medio segundo, hay marfil sobre papel. La primera pintura ya viene
-   teñida desde el HTML: la transición sólo se enciende después (.vivo). */
+/* El estudio no tiene color; lo ponen los clientes. El sitio al frente de
+   la tira tiñe la página y la tinta se vuelve marfil. Los tokens van
+   registrados para que la entrada los pueda animar. */
 @property --lugar{syntax:'<color>';inherits:true;initial-value:#101010}
 @property --svh-ink{syntax:'<color>';inherits:true;initial-value:#101010}
 @property --svh-dim{syntax:'<color>';inherits:true;initial-value:rgba(16,16,16,.62)}
 @property --svh-rule{syntax:'<color>';inherits:true;initial-value:rgba(16,16,16,.15)}
 @property --svh-rule-hard{syntax:'<color>';inherits:true;initial-value:#101010}
 body.tinto{
-  /* --fondo: cuando el color de la marca no deja leer texto claro (el café
-     de Celita da 3:1), la página usa una versión más honda del mismo. */
+  /* --pagina: la mezcla que pone el script mientras deslizas.
+     --fondo: un tono más hondo cuando la marca no deja leer texto claro. */
   background:var(--pagina,var(--fondo,var(--lugar)));
   --svh-ink:var(--svh-on-tint);
-  --svh-dim:rgba(242,239,234,.82);
-  --svh-faint:rgba(242,239,234,.45);
+  --svh-dim:rgba(242,239,234,.8);
+  --svh-faint:rgba(242,239,234,.42);
   --svh-rule:rgba(242,239,234,.2);
   --svh-rule-hard:var(--svh-on-tint);
   --svh-subraya:rgba(242,239,234,.45);
   --svh-guia:rgba(242,239,234,.25);
   color:var(--svh-ink);
 }
-/* LA ENTRADA. El estudio no tiene color: la página nace en papel y tinta,
-   y el color del primer cliente la inunda. Es la tesis del sitio dicha en
-   un segundo, sin una palabra. Sólo CSS: corre en la primera pintura, no
-   espera al script y no mueve nada de lugar. Con fill "backwards" la
-   animación sólo pone el punto de partida; al terminar manda el estilo de
-   siempre, que el script sigue moviendo con la tira. */
+/* La entrada: la página nace en papel y el color del primer cliente la
+   inunda. Sólo CSS; "backwards" pone el punto de partida y suelta. */
 @keyframes entra-color{
   from{background-color:var(--svh-paper);--svh-ink:#101010;--svh-dim:rgba(16,16,16,.62);
        --svh-rule:rgba(16,16,16,.15);--svh-rule-hard:#101010}
 }
-body.tinto{animation:entra-color 1s cubic-bezier(.65,0,.35,1) .5s backwards}
+body.tinto{animation:entra-color 1s var(--ease-media) .5s backwards}
 body.tinto ::selection{background:var(--svh-on-tint);color:var(--lugar)}
 body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 
-/* La etiqueta del grupo lleva controles, así que no puede ser un h2 entero:
-   el h2 es sólo la palabra, y las flechas viven al lado. */
-.trabajo .grp-label{align-items:center}
-.trabajo .grp-label h2{margin:0;font:inherit;letter-spacing:inherit}
-.mando{display:flex;align-items:center;gap:var(--s3);margin-block:calc(-1 * var(--s3)) 0}
-.flecha{font:inherit;font-family:var(--svh-serif);font-size:1.25rem;line-height:1;letter-spacing:0;
-  width:var(--touch);height:var(--touch);border-radius:50%;border:1px solid var(--svh-rule-hard);
-  background:none;color:inherit;cursor:pointer;transition:opacity var(--motion-fast)}
-.flecha:disabled{opacity:.25;cursor:default}
-/* Las flechas sólo existen con cursor, y las decide el CSS, no el script:
-   si aparecieran al correr el JS, la etiqueta crecería y todo brincaría. */
-.flecha{display:none}
-@media (hover:hover) and (pointer:fine){.js .flecha{display:inline-block}}
+/* ── Trabajo: la tira ─────────────────────────────────────────────────── */
 
-/* La tira sale de la columna a todo el ancho y centra cada lámina. */
-.tira{--w:min(84vw,40rem);
-  list-style:none;margin:0 calc(50% - 50vw);padding:var(--s10) calc(50vw - var(--w) / 2) var(--s4);
+/* Cada lámina mide lo que la columna y arranca en su borde izquierdo: el
+   pie de foto queda alineado con el titular y con todas las secciones.
+   La siguiente se asoma por la derecha. En el celular la lámina es 2.5rem
+   más angosta que la columna para que ese asomo se vea. */
+.tira{--w:min(calc(100vw - 2 * var(--gutter) - 2.5rem), var(--colw));
+  list-style:none;margin:0 calc(50% - 50vw);
+  padding:var(--after-label) calc(100vw - var(--edge) - var(--w)) 0 var(--edge);
+  scroll-padding-inline:var(--edge);
   display:flex;gap:clamp(1rem,3vw,2rem);overflow-x:auto;overscroll-behavior-x:contain;
   scroll-snap-type:x mandatory;scrollbar-width:none}
+@media (min-width:960px){.tira{--w:var(--colw)}}
 .tira::-webkit-scrollbar{display:none}
 .tira:focus-visible{outline-offset:-3px}
 .js .tira{cursor:grab}
 .tira.arrastre{cursor:grabbing;scroll-snap-type:none;user-select:none}
 .tira.arrastre img{pointer-events:none}
 
-/* LA TIRA SIGUE AL DEDO.
-
-   --d es la distancia de cada lámina al centro, en láminas: 0 al frente,
-   ±1 la vecina. La pone el script en cada cuadro del scroll y todo lo
-   demás sale de ahí, así que nada cambia "al llegar": cambia mientras
-   deslizas, en proporción. --ad es el mismo valor sin signo, topado en 1.
-
-   Tres planos a tres velocidades —la lámina, el celular y la imagen
-   dentro del escritorio— hacen la profundidad sin una sola sombra de
-   más. El HTML trae los valores iniciales, así que la primera pintura
-   ya es la misma que el script calcula: nada brinca al cargar. */
-.lamina{flex:0 0 var(--w);scroll-snap-align:center;scroll-snap-stop:always;
-  transform:scale(calc(1 - .07 * var(--ad,0)));transform-origin:50% 40%;will-change:transform}
+/* LA TIRA SIGUE AL DEDO. --d es la distancia de cada lámina a su lugar,
+   en láminas (0 al frente, ±1 la vecina); --ad, sin signo y topada en 1.
+   El script la pone en cada cuadro y todo sale de ahí. El HTML trae los
+   valores iniciales: la primera pintura ya es la que el script calcula. */
+.lamina{flex:0 0 var(--w);scroll-snap-align:start;scroll-snap-stop:always;
+  transform:scale(calc(1 - .06 * var(--ad,0)));transform-origin:0 40%;will-change:transform}
 .js .lamina:not(.activa){cursor:pointer}
 
-/* Escritorio y celular juntos, sin marco de dispositivo: el sitio a sangre
-   y su versión de celular encimada en la esquina. Un marco de laptop sobre
-   gris es el delator de plantilla número uno. */
+/* Escritorio y celular juntos, sin marco de dispositivo. */
 .comp{position:relative;padding:0 13% 9% 0}
-/* Las vecinas no se vuelven transparentes —se vería el celular a través
-   del escritorio—: se hunden en el color de la página con un velo de ese
-   mismo color (--pagina, la mezcla que pone el script). El velo va en cada
-   pantalla y no en la lámina: el celular se corre y se salía de debajo. */
-.esc,.mov{position:relative}
-/* Sin z-index: con z-index:1 el velo del escritorio se pintaba por encima
-   del celular, y donde se enciman el celular quedaba velado dos veces. */
+.esc,.mov{display:block;overflow:hidden;background:var(--lugar);
+  outline:1px solid rgba(242,239,234,.2);outline-offset:-1px}
+.esc{position:relative;aspect-ratio:16/10;border-radius:6px;box-shadow:0 22px 60px rgba(0,0,0,.3);
+  transition:box-shadow .5s var(--ease-sale)}
+/* El radio del celular es proporcional al de un teléfono real a esa escala. */
+.mov{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:1/2;border-radius:10px;
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+  transform:translate(calc(var(--d,0) * 38%), calc(var(--ad,0) * 10%));
+  transition:translate .6s var(--ease-sale)}
+.esc img,.mov img{width:100%;height:100%;object-fit:cover;object-position:top}
+.esc img{transform:translateX(calc(var(--d,0) * 5%)) scale(1.06);transform-origin:50% 0}
+/* Las vecinas se hunden en el color de la página con un velo de ese
+   color, uno por pantalla y sin z-index (con z-index el del escritorio
+   tapaba al celular y lo velaba dos veces). */
 .esc::after,.mov::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:var(--pagina,var(--lugar));opacity:calc(.58 * var(--ad,0))}
-.esc,.mov{display:block;overflow:hidden;background:var(--lugar);
-  outline:1px solid rgba(242,239,234,.22);outline-offset:-1px}
-.esc{aspect-ratio:16/10;border-radius:6px;box-shadow:0 22px 60px rgba(0,0,0,.32);
-  transition:box-shadow .5s cubic-bezier(.22,1,.36,1)}
-.mov{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:1/2;border-radius:12px;
-  box-shadow:0 18px 44px rgba(0,0,0,.4);
-  /* Hacia afuera: al alejarse del centro el celular se aparta de la
-     lámina del frente, nunca se le encima. */
-  transform:translate(calc(var(--d,0) * 38%), calc(var(--ad,0) * 10%));
-  transition:translate .6s cubic-bezier(.22,1,.36,1)}
-.esc img,.mov img{width:100%;height:100%;object-fit:cover;object-position:top}
-/* La imagen se corre dentro de su ventana, más lento que la lámina. */
-.esc img{transform:translateX(calc(var(--d,0) * 5%)) scale(1.06);transform-origin:50% 0}
 
-/* Con cursor, la lámina al frente responde: el celular se levanta y el
-   escritorio se asienta. Es la única reacción al hover de todo el sitio. */
 @media (hover:hover) and (pointer:fine){
   .lamina.activa .comp:hover .mov{translate:0 -4%}
   .lamina.activa .comp:hover .esc{box-shadow:0 30px 80px rgba(0,0,0,.42)}
 }
 
-/* El texto pertenece a su lámina y se desvanece antes que ella: a media
-   pasada ya no hay dos pies de foto peleando. */
-.cap{padding-top:var(--s6);display:grid;gap:var(--s2);
+/* El pie: título · la frase · el dato · el enlace. Se desvanece antes que
+   su lámina, así nunca hay dos pies a la vez. */
+.cap{padding-top:var(--s8);display:flex;flex-direction:column;align-items:flex-start;
   opacity:calc(1 - 2.4 * var(--ad,0));transform:translateX(calc(var(--d,0) * -2.5rem))}
-.cap .n{margin:0;font-family:var(--svh-serif);font-weight:400;font-size:var(--t-row);
-  line-height:var(--lh-tight);letter-spacing:var(--ls-row)}
-.cap .d{margin:0;color:var(--svh-ink);font-size:var(--t-desc);line-height:var(--lh-snug)}
-.cap .ctx{margin:0;color:var(--svh-dim);font-size:var(--t-desc);line-height:var(--lh-snug);max-width:52ch;text-wrap:pretty}
-.cap .visita{justify-self:start;display:inline-flex;align-items:center;min-height:var(--touch);
+.cap .n{margin:0}
+.cap .ctx{margin:var(--s3) 0 0}
+.cap .meta{margin:var(--s4) 0 0}
+.cap .visita{display:inline-flex;align-items:center;gap:.35em;min-height:var(--touch);margin-top:var(--s2);
   font-weight:500;text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
   text-decoration-color:var(--svh-subraya);transition:text-decoration-color var(--motion-fast)}
+.cap .visita .ico{width:.9em;height:.9em;transition:transform var(--motion-fast)}
 .cap .visita:hover{text-decoration-color:currentColor}
-.cap .visita .fl{display:inline-block;margin-left:.3em;transition:transform var(--motion-fast)}
-.cap .visita:hover .fl{transform:translate(2px,-2px)}
-/* Los enlaces de las vecinas no se alcanzan con Tab. */
+.cap .visita:hover .ico{transform:translate(2px,-2px)}
 .js .lamina:not(.activa) .cap{visibility:hidden}
 
-/* PUNTOS. Cinco píldoras; la del frente se estira, y se estira de a poco
-   mientras deslizas (--p, de 0 a 1, lo pone el script). Cada una es un
-   botón de 44px aunque se vea de 6. */
-.puntos{display:flex;align-items:center}
-.punto{width:auto;min-width:var(--s5);height:var(--touch);padding:0 4px;border:0;background:none;
-  cursor:pointer;display:grid;place-items:center}
+/* ── los controles, debajo de lo que controlan ───────────────────────── */
+/* Antes vivían dentro de la etiqueta de Trabajo y la hacían 14px más alta
+   que las otras dos. Debajo de la tira quedan donde se usan, y la etiqueta
+   vuelve a ser igual a todas. Puntos al borde izquierdo de la columna,
+   flechas al derecho. */
+.mando{display:flex;justify-content:space-between;align-items:center;margin-top:var(--s6)}
+.puntos{display:flex;align-items:center;gap:10px}
+.punto{position:relative;height:var(--touch);padding:0;border:0;background:none;cursor:pointer;
+  display:flex;align-items:center}
 .punto::before{content:"";display:block;height:6px;border-radius:3px;
-  width:calc(6px + 18px * var(--p,0));background:var(--svh-ink);opacity:calc(.32 + .68 * var(--p,0))}
+  width:calc(6px + 18px * var(--p,0));background:var(--svh-ink);opacity:calc(.35 + .65 * var(--p,0))}
+/* Se ve de 6px, se toca de 18. */
+.punto::after{content:"";position:absolute;inset:0 -6px}
 
-/* ENTRADA DEL FRONTISPICIO.
-   El titular sube renglón por renglón y se enfoca; luego el párrafo, el
-   filete de Trabajo se traza y la tira entra desde la derecha. Todo es
-   transform, opacity y filter: nada ocupa ni suelta espacio. */
+.flechas{display:none;gap:var(--s3)}
+@media (hover:hover) and (pointer:fine){.js .flechas{display:flex}}
+.flecha{width:var(--touch);height:var(--touch);border-radius:50%;padding:0;display:grid;place-items:center;
+  border:1px solid var(--svh-faint);background:transparent;color:var(--svh-ink);cursor:pointer;font-size:18px;
+  /* Sin transición de color: la tinta la anima la entrada, y una transición
+     encima se reiniciaba en cada cuadro y dejaba la flecha en negro. */
+  transition:background-color var(--motion-fast),border-color var(--motion-fast),opacity var(--motion-fast)}
+.flecha:hover:not(:disabled){background:var(--svh-ink);border-color:var(--svh-ink);color:var(--pagina,var(--lugar))}
+.flecha:active:not(:disabled){transform:scale(.94)}
+.flecha:disabled{opacity:.3;cursor:default}
+
+/* ── entrada del frontispicio ─────────────────────────────────────────── */
+/* Sólo transform, opacity y filter: nada ocupa ni suelta espacio. */
 @keyframes sube{from{opacity:0;transform:translateY(.32em);filter:blur(8px)}}
 @keyframes aparece{from{opacity:0;transform:translateY(12px)}}
 @keyframes traza{from{transform:scaleX(0)}}
 @keyframes entra-tira{from{opacity:0;transform:translateX(9vw)}}
-.front .eye{animation:aparece .8s cubic-bezier(.22,1,.36,1) both}
-.front h1 span{animation:sube 1.1s cubic-bezier(.16,1,.3,1) both}
+.front .eye{animation:aparece .8s var(--ease-sale) both}
+.front h1 span{animation:sube 1.1s var(--ease-sale) both}
 .front h1 span:nth-child(1){animation-delay:.08s}
 .front h1 span:nth-child(2){animation-delay:.18s}
 .front h1 span:nth-child(3){animation-delay:.28s}
-.front .lede{animation:aparece 1s cubic-bezier(.22,1,.36,1) .45s both}
+.front .lede{animation:aparece 1s var(--ease-sale) .45s both}
 .trabajo .grp-label{position:relative;border-bottom-color:transparent}
 .trabajo .grp-label::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
-  background:var(--svh-rule-hard);transform-origin:0 50%;animation:traza 1.1s cubic-bezier(.65,0,.35,1) .6s both}
-.trabajo .grp-label > *{animation:aparece .9s cubic-bezier(.22,1,.36,1) .7s both}
-.tira{animation:entra-tira 1.3s cubic-bezier(.16,1,.3,1) .75s both}
+  background:var(--svh-rule-hard);transform-origin:0 50%;animation:traza 1.1s var(--ease-media) .6s both}
+.trabajo .grp-label > span{display:inline-block;animation:aparece .9s var(--ease-sale) .7s both}
+.tira{animation:entra-tira 1.3s var(--ease-sale) .75s both}
+.mando{animation:aparece .9s var(--ease-sale) 1.05s both}
 
-/* EL RESTO SUBE AL ENTRAR. Sólo con JS: sin script todo está visible. */
+/* El resto sube al entrar en pantalla. Sólo con JS. */
 .js .revela{opacity:0;transform:translateY(28px);
-  transition:opacity .9s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+  transition:opacity .9s var(--ease-sale),transform 1.1s var(--ease-sale)}
 .js .revela.visto{opacity:1;transform:none}
 
-/* La hora de la Ciudad de México, junto al nombre de la ciudad: dice "te
-   contesto el mismo día" sin decirlo. El ancho va reservado en el CSS. */
+/* La hora de la Ciudad de México, sólo donde cabe. El texto de reserva
+   viene en el HTML, así que el ancho ya está ocupado antes del script. */
 .hora{display:none;font-variant-numeric:tabular-nums;opacity:0;transition:opacity .6s ease}
 @media (min-width:640px){.hora{display:inline}}
 .hora.lista{opacity:1}
 .hora .dos{animation:late 2s steps(1) infinite}
 @keyframes late{50%{opacity:.25}}
 
-@media (prefers-reduced-motion:reduce){
-  body.tinto,.front .eye,.front h1 span,.front .lede,.trabajo .grp-label::after,
-  .trabajo .grp-label > *,.tira,.hora .dos{animation:none}
-  .lamina,.mov,.esc img,.cap{transform:none}
-  .js .revela{opacity:1;transform:none}
-}
-
-/* El último renglón de la página es la dirección de correo, puesta como
-   el nombre de una fila. No hay botón: la acción es leer una línea y
-   escribirla. Por eso pesa más que cualquier otra fila del índice. */
-/* Dos salidas, no una. El mailto falla en silencio cuando el navegador no
-   tiene manejador de correo: la pestaña se queda en blanco y la única
-   llamada a la acción del sitio se pierde. Así que la dirección se comporta
-   como dirección —se copia— y el verbo se comporta como acción —abre el
-   correo—. Cada uno hace lo que su nombre promete. */
-.row--cta{padding-block:clamp(1.25rem,4vw,2.25rem)}
-.row--cta .copiar{background:none;border:0;padding:0;margin:0;color:inherit;
-  cursor:pointer;text-align:left;-webkit-appearance:none;appearance:none;
-  display:inline-flex;align-items:center;min-height:var(--touch);
-  transition:opacity var(--motion-fast)}
-.row--cta .copiar:hover{opacity:.58}
-.row--cta .copiar[data-hecho]{color:var(--svh-dim)}
-.row--cta .v.act{display:inline-flex;align-items:center;min-height:var(--touch);
-  text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
-  text-decoration-color:var(--svh-subraya);transition:text-decoration-color var(--motion-fast)}
-.row--cta .v.act:hover{text-decoration-color:var(--svh-ink)}
-.row--cta .n{font-size:var(--t-row)}
-a.row--cta:hover .n{text-decoration:none}
-a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
-a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
-
-/* Ritmo por peso: el cierre pide el doble de aire. */
-.grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
-.grp[id]{scroll-margin-top:clamp(1rem,4vw,2.5rem)}
-
-/* Colofón. Lo último que se ve, con el mismo filete de 1.5px que abre cada
-   grupo del índice, no dos spans a 13px en un flex sin decidir. */
-.colofon{margin-top:clamp(3.5rem,11vw,6.5rem);padding-top:clamp(1rem,2.5vw,1.5rem);
-  border-top:2px solid var(--svh-rule-hard);display:grid;gap:var(--s4) var(--s8)}
+/* ── colofón ──────────────────────────────────────────────────────────── */
+.colofon{padding-top:var(--s4);border-top:2px solid var(--svh-rule-hard);
+  display:grid;gap:var(--s4) var(--s8)}
 @media (min-width:640px){.colofon{grid-template-columns:minmax(0,1fr) auto;align-items:baseline}}
 .colofon .frase{margin:0;font-family:var(--svh-serif);font-size:var(--t-value);
-  line-height:1.28;letter-spacing:-.01em;max-width:34ch;color:var(--svh-ink);text-wrap:balance}
+  line-height:1.28;letter-spacing:-.01em;color:var(--svh-ink);text-wrap:balance}
 .colofon .dom{margin:0;font-size:var(--t-label);letter-spacing:var(--ls-label);
-  text-transform:uppercase;color:var(--svh-dim);justify-self:start}
-@media (min-width:640px){.colofon .dom{justify-self:end}}
+  text-transform:uppercase;color:var(--svh-dim)}
 
+/* ── movimiento reducido: todo quieto ────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;
+    animation-delay:0s!important}
+  .lamina,.mov,.esc img,.cap{transform:none}
+  .hora .dos{animation:none}
+  .js .revela{opacity:1;transform:none}
 }

@@ -29,10 +29,9 @@
 
   function medir() {
     pedido = false;
-    var centro = tira.scrollLeft + tira.clientWidth / 2,
-        paso   = laminas.length > 1 ? laminas[1].offsetLeft - laminas[0].offsetLeft : 1,
-        c0     = laminas[0].offsetLeft + laminas[0].offsetWidth / 2,
-        pos    = Math.max(0, Math.min(laminas.length - 1, (centro - c0) / paso));
+    /* Las láminas se alinean al borde izquierdo de la columna, así que la
+       posición es simplemente cuántas láminas se ha deslizado la tira. */
+    var pos = Math.max(0, Math.min(laminas.length - 1, tira.scrollLeft / paso()));
 
     laminas.forEach(function (l, i) {
       var d = i - pos, ad = Math.min(1, Math.abs(d));
@@ -64,10 +63,12 @@
     });
   }
 
+  function paso() {
+    return laminas.length > 1 ? laminas[1].offsetLeft - laminas[0].offsetLeft : 1;
+  }
   function ir(i) {
     i = Math.max(0, Math.min(laminas.length - 1, i));
-    var l = laminas[i];
-    tira.scrollTo({ left: l.offsetLeft - (tira.clientWidth - l.offsetWidth) / 2,
+    tira.scrollTo({ left: laminas[i].offsetLeft - laminas[0].offsetLeft,
                     behavior: suave ? 'smooth' : 'auto' });
   }
 
@@ -98,8 +99,7 @@
     if (!a.movio) return;
     recienArrastro = true;
     setTimeout(function () { recienArrastro = false; }, 50);
-    var paso = laminas[1].offsetLeft - laminas[0].offsetLeft,
-        pos  = (tira.scrollLeft + tira.clientWidth / 2 - (laminas[0].offsetLeft + laminas[0].offsetWidth / 2)) / paso,
+    var pos  = tira.scrollLeft / paso(),
         dest = Math.abs(a.v) > .35 ? (a.v < 0 ? Math.ceil(pos) : Math.floor(pos)) : Math.round(pos);
     tira.classList.remove('arrastre');
     ir(dest);
