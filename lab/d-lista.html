@@ -1,0 +1,31 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D · Lista actual y páginas</title><link rel="stylesheet" href="/lab/lab.css">
+<style>
+.lista{list-style:none;margin:0;padding:0}
+.fila{position:relative;display:grid;gap:.6rem;padding:1.25rem 0;border-bottom:1px solid var(--svh-rule);text-decoration:none}
+.fila::before{content:"";position:absolute;left:-1rem;top:1.2rem;bottom:1.2rem;width:2px;background:var(--t)}
+.fila .n{font-family:var(--svh-serif);font-size:var(--t-row);line-height:1;letter-spacing:-.015em;transition:color .2s}
+.fila:hover .n{color:var(--t)}
+.fila .d{color:var(--svh-dim)}
+.fila .mini{aspect-ratio:16/10;overflow:hidden;outline:1px solid var(--svh-rule)}
+.fila .mini img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s}
+.fila:hover .mini img{transform:scale(1.02)}
+@media (min-width:760px){.fila{grid-template-columns:1fr 18rem;column-gap:2rem;align-items:start}.fila .mini{grid-column:2;grid-row:1/span 2}}
+</style></head><body>
+<div class="wrap">
+  <div class="eye"><a href="/lab/">← Laboratorio</a><span>D · Lista actual y páginas</span></div>
+  <h1>Tu sitio debería verse <em>tan bueno</em> como tu lugar.</h1>
+  <p class="lede">Diseño y programo sitios para restaurantes, cafés y bares en la Ciudad de México.</p>
+  <div class="label"><span>Trabajo</span><span>2026</span></div>
+  <ul class="lista" id="lista"></ul>
+</div>
+<p class="nota">Toca un proyecto: el color inunda y abre su página</p>
+<script src="/lab/data.js"></script>
+<script>
+var L=document.getElementById('lista');
+PROYECTOS.forEach(function(p){
+  var li=document.createElement('li');
+  li.innerHTML='<a class="fila" style="--t:'+(p.tick||p.c)+'" href="'+pagina(p.k)+'"><span class="n">'+p.n+'</span><span class="d">'+p.tag+'</span><span class="mini"><img src="/images/sitios/'+p.k+'-esc-900.webp" alt="" loading="lazy"></span></a>';
+  li.firstChild.onclick=function(e){inundar(e,p.c,pagina(p.k))};L.appendChild(li);
+});
+</script></body></html>

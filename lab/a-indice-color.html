@@ -1,0 +1,55 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A · Índice que toma color</title><link rel="stylesheet" href="/lab/lab.css">
+<style>
+.lista{list-style:none;margin:0;padding:0}
+.fila{display:grid;grid-template-columns:1fr;gap:.6rem;padding:1.25rem 0;border-bottom:1px solid color-mix(in oklab,currentColor 18%,transparent);text-decoration:none;
+  transition:opacity .4s}
+.fila .n{font-family:var(--svh-serif);font-size:var(--t-row);line-height:1;letter-spacing:-.015em}
+.fila .d{font-size:1rem;opacity:.7}
+.fila .mini{aspect-ratio:16/10;overflow:hidden;margin-top:.4rem;outline:1px solid color-mix(in oklab,currentColor 15%,transparent)}
+.fila .mini img{width:100%;height:100%;object-fit:cover;object-position:top}
+body.tinta .fila{opacity:.38}
+body.tinta .fila.activa{opacity:1}
+@media (min-width:760px){
+  .fila{grid-template-columns:1fr 18rem;column-gap:2rem;align-items:start}
+  .fila .mini{grid-column:2;grid-row:1/span 2;margin:0}
+}
+.relleno{height:40vh}
+</style></head><body>
+<div class="wrap">
+  <div class="eye"><a href="/lab/">← Laboratorio</a><span>A · Índice que toma color</span></div>
+  <h1>Tu sitio debería verse <em>tan bueno</em> como tu lugar.</h1>
+  <p class="lede">Diseño y programo sitios para restaurantes, cafés y bares en la Ciudad de México.</p>
+  <div class="label"><span>Trabajo</span><span>2026</span></div>
+  <ul class="lista" id="lista"></ul>
+  <div class="relleno"></div>
+</div>
+<p class="nota">En celular: baja despacio. En escritorio: pasa el cursor.</p>
+<script src="/lab/data.js"></script>
+<script>
+var L=document.getElementById('lista'),fino=matchMedia('(hover:hover) and (pointer:fine)').matches;
+PROYECTOS.forEach(function(p){
+  var li=document.createElement('li');
+  li.innerHTML='<a class="fila" href="'+pagina(p.k)+'"><span class="n">'+p.n+'</span><span class="d">'+p.tag+'</span>'+
+   '<span class="mini"><img src="/images/sitios/'+p.k+'-esc-900.webp" alt="" loading="lazy"></span></a>';
+  var a=li.firstChild; a.onclick=function(e){inundar(e,p.c,pagina(p.k))}; a._p=p; L.appendChild(li);
+});
+var filas=[].slice.call(document.querySelectorAll('.fila'));
+function tinta(a){
+  filas.forEach(function(f){f.classList.toggle('activa',f===a)});
+  document.body.classList.toggle('tinta',!!a);
+  document.body.style.setProperty('--bg',a?a._p.c:'');
+  document.body.style.setProperty('--fg',a?'#F2EFEA':'');
+}
+if(fino){
+  filas.forEach(function(f){f.addEventListener('mouseenter',function(){tinta(f)})});
+  L.addEventListener('mouseleave',function(){tinta(null)});
+}else{
+  var vivas=new Set();
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){e.isIntersecting?vivas.add(e.target):vivas.delete(e.target)});
+    tinta(vivas.size?[].slice.call(vivas)[0]:null);
+  },{rootMargin:'-48% 0px -48% 0px'});
+  filas.forEach(function(f){io.observe(f)});
+}
+</script></body></html>
