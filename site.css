@@ -51,7 +51,7 @@ a{color:inherit}
 .eye strong{color:var(--svh-ink);font-weight:600}
 /* Por debajo de 1100px el ticket comparte renglón con el ojo: la
    descripción sobra, el ticket ya la dice. */
-@media (max-width:1099px){.eye .quien{display:none}}
+@media (max-width:699px){.eye .quien{display:none}}
 
 .front h1{
   margin:0;font-family:var(--svh-serif);font-weight:400;
@@ -78,23 +78,28 @@ a{color:inherit}
 .front .lede{grid-area:lede}
 .impresora{grid-area:imp;position:relative;width:min(14.5rem,58vw);
   margin:calc(-1 * var(--rhythm-page)) 0 clamp(2.5rem,8vw,3.5rem)}
-@media (min-width:1100px){
+@media (min-width:700px){
   .front{grid-template-columns:minmax(0,1fr);grid-template-areas:"eye" "h1" "lede"}
   .front .eye{margin-bottom:clamp(3rem,14vw,7rem)}
   /* Cuelga en parte sobre el margen derecho: el titular respira y el ticket
      se lee como objeto, no como columna. */
   .impresora{position:absolute;top:0;right:calc(-1 * min(6rem, (100vw - 100%) / 2 - 1.5rem));
-    margin:calc(-1 * var(--rhythm-page)) 0 0;width:16rem}
+    margin:calc(-1 * var(--rhythm-page)) 0 0;width:14rem}
+  /* En tableta el titular se ajusta al espacio a la izquierda del ticket:
+     6.2 es el ancho de "Diseño y desarrollo" medido en eme. */
+  .front h1{font-size:min(var(--t-display), calc((100vw - 2 * var(--gutter) - 17rem) / 6.2))}
 }
+@media (min-width:1100px){.impresora{width:16rem}}
 /* La ranura: una boca oscura en el borde de arriba; el papel sale de abajo. */
 .ranura{position:absolute;z-index:2;top:0;left:-10px;right:-10px;height:10px;border-radius:0 0 7px 7px;
   background:rgba(0,0,0,.42);box-shadow:inset 0 -2px 3px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.08)}
 .papel-h{max-width:none;padding-top:4px;transform-origin:50% 0;rotate:var(--giro,0deg);will-change:rotate,transform;
   transition:rotate 1.1s cubic-bezier(.34,1.56,.64,1);animation:columpio 2.6s cubic-bezier(.37,0,.63,1) 2.1s both}
-.ticket-h{padding-top:18px;animation:imprime-h 1.7s steps(16) .5s both}
+.ticket.ticket-h{padding-top:18px;animation:imprime-h 1.7s steps(16) .5s both}
 .ticket-h .t-lineas{min-height:0;border-top:0;padding-top:4px}
 .ticket-h .t-fila{white-space:nowrap}
-@media (max-width:399px){.ticket-h{font-size:10px;padding-left:14px;padding-right:14px}}
+@media (max-width:399px){.ticket.ticket-h{font-size:10px;padding-left:14px;padding-right:14px}}
+@media (max-width:699px){.ticket-h .t-cab span,.ticket-h .t-barras{display:none}.ticket-h .t-pie{padding-top:6px}}
 .t-sigue{display:inline-flex;align-items:center;min-height:var(--touch);margin-bottom:-8px;color:inherit;
   text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px}
 /* Sale a saltos de abajo de la ranura, como papel térmico… */
@@ -220,16 +225,18 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
   background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.22) 55%,rgba(0,0,0,.35));
   box-shadow:0 3px 6px -2px rgba(0,0,0,.4);transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
 .lamina{position:relative}
-.colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:10px;width:auto;max-width:44%;
+.colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:10px;width:7.75rem;
   transform-origin:50% 0;rotate:var(--swing,0deg);will-change:rotate;
   filter:drop-shadow(0 14px 14px rgba(0,0,0,.3)) drop-shadow(0 1px 1px rgba(0,0,0,.15))}
 /* La pinza que lo sujeta al riel. */
 .colgante::before{content:"";position:absolute;z-index:2;top:-4px;left:50%;translate:-50% 0;width:30px;height:10px;
   border-radius:2px;background:linear-gradient(#5b5650,#2b2824);box-shadow:0 1px 2px rgba(0,0,0,.4)}
-.ticket-p{padding:12px 9px 11px;font-size:8.5px;line-height:1.45}
+.ticket.ticket-p{padding:12px 9px 11px;font-size:8.5px;line-height:1.45}
 .ticket-p .t-fila{white-space:nowrap}
 .ticket-p .t-fila span + span{display:none}
-.tp-n{display:block;margin-top:3px;font-size:10px;letter-spacing:.1em;font-weight:700;white-space:nowrap}
+/* Todos los tickets tienen el mismo ancho y renglones que no se parten;
+   el largo es el de su pedido, como un ticket de verdad. */
+.tp-n{display:block;margin-top:3px;font-size:9px;letter-spacing:.08em;font-weight:700;white-space:nowrap}
 .tp-t{display:block;opacity:.62}
 .tp-lineas{min-height:0;margin-top:8px;padding-top:8px}
 .tp-barras{height:22px;margin:10px 0 0}
@@ -240,19 +247,20 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    El primero se imprime al entrar la tira, con la misma animación de CSS
    del ticket de arriba. Si una animación no corre, el ticket igual está:
    nada depende de que el script marque nada. */
-.lamina:first-child .ticket-p{animation:imprime-h .9s steps(10) 1.5s backwards}
+.lamina:first-child .ticket.ticket-p{animation:imprime-h .9s steps(10) 1.5s backwards}
 
 @media (min-width:880px){
   /* En escritorio el ticket entero tiene su columna junto al sitio, y los
      entregables viven en él: el pie ya no los repite. */
-  .lamina{display:grid;grid-template-columns:12.5rem minmax(0,1fr);column-gap:var(--s6);align-items:start}
+  .lamina{display:grid;grid-template-columns:13.5rem minmax(0,1fr);column-gap:var(--s6);align-items:start}
   .colgante{position:relative;top:calc(-1 * var(--cuelga) + 2px);left:0;width:auto;max-width:none;grid-column:1;grid-row:1}
   .lamina .comp{grid-column:2;grid-row:1}
   .lamina .cap{grid-column:1 / -1}
   .lamina .cap .meta{display:none}
-  .ticket-p{font-size:10.5px;padding:18px 14px 16px;line-height:1.5}
+  .ticket.ticket-p{font-size:10px;padding:18px 14px 16px;line-height:1.5}
+  .ticket-p .tp-lineas li{white-space:nowrap}
   .ticket-p .t-fila span + span{display:inline}
-  .tp-n{font-size:13px;white-space:normal}
+  .tp-n{font-size:13px}
   .ticket-p .tp-lineas,.ticket-p .tp-barras,.ticket-p .tp-t{display:block}
 }
 .tira:focus-visible{outline-offset:-3px}
@@ -366,7 +374,8 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    filetes punteados, folio, código de barras y bordes rasgados. */
 .com-ent{margin:var(--after-label) 0 0;font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);max-width:40ch}
 .com{display:grid;gap:var(--s12);margin-top:var(--s8);align-items:start}
-@media (min-width:880px){.com{grid-template-columns:minmax(0,1fr) 19rem;gap:clamp(3rem,6vw,5rem)}}
+@media (min-width:720px){.com{grid-template-columns:minmax(0,1fr) 15.5rem;gap:clamp(2rem,5vw,5rem)}}
+@media (min-width:1100px){.com{grid-template-columns:minmax(0,1fr) 19rem}}
 
 .carta-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--svh-rule)}
 .carta-lista li{border-bottom:1px solid var(--svh-rule)}
@@ -388,7 +397,7 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .platillo[aria-pressed="true"] .mas::before,.platillo[aria-pressed="true"] .mas::after{background:var(--pagina,var(--lugar))}
 
 .ticket-col{display:grid;gap:var(--s6);justify-items:start}
-@media (min-width:880px){.ticket-col{position:sticky;top:var(--s8)}}
+@media (min-width:720px){.ticket-col{position:sticky;top:var(--s8)}}
 /* La sombra va en un envoltorio: la máscara del rasgado se la comería. */
 .papel{width:100%;max-width:19rem;filter:drop-shadow(0 22px 26px rgba(0,0,0,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.12))}
 .ticket{--tinta-t:#22201C;background:#FBFAF6;color:var(--tinta-t);
