@@ -185,7 +185,7 @@
       sel.removeAllRanges();
       sel.addRange(r);
     } catch (e) {}
-    avisar('Cópiala a mano');
+    avisar('Copiar a mano');
   }
 
   boton.addEventListener('click', function () {

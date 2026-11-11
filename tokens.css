@@ -35,9 +35,9 @@
   --svh-sans:  "Archivo", "Archivo respaldo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
 
   /* Escala fluida — móvil primero. min → max en px al margen. */
-  /* El titular llena el ancho del celular: 14.5vw hace que "verse tan bueno",
-     el renglón más largo, ocupe ~86% de la columna en cualquier teléfono. */
-  --t-display:  clamp(2.5rem, 14.5vw, 6rem);       /*  40 →  96  frontispicio */
+  /* El titular llena el ancho del celular: a 13.5vw "Diseño y desarrollo",
+     el renglón más largo, ocupa ~93% de la columna y cabe desde 320px. */
+  --t-display:  clamp(2.5rem, 13.5vw, 6rem);       /*  43 →  96  frontispicio */
   --t-row:      clamp(1.5rem, 6.2vw, 2.75rem);     /*  24 →  44  nombre de fila */
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  acción, colofón */
   --t-lede:     clamp(1rem, 3.7vw, 1.25rem);       /*  16 →  20  la frase: entrada, contexto, bio */

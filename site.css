@@ -82,6 +82,7 @@ a{color:inherit}
 .row{display:grid;grid-template-columns:auto minmax(1.5rem,1fr) auto;
   column-gap:clamp(.5rem,2vw,1rem);row-gap:var(--s3);align-items:baseline;
   padding-top:var(--after-label)}
+a.row{color:inherit;text-decoration:none}
 .row .n{grid-column:1;grid-row:1}
 .row .lead{grid-column:2;grid-row:1;align-self:baseline;transform:translateY(-.34em);
   border-bottom:1px dotted var(--svh-guia)}
