@@ -156,6 +156,78 @@
   setInterval(poner, 15000);
 })();
 
+/* LA COMANDA. Cada platillo de la carta se imprime en el ticket; "Pedir
+   algo así" pide lo que tiene ese sitio; "Enviar comanda" abre el correo
+   con el pedido ya escrito. Sin script queda el correo normal. */
+(function () {
+  var lista = document.getElementById('t-lineas');
+  if (!lista) return;
+  var enviar  = document.getElementById('enviar'),
+      papel   = document.getElementById('papel'),
+      pildora = document.getElementById('pildora'),
+      pilN    = document.getElementById('pil-n'),
+      platos  = [].slice.call(document.querySelectorAll('.platillo')),
+      suave   = !matchMedia('(prefers-reduced-motion: reduce)').matches,
+      pedido  = [],
+      folio   = String(Math.floor(1000 + Math.random() * 8999));
+
+  /* Folio, fecha y hora de la Ciudad de México. Mismo ancho que el texto de
+     reserva del HTML (monoespaciado), así que no se mueve nada. */
+  document.getElementById('folio').textContent = folio;
+  var ahora = new Date(), zona = { timeZone: 'America/Mexico_City' };
+  document.getElementById('t-fecha').textContent = ahora.toLocaleDateString('es-MX', Object.assign({ day: '2-digit', month: '2-digit', year: '2-digit' }, zona));
+  document.getElementById('t-hora').textContent  = ahora.toLocaleTimeString('es-MX', Object.assign({ hour: '2-digit', minute: '2-digit', hour12: false }, zona));
+
+  function pintar(nueva) {
+    lista.innerHTML = '';
+    if (!pedido.length) lista.innerHTML = '<li class="t-vacio">Sin platillos todavía.</li>';
+    pedido.forEach(function (n) {
+      var li = document.createElement('li');
+      li.textContent = n;
+      if (n === nueva && suave) li.className = 'nueva';
+      lista.appendChild(li);
+    });
+    platos.forEach(function (p) { p.setAttribute('aria-pressed', String(pedido.indexOf(p.dataset.pide) >= 0)); });
+    var cuerpo = 'Hola.\n\nEl lugar: ______\nDónde: ______\n\nComanda #' + folio + ':\n' +
+                 pedido.map(function (n) { return '· ' + n; }).join('\n') + '\n';
+    enviar.href = 'mailto:hola@svh.studio?subject=' + encodeURIComponent('Comanda #' + folio) +
+                  '&body=' + encodeURIComponent(cuerpo);
+    if (pedido.length) enviar.removeAttribute('aria-disabled'); else enviar.setAttribute('aria-disabled', 'true');
+    if (pilN) pilN.textContent = pedido.length;
+    revisarPildora();
+  }
+  function poner(n)    { if (pedido.indexOf(n) < 0) { pedido.push(n); pintar(n); } }
+  function alternar(n) { var i = pedido.indexOf(n); if (i >= 0) { pedido.splice(i, 1); pintar(); } else poner(n); }
+
+  platos.forEach(function (p) { p.addEventListener('click', function () { alternar(p.dataset.pide); }); });
+
+  /* Desde la tira: baja al ticket y luego imprime, para que se vea salir. */
+  document.querySelectorAll('[data-pide-de]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var items = b.dataset.pideDe.split('|');
+      papel.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'center' });
+      items.forEach(function (n, k) { setTimeout(function () { poner(n); }, (suave ? 650 : 0) + k * 280); });
+    });
+  });
+
+  enviar.addEventListener('click', function (e) {
+    if (!pedido.length) { e.preventDefault(); return; }
+    if (suave) { papel.classList.remove('arranca'); void papel.offsetWidth; papel.classList.add('arranca'); }
+  });
+
+  /* La píldora sólo en el celular, sólo con pedido, y sólo mientras el
+     ticket no está en pantalla. */
+  var ticketVisible = false;
+  function revisarPildora() {
+    if (!pildora) return;
+    pildora.hidden = !pedido.length || ticketVisible;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { ticketVisible = es[0].isIntersecting; revisarPildora(); }).observe(papel);
+  }
+  pintar();
+})();
+
 /* La dirección se copia al tocarla. Es el respaldo del mailto, que se cae
    sin ruido cuando el navegador no tiene con qué abrir el correo. */
 (function () {

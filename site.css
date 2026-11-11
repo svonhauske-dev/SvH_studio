@@ -271,6 +271,97 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .hora .dos{animation:late 2s steps(1) infinite}
 @keyframes late{50%{opacity:.25}}
 
+/* ── la comanda ─────────────────────────────────────────────────────── */
+/* El contacto se pide como en una mesa: la carta a la izquierda, el ticket
+   a la derecha. La carta es una lista tipográfica —nombre, guía de puntos,
+   un más que se vuelve tache—, no botones de filtro. El ticket es papel
+   térmico de verdad: angosto, monoespaciado del sistema (nada que bajar),
+   filetes punteados, folio, código de barras y bordes rasgados. */
+.com-ent{margin:var(--after-label) 0 0;font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);max-width:40ch}
+.com{display:grid;gap:var(--s12);margin-top:var(--s8);align-items:start}
+@media (min-width:880px){.com{grid-template-columns:minmax(0,1fr) 19rem;gap:clamp(3rem,6vw,5rem)}}
+
+.carta-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--svh-rule)}
+.carta-lista li{border-bottom:1px solid var(--svh-rule)}
+.platillo{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:var(--touch);
+  display:grid;grid-template-columns:auto minmax(1rem,1fr) auto;align-items:center;gap:var(--s3);padding:var(--s3) 0}
+.platillo:focus-visible{outline:2px solid var(--svh-ink);outline-offset:4px}
+.pn{font-family:var(--svh-serif);font-size:var(--t-value);line-height:1.1;letter-spacing:-.01em;
+  transition:transform .4s var(--ease-sale)}
+.pl{height:1px;border-bottom:1px dotted var(--svh-guia);transform:translateY(.35em);transition:border-color var(--motion-fast)}
+.mas{position:relative;width:28px;height:28px;border-radius:50%;border:1px solid var(--svh-faint);
+  transition:background-color .25s,border-color .25s,transform .45s var(--ease-sale)}
+.mas::before,.mas::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;border-radius:1px;
+  background:var(--svh-ink);translate:-50% -50%}
+.mas::after{rotate:90deg}
+.platillo:hover .pl{border-bottom-color:var(--svh-faint)}
+.platillo:hover .mas{border-color:var(--svh-ink)}
+.platillo[aria-pressed="true"] .pn{font-style:italic;transform:translateX(.35rem)}
+.platillo[aria-pressed="true"] .mas{background:var(--svh-ink);border-color:var(--svh-ink);transform:rotate(135deg)}
+.platillo[aria-pressed="true"] .mas::before,.platillo[aria-pressed="true"] .mas::after{background:var(--pagina,var(--lugar))}
+
+.ticket-col{display:grid;gap:var(--s6);justify-items:start}
+@media (min-width:880px){.ticket-col{position:sticky;top:var(--s8)}}
+/* La sombra va en un envoltorio: la máscara del rasgado se la comería. */
+.papel{width:100%;max-width:19rem;filter:drop-shadow(0 22px 26px rgba(0,0,0,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+.ticket{--tinta-t:#22201C;background:#FBFAF6;color:var(--tinta-t);
+  background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.014) 0 1px,transparent 1px 3px);
+  font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.6;
+  letter-spacing:.03em;text-transform:uppercase;padding:22px 20px 26px;
+  -webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/10px 6px repeat-x,
+               linear-gradient(#000 0 0) center/100% calc(100% - 11px) no-repeat,
+               conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/10px 6px repeat-x;
+          mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/10px 6px repeat-x,
+               linear-gradient(#000 0 0) center/100% calc(100% - 11px) no-repeat,
+               conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/10px 6px repeat-x}
+.ticket ::selection{background:var(--tinta-t);color:#FBFAF6}
+.t-cab,.t-pie{display:flex;flex-direction:column;align-items:center;text-align:center}
+.t-cab b{font-size:14px;letter-spacing:.32em;font-weight:700;margin-bottom:2px}
+.t-sep{align-self:stretch;border-top:1px dashed rgba(34,32,28,.5);margin:10px 0}
+.t-fila{align-self:stretch;display:flex;justify-content:space-between;gap:1rem;font-variant-numeric:tabular-nums}
+.t-lineas{list-style:none;margin:0;padding:10px 0 4px;border-top:1px dashed rgba(34,32,28,.5);counter-reset:l;min-height:4.4em}
+.t-lineas li{display:flex;gap:.9em;overflow:hidden;counter-increment:l}
+.t-lineas li::before{content:counter(l,decimal-leading-zero);opacity:.55}
+.t-lineas li.t-vacio{opacity:.5;counter-increment:none}
+.t-lineas li.t-vacio::before{content:none}
+/* La impresora: el renglón entra a saltos, como papel que avanza. */
+.t-lineas li.nueva{animation:imprime .5s steps(6) both}
+@keyframes imprime{from{max-height:0;opacity:0}to{max-height:3.2em;opacity:1}}
+.t-pie{border-top:1px dashed rgba(34,32,28,.5);padding-top:10px}
+.t-total{font-weight:700}
+.t-barras{display:block;align-self:stretch;height:34px;margin:12px 0 8px;
+  background:repeating-linear-gradient(90deg,var(--tinta-t) 0 1px,#0000 1px 3px,var(--tinta-t) 3px 5px,#0000 5px 6px,
+    var(--tinta-t) 6px 7px,#0000 7px 10px,var(--tinta-t) 10px 13px,#0000 13px 14px,var(--tinta-t) 14px 15px,#0000 15px 18px)}
+.papel.arranca{animation:arranca .9s cubic-bezier(.55,0,.45,1)}
+@keyframes arranca{40%{transform:translateY(-10px) rotate(-2.5deg);opacity:0}41%{transform:translateY(16px);opacity:0}100%{transform:none;opacity:1}}
+
+.com-acciones{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s6)}
+.enviar{display:inline-flex;align-items:center;gap:.3em;min-height:var(--touch);
+  font-family:var(--svh-serif);font-size:var(--t-value);line-height:1;letter-spacing:var(--ls-row);
+  text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;text-decoration-color:var(--svh-subraya)}
+.enviar .ico{width:.62em;height:.62em;transition:transform var(--motion-fast)}
+.enviar:hover{text-decoration-color:currentColor}
+.enviar:hover .ico{transform:translateX(3px)}
+.enviar[aria-disabled="true"]{opacity:.4;cursor:default}
+.com-acciones .copiar{font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;color:var(--svh-dim)}
+
+/* "Pedir algo así", junto a "Ver el sitio": pide lo que ese sitio tiene. */
+.cap-acc{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s6);margin-top:var(--s2)}
+.cap .cap-acc .visita{margin-top:0}
+.pedir{all:unset;cursor:pointer;min-height:var(--touch);display:inline-flex;align-items:center;font-weight:500;
+  color:var(--svh-dim);text-decoration:underline dotted;text-underline-offset:.3em;text-decoration-thickness:1px}
+.pedir:hover{color:var(--svh-ink)}
+.pedir:focus-visible{outline:2px solid var(--svh-ink);outline-offset:3px}
+
+/* En el celular el ticket queda debajo de la carta: una píldora avisa
+   cuántos platillos lleva y baja hasta él. */
+.pildora{position:fixed;left:50%;bottom:max(1rem,env(safe-area-inset-bottom));z-index:5;translate:-50% 0;
+  display:inline-flex;align-items:center;gap:.5em;min-height:var(--touch);padding:0 1.1rem;border-radius:999px;
+  background:#FBFAF6;color:#22201C;text-decoration:none;font-size:var(--t-label);letter-spacing:var(--ls-names);
+  text-transform:uppercase;box-shadow:0 12px 30px -10px rgba(0,0,0,.45)}
+.pildora[hidden]{display:none}
+@media (min-width:880px){.pildora{display:none!important}}
+
 /* ── colofón ──────────────────────────────────────────────────────────── */
 .colofon{padding-top:var(--s4);border-top:2px solid var(--svh-rule-hard);
   display:grid;gap:var(--s4) var(--s8)}
