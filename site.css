@@ -45,39 +45,13 @@ button.row[aria-expanded="true"]:focus-visible,.cierre:focus-visible{
 }
 .front .lede strong{color:var(--svh-ink);font-weight:500}
 
-/* línea de crédito — nombres como tipografía, nunca como enlace */
-.dateline{
-  display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);align-items:baseline;
-  margin-top:clamp(1.25rem,4.5vw,2.25rem);padding-top:var(--s3);
-  border-top:1px solid var(--svh-rule);
-  font-size:var(--t-label);letter-spacing:.16em;text-transform:uppercase;color:var(--svh-dim);
-}
-.dateline .tag{color:var(--svh-ink);font-weight:600;letter-spacing:var(--ls-label)}
-.dateline .loc{color:var(--svh-dim)}
-/* El trabajo local pesa distinto: va en tinta, como los nombres, no en gris
-   como la formación. La colonia es lo que de verdad reconoce el comprador. */
-.dateline .aqui{color:var(--svh-ink);letter-spacing:var(--ls-names)}
+/* Clientes: nombres como tipografía, nunca como enlace. Viven en Quién
+   soy, una sola vez, después de la credencial que los explica. */
 .names{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3);list-style:none;margin:0;padding:0;
-  color:var(--svh-ink);letter-spacing:var(--ls-names)}
+  font-size:var(--t-label);letter-spacing:var(--ls-names);text-transform:uppercase;color:var(--svh-ink)}
 .names li::after{content:"·";margin-left:var(--s3);color:var(--svh-faint)}
 .names li:last-child::after{content:""}
-
-/* A partir de 1200px la mitad derecha quedaba muerta y se leía como que se
-   acabó el contenido. La credencial se va a una columna propia junto al
-   titular: el hueco se vuelve asimetría decidida, sin agregar material. */
-@media (min-width:1200px){
-  .front{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,15rem);
-    column-gap:clamp(3rem,5vw,5rem);align-items:start}
-  .front .eye{grid-column:1/-1}
-  .front h1{grid-column:1;grid-row:2}
-  .front .lede{grid-column:1;grid-row:3}
-  .dateline{grid-column:2;grid-row:2/span 2;flex-direction:column;align-items:flex-start;
-    gap:var(--s3);margin-top:0;padding:1rem 0 0 clamp(1.5rem,2.5vw,2.5rem);
-    border-top:0;border-left:1px solid var(--svh-rule);align-self:stretch}
-  .names{flex-direction:column;gap:.45em}
-  .names li::after{content:""}
-  .dateline .loc{margin-top:auto;padding-bottom:.25rem}
-}
+.row.sin-cifra .names.d{grid-row:3;margin-top:var(--s2);color:var(--svh-ink);font-size:var(--t-label);line-height:1.6}
 
 /* ── grupos del índice ────────────────────────────────────────────────── */
 .grp{margin-top:var(--rhythm-group)}
@@ -180,6 +154,29 @@ button.row[aria-expanded="true"] .v.act .fl{transform:rotate(180deg)}
    juntos —o están los dos o no está ninguno—, y el valor va en serif si es
    una acción y en versalitas si es un dato. */
 .row.plain .n{white-space:normal}
+
+/* EL TRABAJO SE VE EN REPOSO.
+   La portada del sitio del cliente vive en la fila cerrada: quien abre la
+   liga en el celular ve sitios antes de leer nada. En celular va a todo el
+   ancho debajo del nombre; desde 760px se vuelve una cuarta columna junto
+   al nombre y la descripción. Al abrir el capítulo se va, porque adentro
+   está la misma portada a sangre; se va al abrir y no al armar, para que
+   el toque siga costando un píxel y la fila ya esté anclada arriba. */
+.row .mini{grid-column:1/-1;grid-row:3;display:block;margin-top:var(--s2);
+  aspect-ratio:16/10;overflow:hidden;background:color-mix(in oklab, var(--lugar) 12%, var(--svh-paper,#FAFAF8));
+  outline:1px solid var(--svh-rule);outline-offset:-1px}
+.row .mini img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;
+  transition:transform var(--motion-fast)}
+button.row:hover .mini img{transform:scale(1.02)}
+@media (min-width:760px){
+  button.row:has(.mini){grid-template-columns:auto minmax(1.5rem,1fr) auto 18rem}
+  .row .mini{grid-column:4;grid-row:1/span 2;margin:0;align-self:start;
+    margin-left:clamp(1rem,3vw,2rem)}
+  button.row:has(.mini){grid-template-rows:auto 1fr}
+  .row:has(.mini) .d{grid-column:1/4;align-self:start}
+}
+button.row[aria-expanded="true"] .mini{display:none}
+button.row[aria-expanded="true"]:has(.mini){grid-template-columns:auto minmax(1.5rem,1fr) auto;grid-template-rows:auto}
 
 
 /* ── el único movimiento: la fila que se abre ─────────────────────────── */
@@ -442,11 +439,7 @@ a.row--cta:hover .n{text-decoration:none}
 a.row--cta .v.act .fl{transition:transform var(--motion-fast)}
 a.row--cta:hover .v.act .fl{transform:translate(2px,-2px)}
 
-/* Ritmo por peso, no un solo valor: la prueba y el precio respiran igual,
-   la letra chica va más apretada, y el cierre pide el doble de aire. */
-/* "Se agrega" respira menos que los demás a propósito: pertenece al grupo
-   de arriba y el aire corto los une sin necesidad de decirlo. */
-.grp:nth-of-type(3){margin-top:clamp(1.75rem,5vw,3rem)}
+/* Ritmo por peso: el cierre pide el doble de aire. */
 .grp:last-of-type{margin-top:clamp(3.5rem,11vw,6.5rem)}
 .grp[id]{scroll-margin-top:clamp(1rem,4vw,2.5rem)}
 
