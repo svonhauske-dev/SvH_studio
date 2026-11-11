@@ -40,11 +40,31 @@
       if (puntos[i]) puntos[i].style.setProperty('--p', (1 - ad).toFixed(4));
     });
 
+    empujar(pos);
     var i0 = Math.floor(pos), i1 = Math.min(laminas.length - 1, i0 + 1);
     cuerpo.style.setProperty('--pagina', mezcla(colores[i0], colores[i1], pos - i0));
     marcar(Math.round(pos));
   }
   function pedir() { if (!pedido) { pedido = true; requestAnimationFrame(medir); } }
+
+  /* LOS TICKETS SE MECEN. Un resorte amortiguado: la velocidad del
+     deslizamiento empuja el ángulo contra el movimiento, y el resorte lo
+     regresa a cero con un par de vaivenes. Todos cuelgan del mismo riel,
+     así que comparten ángulo (--swing en la tira). */
+  var ang = 0, vel = 0, posPrevia = null, girando = false;
+  function empujar(pos) {
+    if (!suave) return;
+    if (posPrevia !== null) vel -= (pos - posPrevia) * 9;
+    posPrevia = pos;
+    if (!girando) { girando = true; requestAnimationFrame(mecer); }
+  }
+  function mecer() {
+    vel += -0.07 * ang - 0.13 * vel;
+    ang = Math.max(-14, Math.min(14, ang + vel));
+    tira.style.setProperty('--swing', ang.toFixed(2) + 'deg');
+    if (Math.abs(ang) > 0.03 || Math.abs(vel) > 0.03) requestAnimationFrame(mecer);
+    else { girando = false; ang = vel = 0; tira.style.setProperty('--swing', '0deg'); }
+  }
 
   /* Lo discreto —quién está al frente— cambia sólo al cruzar la mitad. */
   function marcar(i) {

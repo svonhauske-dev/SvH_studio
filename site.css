@@ -195,12 +195,57 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    más angosta que la columna para que ese asomo se vea. */
 .tira{--w:min(calc(100vw - 2 * var(--gutter) - 2.5rem), var(--colw));
   list-style:none;margin:0 calc(50% - 50vw);
-  padding:var(--after-label) calc(100vw - var(--edge) - var(--w)) 0 var(--edge);
+  padding:var(--cuelga) calc(100vw - var(--edge) - var(--w)) 0 var(--edge);
   scroll-padding-inline:var(--edge);
   display:flex;gap:clamp(1rem,3vw,2rem);overflow-x:auto;overscroll-behavior-x:contain;
   scroll-snap-type:x mandatory;scrollbar-width:none}
 @media (min-width:960px){.tira{--w:var(--colw)}}
 .tira::-webkit-scrollbar{display:none}
+
+/* EL RIEL DE COMANDAS. La barra de metal de la cocina donde se cuelgan
+   los tickets. Cada proyecto cuelga el suyo y al deslizar la tira los
+   tickets se mecen contra el movimiento y se asientan con resorte (--swing
+   lo pone el script). El riel no se desliza: es de la cocina, no de la tira.
+   --cuelga es el espacio entre el riel y la lámina, donde vive la pinza. */
+.trabajo{--cuelga:26px}
+.riel{display:block;position:relative;height:0;margin-top:var(--after-label);z-index:4;pointer-events:none}
+.riel::before{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;top:-2px;height:4px;
+  background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.22) 55%,rgba(0,0,0,.35));
+  box-shadow:0 3px 6px -2px rgba(0,0,0,.4);transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
+.lamina{position:relative}
+.colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:12px;width:7.25rem;
+  transform-origin:50% 0;rotate:var(--swing,0deg);
+  filter:drop-shadow(0 14px 14px rgba(0,0,0,.3)) drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+/* La pinza que lo sujeta al riel. */
+.colgante::before{content:"";position:absolute;z-index:2;top:-4px;left:50%;translate:-50% 0;width:30px;height:10px;
+  border-radius:2px;background:linear-gradient(#5b5650,#2b2824);box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.ticket-p{padding:13px 10px 12px;font-size:9px;line-height:1.5}
+.ticket-p .t-fila{white-space:nowrap}
+.tp-n{display:block;margin-top:4px;font-size:11px;letter-spacing:.12em;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.tp-t{display:block;opacity:.62}
+.tp-lineas{min-height:0;margin-top:8px;padding-top:8px}
+.tp-barras{height:22px;margin:10px 0 0}
+/* En el celular cuelga sólo el talón —mesa, nombre, año— para no tapar el
+   sitio; los entregables siguen en el pie. */
+.ticket-p .tp-lineas,.ticket-p .tp-barras,.ticket-p .tp-t{display:none}
+/* Todos los tickets están colgados desde el principio, como en una cocina.
+   El primero se imprime al entrar la tira, con la misma animación de CSS
+   del ticket de arriba. Si una animación no corre, el ticket igual está:
+   nada depende de que el script marque nada. */
+.lamina:first-child .ticket-p{animation:imprime-h .9s steps(10) 1.5s backwards}
+
+@media (min-width:880px){
+  /* En escritorio el ticket entero tiene su columna junto al sitio, y los
+     entregables viven en él: el pie ya no los repite. */
+  .lamina{display:grid;grid-template-columns:12.5rem minmax(0,1fr);column-gap:var(--s6);align-items:start}
+  .colgante{position:relative;top:calc(-1 * var(--cuelga) + 2px);left:0;width:auto;grid-column:1;grid-row:1}
+  .lamina .comp{grid-column:2;grid-row:1}
+  .lamina .cap{grid-column:1 / -1}
+  .lamina .cap .meta{display:none}
+  .ticket-p{font-size:10.5px;padding:18px 14px 16px}
+  .tp-n{font-size:13px;white-space:normal}
+  .ticket-p .tp-lineas,.ticket-p .tp-barras,.ticket-p .tp-t{display:block}
+}
 .tira:focus-visible{outline-offset:-3px}
 .js .tira{cursor:grab}
 .tira.arrastre{cursor:grabbing;scroll-snap-type:none;user-select:none}
