@@ -200,7 +200,33 @@
   <header class="front">
     <div class="eye">
       <span><strong>svh.studio</strong><span class="quien"> — Diseño y desarrollo web</span></span>
-      <span>Ciudad de México <span class="hora" aria-hidden="true">· 00<span class="dos">:</span>00</span></span>
+    </div>
+
+    <!-- LA IMPRESORA. La barra de arriba es una impresora de tickets: al
+         cargar, sale la comanda que se termina de llenar al final de la
+         página (mismo folio, misma hora). Imprime y luego se mece. -->
+    <div class="impresora">
+      <i class="ranura" aria-hidden="true"></i>
+      <div class="papel papel-h" id="papel-h">
+        <div class="ticket ticket-h">
+          <div class="t-cab">
+            <b>SVH STUDIO</b>
+            <span>Ciudad de México</span>
+          </div>
+          <span class="t-sep"></span>
+          <span class="t-fila"><span>Comanda #<span data-folio>0000</span></span><span data-hora>00:00</span></span>
+          <ol class="t-lineas t-lineas-h">
+            <li>Restaurantes</li>
+            <li>Cafés</li>
+            <li>Bares</li>
+          </ol>
+          <div class="t-pie">
+            <span>Por recomendación</span>
+            <i class="t-barras" aria-hidden="true"></i>
+            <a class="t-sigue" href="#t-comanda">Pida de la carta ↓</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <h1><span>Diseño y desarrollo</span> <span>web para</span> <span><em>hospitalidad</em>.</span></h1>
@@ -374,8 +400,8 @@
             <span>Diseño y desarrollo web</span>
             <span>Ciudad de México</span>
             <span class="t-sep"></span>
-            <span class="t-fila"><span>Mesa 01</span><span>Comanda #<span id="folio">0000</span></span></span>
-            <span class="t-fila"><span id="t-fecha">00/00/00</span><span id="t-hora">00:00</span></span>
+            <span class="t-fila"><span>Mesa 01</span><span>Comanda #<span id="folio" data-folio>0000</span></span></span>
+            <span class="t-fila"><span id="t-fecha">00/00/00</span><span id="t-hora" data-hora>00:00</span></span>
           </div>
           <ol class="t-lineas" id="t-lineas" aria-live="polite">
             <li class="t-vacio">Sin platillos todavía.</li>

@@ -139,22 +139,7 @@
   els.forEach(function (e) { io.observe(e); });
 })();
 
-/* La hora en la Ciudad de México, con los dos puntos latiendo. */
-(function () {
-  var el = document.querySelector('.hora');
-  if (!el || !window.Intl) return;
-  var fmt = new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false,
-                                               timeZone: 'America/Mexico_City' });
-  function poner() {
-    var partes = fmt.formatToParts(new Date()),
-        h = partes.find(function (p) { return p.type === 'hour'; }).value,
-        m = partes.find(function (p) { return p.type === 'minute'; }).value;
-    el.innerHTML = '· ' + h + '<span class="dos">:</span>' + m;
-    el.classList.add('lista');
-  }
-  poner();
-  setInterval(poner, 15000);
-})();
+
 
 /* LA COMANDA. Cada platillo de la carta se imprime en el ticket; "Pedir
    algo así" pide lo que tiene ese sitio; "Enviar comanda" abre el correo
@@ -173,10 +158,11 @@
 
   /* Folio, fecha y hora de la Ciudad de México. Mismo ancho que el texto de
      reserva del HTML (monoespaciado), así que no se mueve nada. */
-  document.getElementById('folio').textContent = folio;
+  document.querySelectorAll('[data-folio]').forEach(function (e) { e.textContent = folio; });
   var ahora = new Date(), zona = { timeZone: 'America/Mexico_City' };
   document.getElementById('t-fecha').textContent = ahora.toLocaleDateString('es-MX', Object.assign({ day: '2-digit', month: '2-digit', year: '2-digit' }, zona));
-  document.getElementById('t-hora').textContent  = ahora.toLocaleTimeString('es-MX', Object.assign({ hour: '2-digit', minute: '2-digit', hour12: false }, zona));
+  var hora = ahora.toLocaleTimeString('es-MX', Object.assign({ hour: '2-digit', minute: '2-digit', hour12: false }, zona));
+  document.querySelectorAll('[data-hora]').forEach(function (e) { e.textContent = hora; });
 
   function pintar(nueva) {
     lista.innerHTML = '';
@@ -231,6 +217,19 @@
     new IntersectionObserver(function (es) { ticketVisible = es[0].isIntersecting; revisarPildora(); }).observe(papel);
   }
   pintar();
+})();
+
+/* El ticket de arriba se mece hacia el cursor, poco, con resorte. */
+(function () {
+  var p = document.getElementById('papel-h'), front = document.querySelector('.front');
+  if (!p || !front || !matchMedia('(hover: hover) and (pointer: fine)').matches ||
+      matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  front.addEventListener('pointermove', function (e) {
+    var r = p.getBoundingClientRect(), cx = r.left + r.width / 2;
+    var g = Math.max(-1, Math.min(1, (e.clientX - cx) / 500));
+    p.style.setProperty('--giro', (g * -3.5).toFixed(2) + 'deg');
+  });
+  front.addEventListener('pointerleave', function () { p.style.setProperty('--giro', '0deg'); });
 })();
 
 /* La dirección se copia al tocarla. Es el respaldo del mailto, que se cae
