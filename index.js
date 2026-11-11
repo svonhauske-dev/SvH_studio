@@ -201,12 +201,17 @@
 
   platos.forEach(function (p) { p.addEventListener('click', function () { alternar(p.dataset.pide); }); });
 
-  /* Desde la tira: baja al ticket y luego imprime, para que se vea salir. */
+  /* Desde la tira: "Pedir lo mismo" no saca al visitante del trabajo. Se
+     queda donde está, el botón confirma y la cuenta abierta (la píldora)
+     sube de número. El ticket lo imprime todo cuando llegue a él. */
   document.querySelectorAll('[data-pide-de]').forEach(function (b) {
+    var texto = b.textContent, t;
     b.addEventListener('click', function () {
-      var items = b.dataset.pideDe.split('|');
-      papel.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'center' });
-      items.forEach(function (n, k) { setTimeout(function () { poner(n); }, (suave ? 650 : 0) + k * 280); });
+      b.dataset.pideDe.split('|').forEach(poner);
+      b.textContent = 'En la comanda ✓';
+      clearTimeout(t);
+      t = setTimeout(function () { b.textContent = texto; }, 1800);
+      if (pildora && suave) { pildora.classList.remove('late'); void pildora.offsetWidth; pildora.classList.add('late'); }
     });
   });
 
