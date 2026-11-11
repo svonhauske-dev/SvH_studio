@@ -13,7 +13,11 @@
       --after-label entre el filete y lo que etiqueta.
    ========================================================================== */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+/* overflow-x:clip en la raíz: en el celular, cualquier cosa más ancha que
+   la pantalla —aunque sea un instante, como la tira al entrar— hace que el
+   navegador agrande el viewport y la página se vea alejada. hidden en el
+   body no basta en iOS; clip en html sí, y no crea contenedor de scroll. */
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
 body{
   margin:0;
   background:var(--svh-paper);
@@ -24,6 +28,7 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
+  overflow-x:clip;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -84,10 +89,12 @@ a{color:inherit}
 /* La ranura: una boca oscura en el borde de arriba; el papel sale de abajo. */
 .ranura{position:absolute;z-index:2;top:0;left:-10px;right:-10px;height:10px;border-radius:0 0 7px 7px;
   background:rgba(0,0,0,.42);box-shadow:inset 0 -2px 3px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.08)}
-.papel-h{max-width:none;padding-top:4px;transform-origin:50% 0;rotate:var(--giro,0deg);
+.papel-h{max-width:none;padding-top:4px;transform-origin:50% 0;rotate:var(--giro,0deg);will-change:rotate,transform;
   transition:rotate 1.1s cubic-bezier(.34,1.56,.64,1);animation:columpio 2.6s cubic-bezier(.37,0,.63,1) 2.1s both}
 .ticket-h{padding-top:18px;animation:imprime-h 1.7s steps(16) .5s both}
 .ticket-h .t-lineas{min-height:0;border-top:0;padding-top:4px}
+.ticket-h .t-fila{white-space:nowrap}
+@media (max-width:399px){.ticket-h{font-size:10px;padding-left:14px;padding-right:14px}}
 .t-sigue{display:inline-flex;align-items:center;min-height:var(--touch);margin-bottom:-8px;color:inherit;
   text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px}
 /* Sale a saltos de abajo de la ranura, como papel térmico… */
@@ -213,15 +220,16 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
   background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.22) 55%,rgba(0,0,0,.35));
   box-shadow:0 3px 6px -2px rgba(0,0,0,.4);transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
 .lamina{position:relative}
-.colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:12px;width:7.25rem;
-  transform-origin:50% 0;rotate:var(--swing,0deg);
+.colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:10px;width:auto;max-width:44%;
+  transform-origin:50% 0;rotate:var(--swing,0deg);will-change:rotate;
   filter:drop-shadow(0 14px 14px rgba(0,0,0,.3)) drop-shadow(0 1px 1px rgba(0,0,0,.15))}
 /* La pinza que lo sujeta al riel. */
 .colgante::before{content:"";position:absolute;z-index:2;top:-4px;left:50%;translate:-50% 0;width:30px;height:10px;
   border-radius:2px;background:linear-gradient(#5b5650,#2b2824);box-shadow:0 1px 2px rgba(0,0,0,.4)}
-.ticket-p{padding:13px 10px 12px;font-size:9px;line-height:1.5}
+.ticket-p{padding:12px 9px 11px;font-size:8.5px;line-height:1.45}
 .ticket-p .t-fila{white-space:nowrap}
-.tp-n{display:block;margin-top:4px;font-size:11px;letter-spacing:.12em;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.ticket-p .t-fila span + span{display:none}
+.tp-n{display:block;margin-top:3px;font-size:10px;letter-spacing:.1em;font-weight:700;white-space:nowrap}
 .tp-t{display:block;opacity:.62}
 .tp-lineas{min-height:0;margin-top:8px;padding-top:8px}
 .tp-barras{height:22px;margin:10px 0 0}
@@ -238,11 +246,12 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
   /* En escritorio el ticket entero tiene su columna junto al sitio, y los
      entregables viven en él: el pie ya no los repite. */
   .lamina{display:grid;grid-template-columns:12.5rem minmax(0,1fr);column-gap:var(--s6);align-items:start}
-  .colgante{position:relative;top:calc(-1 * var(--cuelga) + 2px);left:0;width:auto;grid-column:1;grid-row:1}
+  .colgante{position:relative;top:calc(-1 * var(--cuelga) + 2px);left:0;width:auto;max-width:none;grid-column:1;grid-row:1}
   .lamina .comp{grid-column:2;grid-row:1}
   .lamina .cap{grid-column:1 / -1}
   .lamina .cap .meta{display:none}
-  .ticket-p{font-size:10.5px;padding:18px 14px 16px}
+  .ticket-p{font-size:10.5px;padding:18px 14px 16px;line-height:1.5}
+  .ticket-p .t-fila span + span{display:inline}
   .tp-n{font-size:13px;white-space:normal}
   .ticket-p .tp-lineas,.ticket-p .tp-barras,.ticket-p .tp-t{display:block}
 }

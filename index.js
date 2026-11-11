@@ -54,13 +54,13 @@
   var ang = 0, vel = 0, posPrevia = null, girando = false;
   function empujar(pos) {
     if (!suave) return;
-    if (posPrevia !== null) vel -= (pos - posPrevia) * 9;
+    if (posPrevia !== null) vel -= (pos - posPrevia) * 6;
     posPrevia = pos;
     if (!girando) { girando = true; requestAnimationFrame(mecer); }
   }
   function mecer() {
     vel += -0.07 * ang - 0.13 * vel;
-    ang = Math.max(-14, Math.min(14, ang + vel));
+    ang = Math.max(-10, Math.min(10, ang + vel));
     tira.style.setProperty('--swing', ang.toFixed(2) + 'deg');
     if (Math.abs(ang) > 0.03 || Math.abs(vel) > 0.03) requestAnimationFrame(mecer);
     else { girando = false; ang = vel = 0; tira.style.setProperty('--swing', '0deg'); }
