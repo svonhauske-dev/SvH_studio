@@ -397,6 +397,9 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .platillo[aria-pressed="true"] .mas::before,.platillo[aria-pressed="true"] .mas::after{background:var(--pagina,var(--lugar))}
 
 .ticket-col{display:grid;gap:var(--s6);justify-items:start}
+/* En el celular la carta ocupa toda la columna: el ticket también, para
+   que los dos bloques compartan bordes. */
+@media (max-width:719px){.ticket-col{justify-items:stretch}.ticket-col .papel{max-width:none}}
 @media (min-width:720px){.ticket-col{position:sticky;top:var(--s8)}}
 /* La sombra va en un envoltorio: la máscara del rasgado se la comería. */
 .papel{width:100%;max-width:19rem;filter:drop-shadow(0 22px 26px rgba(0,0,0,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.12))}
