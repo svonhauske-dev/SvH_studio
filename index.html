@@ -241,7 +241,7 @@
   <header class="front">
     <div class="eye">
       <span><strong>svh.studio</strong> — Sofía von Hauske</span>
-      <span>Ciudad de México</span>
+      <span>Ciudad de México <span class="hora" aria-hidden="true">· 00<span class="dos">:</span>00</span></span>
     </div>
 
     <h1><span>Tu sitio debería</span> <span>verse <em>tan bueno</em></span> <span>como tu lugar.</span></h1>
@@ -261,12 +261,18 @@
       <div class="mando">
         <button type="button" class="flecha" data-paso="-1" aria-label="Sitio anterior" disabled>←</button>
         <button type="button" class="flecha" data-paso="1" aria-label="Sitio siguiente">→</button>
-        <span class="cont" aria-hidden="true">1/5</span>
+        <div class="puntos">
+          <button type="button" class="punto" data-ir="0" aria-label="Ver Jabalí" style="--p:1" aria-current="true"></button>
+          <button type="button" class="punto" data-ir="1" aria-label="Ver Madrizza"></button>
+          <button type="button" class="punto" data-ir="2" aria-label="Ver Finca Coyametla"></button>
+          <button type="button" class="punto" data-ir="3" aria-label="Ver El Algo"></button>
+          <button type="button" class="punto" data-ir="4" aria-label="Ver Celita"></button>
+        </div>
       </div>
     </div>
 
     <ol class="tira" tabindex="0" aria-label="Cinco sitios, se desliza a los lados">
-    <li class="lamina activa" style="--lugar:#4F0D00" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
+    <li class="lamina activa" style="--lugar:#4F0D00;--d:0;--ad:0" aria-roledescription="sitio" aria-label="1 de 5: Jabalí">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/jabali-esc-900.webp 900w, /images/sitios/jabali-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
@@ -284,7 +290,7 @@
         <a class="visita" href="https://www.jabali.mx" target="_blank" rel="noopener">Ver el sitio · jabali.mx<span class="fl" aria-hidden="true">↗</span></a>
       </div>
     </li>
-    <li class="lamina" style="--lugar:#2A5280" aria-roledescription="sitio" aria-label="2 de 5: Madrizza">
+    <li class="lamina" style="--lugar:#2A5280;--d:1;--ad:1" aria-roledescription="sitio" aria-label="2 de 5: Madrizza">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/madrizza-esc-900.webp 900w, /images/sitios/madrizza-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
@@ -302,7 +308,7 @@
         <a class="visita" href="https://madrizza.vercel.app" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
       </div>
     </li>
-    <li class="lamina" style="--lugar:#57573C" aria-roledescription="sitio" aria-label="3 de 5: Finca Coyametla">
+    <li class="lamina" style="--lugar:#57573C;--d:2;--ad:1" aria-roledescription="sitio" aria-label="3 de 5: Finca Coyametla">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/coyametla-esc-900.webp 900w, /images/sitios/coyametla-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
@@ -320,7 +326,7 @@
         <a class="visita" href="https://finca-coyametla.vercel.app/es" target="_blank" rel="noopener">Ver el sitio<span class="fl" aria-hidden="true">↗</span></a>
       </div>
     </li>
-    <li class="lamina" style="--lugar:#27120D" aria-roledescription="sitio" aria-label="4 de 5: El Algo">
+    <li class="lamina" style="--lugar:#27120D;--d:3;--ad:1" aria-roledescription="sitio" aria-label="4 de 5: El Algo">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/elalgo-esc-900.webp 900w, /images/sitios/elalgo-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
@@ -338,7 +344,7 @@
         <a class="visita" href="https://www.elalgo.mx" target="_blank" rel="noopener">Ver el sitio · elalgo.mx<span class="fl" aria-hidden="true">↗</span></a>
       </div>
     </li>
-    <li class="lamina" style="--lugar:#896545;--fondo:#7A5A3D" aria-roledescription="sitio" aria-label="5 de 5: Celita">
+    <li class="lamina" style="--lugar:#896545;--fondo:#7A5A3D;--d:4;--ad:1" aria-roledescription="sitio" aria-label="5 de 5: Celita">
       <div class="comp">
         <picture class="esc">
           <source type="image/webp" srcset="/images/sitios/celita-esc-900.webp 900w, /images/sitios/celita-esc-1600.webp 1600w" sizes="min(84vw, 40rem)">
@@ -360,7 +366,7 @@
   </section>
 
   <!-- ══════════ QUIÉN SOY ══════════ -->
-  <section class="grp grp--sec">
+  <section class="grp grp--sec revela">
     <h2 class="grp-label"><span>Quién soy</span></h2>
 
     <div class="row sin-cifra">
@@ -376,7 +382,7 @@
   </section>
 
   <!-- ══════════ ESCRÍBEME ══════════ -->
-  <section class="grp">
+  <section class="grp revela">
     <h2 class="grp-label"><span>Escríbeme</span> <span>Te contesto el mismo día</span></h2>
 
     <div class="row row--cta">
@@ -387,7 +393,7 @@
     </div>
   </section>
 
-  <footer class="colofon">
+  <footer class="colofon revela">
     <p class="frase">Este sitio también lo diseñé y programé yo.</p>
     <p class="dom">svh.studio · Ciudad de México</p>
   </footer>
