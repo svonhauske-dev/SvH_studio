@@ -65,6 +65,10 @@ a{color:inherit}
   font-size:var(--t-display);line-height:.92;letter-spacing:-.035em;
 }
 .front h1 em{font-style:normal;font-weight:250}
+/* Margen óptico: a este tamaño el espacio lateral de las letras metía el
+   titular ~7px a la derecha del párrafo. Se recorre una fracción del eme
+   para que el borde de las letras coincida con el del texto. */
+.front h1{margin-left:-.035em}
 /* Tres renglones fijos a toda anchura: con balance el corte dependía del
    ancho exacto de la letra y la página brincaba mientras llegaba la itálica. */
 .front h1 span{display:block}
@@ -339,6 +343,7 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
   opacity:calc(1 - 2.4 * var(--ad,0));transform:translateX(calc(var(--d,0) * -2.5rem))}
 .cap .n{margin:0}
 .cap .ctx{margin:var(--s3) 0 0}
+@media (min-width:880px){.cap .ctx{max-width:60ch}}
 .cap .meta{margin:var(--s4) 0 0}
 .cap .visita{display:inline-flex;align-items:center;gap:.35em;min-height:var(--touch);margin-top:var(--s2);
   font-weight:500;text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;
