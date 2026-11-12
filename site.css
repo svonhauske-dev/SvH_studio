@@ -318,6 +318,18 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .cap .visita:hover .ico{transform:translate(2px,-2px)}
 .js .lamina:not(.activa) .cap{visibility:hidden}
 
+/* Modificadores del ticket, como "+ extra queso" en una comanda: el
+   detalle técnico de cada platillo, sin número y con sangría. */
+.t-lineas li.mod{counter-increment:none;padding-left:2.4em;opacity:.72;white-space:normal}
+.t-lineas li.mod::before{content:"+";margin-left:-1.1em;margin-right:.5em;opacity:1}
+.ticket .tp-stack{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(34,32,28,.5);flex-direction:column;gap:1px;white-space:normal}
+.tp-stack span:first-child{opacity:.55}
+/* El stack en el pie sólo en el celular; en escritorio lo trae el ticket. */
+.cap .meta.stack{margin-top:var(--s1);color:var(--svh-dim)}
+@media (min-width:880px){.cap .meta.stack{display:none}}
+.ticket-p .tp-stack{display:none}
+@media (min-width:880px){.ticket.ticket-p .tp-stack{display:flex}}
+
 /* ── los controles, debajo de lo que controlan ───────────────────────── */
 /* Antes vivían dentro de la etiqueta de Trabajo y la hacían 14px más alta
    que las otras dos. Debajo de la tira quedan donde se usan, y la etiqueta
