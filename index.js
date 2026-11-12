@@ -27,7 +27,22 @@
     return [1, 3, 5].map(function (i) { return parseInt(hex.substr(i, 2), 16); });
   });
   function mezcla(a, b, t) {
-    return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }).join(',') + ')';
+    return a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); });
+  }
+  function rgb(c) { return 'rgb(' + c.join(',') + ')'; }
+
+  /* LA TINTA DEL ESTUDIO. Arriba la página es tinta: el color neutro del
+     estudio. El color del cliente llega cuando el trabajo entra en
+     pantalla, en proporción al scroll: empieza cuando la etiqueta de
+     Trabajo cruza el 60% de la pantalla y se completa al 25%. Todos los
+     colores son oscuros, así que el texto se queda en marfil siempre. */
+  var TINTA = [20, 18, 16],
+      seccion = document.querySelector('.trabajo'),
+      temaPrevio = '';
+  function entrada() {
+    if (!seccion) return 1;
+    var top = seccion.getBoundingClientRect().top, vh = innerHeight;
+    return Math.max(0, Math.min(1, (vh * 0.6 - top) / (vh * 0.35)));
   }
 
   function medir() {
@@ -45,7 +60,12 @@
 
     empujar(pos);
     var i0 = Math.floor(pos), i1 = Math.min(laminas.length - 1, i0 + 1);
-    cuerpo.style.setProperty('--pagina', mezcla(colores[i0], colores[i1], pos - i0));
+    var cliente = mezcla(colores[i0], colores[i1], pos - i0),
+        e = entrada(),
+        pagina = mezcla(TINTA, cliente, e);
+    cuerpo.style.setProperty('--pagina', rgb(pagina));
+    var tema2 = rgb(e < 0.5 ? TINTA : cliente);
+    if (tema && tema2 !== temaPrevio) { tema.content = tema2; temaPrevio = tema2; }
     marcar(Math.round(pos));
   }
   function pedir() { if (!pedido) { pedido = true; requestAnimationFrame(medir); } }
@@ -79,7 +99,6 @@
       if (j === i) p.setAttribute('aria-current', 'true'); else p.removeAttribute('aria-current');
     });
     cuerpo.style.setProperty('--lugar', l.style.getPropertyValue('--lugar'));
-    if (tema) tema.content = l.style.getPropertyValue('--fondo') || l.style.getPropertyValue('--lugar');
     flechas.forEach(function (f) {
       var a = i + Number(f.dataset.paso);
       f.disabled = a < 0 || a >= laminas.length;
@@ -96,6 +115,7 @@
   }
 
   tira.addEventListener('scroll', pedir, { passive: true });
+  addEventListener('scroll', pedir, { passive: true });
   addEventListener('resize', pedir);
 
   /* ARRASTRAR CON EL MOUSE. En el celular el pulgar ya lo hace; con mouse
