@@ -42,8 +42,8 @@
      ("Diseño y / desarrollo / web para / hospitalidad."). El renglón más
      largo mide ~6.4 eme: en el celular el tamaño sale del ancho de la
      columna; en tableta y escritorio, del espacio a la izquierda del
-     ticket, con tope de 88px. */
-  --t-display:  min(5.5rem, calc((100vw - 2 * var(--gutter)) / 6.5));
+     ticket, con tope de 112px (columna de 1200). */
+  --t-display:  min(7rem, calc((100vw - 2 * var(--gutter)) / 6.5));
   --t-row:      clamp(1.5rem, 6.2vw, 2.75rem);     /*  24 →  44  nombre de fila */
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  acción, colofón */
   --t-lede:     clamp(1rem, 3.7vw, 1.25rem);       /*  16 →  20  la frase: entrada, contexto, bio */
@@ -87,7 +87,10 @@
   --rhythm-foot:  clamp(4rem, 12vw, 9rem);        /* margen inferior */
 
   /* --------------------------------------------------------------- LAYOUT */
-  --maxw:   920px;    /* medida de índice, no de tabla. 1120 estiraba las filas. */
+  /* 1200: con Estudio a dos columnas, la carta junto al ticket y la tira,
+     920 apretaba en escritorio. La medida de lectura la controla cada
+     párrafo (40ch), no la columna. */
+  --maxw:   1200px;
   --gutter: clamp(1.5rem, 5vw, 3.5rem);
   --touch:  44px;
   /* Borde izquierdo real de la columna de contenido. Lo usa todo lo que

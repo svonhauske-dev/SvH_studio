@@ -93,7 +93,7 @@ a{color:inherit}
   .impresora{position:absolute;top:0;right:calc(-1 * min(6rem, (100vw - 100%) / 2 - 1.5rem));
     margin:calc(-1 * var(--rhythm-page)) 0 0;width:14rem}
   /* Desde tableta el titular vive a la izquierda del ticket. */
-  .front h1{font-size:min(5.5rem, calc((100vw - 2 * var(--gutter) - 17rem) / 6.5))}
+  .front h1{font-size:min(7rem, calc((100vw - 2 * var(--gutter) - 17rem) / 6.5))}
 }
 @media (min-width:1100px){.impresora{width:16rem}}
 /* La ranura: una boca oscura en el borde de arriba; el papel sale de abajo. */
