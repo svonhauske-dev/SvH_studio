@@ -401,7 +401,10 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .carta-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--svh-rule)}
 .carta-lista li{border-bottom:1px solid var(--svh-rule)}
 .platillo{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:var(--touch);
-  display:grid;grid-template-columns:auto minmax(1rem,1fr) auto;align-items:center;gap:var(--s3);padding:var(--s3) 0}
+  display:grid;grid-template-columns:auto minmax(1rem,1fr) auto;align-items:center;gap:var(--s1) var(--s3);padding:var(--s3) 0 var(--s4)}
+/* La descripción del platillo, como en una carta: técnica, en la voz de los datos. */
+.pd{grid-column:1 / -1;font-family:var(--svh-mono);font-stretch:87.5%;font-size:var(--t-mono);letter-spacing:var(--ls-mono);
+  line-height:1.5;color:var(--svh-dim);text-transform:uppercase;max-width:52ch;padding-right:2.5rem}
 .platillo:focus-visible{outline:2px solid var(--svh-ink);outline-offset:4px}
 .pn{font-family:var(--svh-sans);font-weight:600;font-size:var(--t-value);line-height:1.1;letter-spacing:-.015em;
   transition:transform .4s var(--ease-sale)}
