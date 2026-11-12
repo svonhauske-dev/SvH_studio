@@ -154,7 +154,7 @@ a.row{color:inherit;text-decoration:none}
 .fichas dt,.fichas dd{margin:0;font-family:var(--svh-mono);font-size:var(--t-mono);letter-spacing:var(--ls-mono);
   text-transform:uppercase;line-height:1.6}
 .fichas dt{color:var(--svh-dim)}
-.fichas dd{color:var(--svh-ink);max-width:62ch}
+.fichas dd{color:var(--svh-ink)}
 /* La etiqueta va arriba del dato, no al lado: así los nombres arrancan
    en el mismo borde que el párrafo y no en una sangría arbitraria. */
 
@@ -167,7 +167,9 @@ a.row{color:inherit;text-decoration:none}
 @media (min-width:880px){
   .estudio .row.sin-cifra{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(2rem,5vw,4.5rem);row-gap:0;align-items:start}
   .estudio .row.sin-cifra .n{grid-column:1;grid-row:1;text-wrap:balance}
-  .estudio .row.sin-cifra .d{grid-column:2;grid-row:1}
+  /* En su columna el párrafo usa todo el ancho, como los filetes de
+     abajo: comparten borde derecho (~70 caracteres por renglón en 1440). */
+  .estudio .row.sin-cifra .d{grid-column:2;grid-row:1;max-width:none}
   /* Las dos listas comparten renglones (subgrid): Formación a la altura de
      Clientes del estudio y Reconocimientos a la de Antes del estudio, con
      los filetes alineados aunque un lado tenga más renglones que el otro. */
