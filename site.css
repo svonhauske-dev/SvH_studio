@@ -156,7 +156,19 @@ a.row{color:inherit;text-decoration:none}
   text-transform:uppercase;line-height:1.6}
 .fichas dt{color:var(--svh-dim)}
 .fichas dd{color:var(--svh-ink);max-width:62ch}
-@media (min-width:640px){.fichas div{grid-template-columns:10rem 1fr;gap:var(--s4)}}
+/* La etiqueta va arriba del dato, no al lado: así los nombres arrancan
+   en el mismo borde que el párrafo y no en una sangría arbitraria. */
+
+/* ESTUDIO EN DOS COLUMNAS. El título a todo el ancho y el párrafo a 40ch
+   se leían como dos bloques distintos y dejaban media sección vacía. En
+   escritorio el título tiene su columna (y se parte en renglones) y el
+   párrafo y las fichas comparten la otra, con el mismo borde izquierdo. */
+@media (min-width:880px){
+  .estudio .row.sin-cifra{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(2rem,5vw,4.5rem);row-gap:0;align-items:start}
+  .estudio .row.sin-cifra .n{grid-column:1;grid-row:1 / span 2;text-wrap:balance}
+  .estudio .row.sin-cifra .d{grid-column:2;grid-row:1}
+  .estudio .fichas{grid-column:2;grid-row:2;margin-top:var(--s8)}
+}
 
 /* Correo: la dirección se copia; el verbo abre el correo. Dos salidas,
    porque el mailto falla en silencio cuando no hay app de correo. */
