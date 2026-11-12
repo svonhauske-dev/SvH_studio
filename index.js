@@ -35,14 +35,20 @@
      estudio. El color del cliente llega cuando el trabajo entra en
      pantalla, en proporción al scroll: empieza cuando la etiqueta de
      Trabajo cruza el 60% de la pantalla y se completa al 25%. Todos los
-     colores son oscuros, así que el texto se queda en marfil siempre. */
+     colores son oscuros, así que el texto se queda en marfil siempre.
+     El color vive sólo mientras el trabajo está en pantalla. */
   var TINTA = [20, 18, 16],
       seccion = document.querySelector('.trabajo'),
       temaPrevio = '';
   function entrada() {
     if (!seccion) return 1;
-    var top = seccion.getBoundingClientRect().top, vh = innerHeight;
-    return Math.max(0, Math.min(1, (vh * 0.6 - top) / (vh * 0.35)));
+    var r = seccion.getBoundingClientRect(), vh = innerHeight,
+        entra = (vh * 0.6 - r.top) / (vh * 0.35),
+        /* …y se va igual: cuando el final de Trabajo sube del 65% al 30% de
+           la pantalla, la página regresa a tinta. Estudio y la comanda son
+           la voz del estudio, no del cliente. */
+        sale = (r.bottom - vh * 0.3) / (vh * 0.35);
+    return Math.max(0, Math.min(1, entra, sale));
   }
 
   function medir() {
