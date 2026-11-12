@@ -1,0 +1,133 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Tipografía y marca · SvH Studio (lab)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Martian+Mono:wdth,wght@75..112.5,300..800&display=swap" rel="stylesheet">
+<style>
+:root{--rojo:#4F0D00;--marfil:#F2EFEA;--tenue:rgba(242,239,234,.72);--papel:#FAFAF8;--tinta:#101010;
+  --mono:"Martian Mono",ui-monospace,monospace;--sans:"Archivo",system-ui,sans-serif;--m:clamp(1.25rem,5vw,3.5rem)}
+*{box-sizing:border-box}
+body{margin:0;background:#1a1716;color:var(--marfil);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.cab{padding:2.5rem var(--m) 1.5rem;max-width:80rem;margin:0 auto}
+.cab h1{margin:0;font:800 clamp(2rem,6vw,3.5rem)/1 var(--sans);font-stretch:112%;letter-spacing:-.02em}
+.cab p{max-width:52ch;color:var(--tenue);line-height:1.5}
+.et{font:500 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--tenue)}
+/* Cada dirección: el arranque real del sitio, en rojo Jabalí. */
+.dir{background:var(--rojo);margin:0 0 3px;padding:clamp(1.5rem,4vw,3rem) var(--m) clamp(2.5rem,6vw,4rem)}
+.dir .in{max-width:68rem;margin:0 auto;display:grid;gap:1.25rem}
+.dir .meta-dir{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid rgba(242,239,234,.2);padding-bottom:.75rem;margin-bottom:1rem}
+.dir .meta-dir b{font:700 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.ojo{font:500 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.lede{max-width:40ch;color:var(--tenue);line-height:1.5;margin:0;font-size:clamp(1rem,2vw,1.2rem)}
+.lbl{display:flex;gap:1.5em;font:500 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid var(--marfil);padding-bottom:.5rem;margin-top:1.5rem}
+.lbl span{opacity:.6}
+.mini{display:flex;gap:2rem;flex-wrap:wrap;align-items:baseline;margin-top:.5rem}
+.why{font-size:.95rem;color:var(--tenue);max-width:60ch;line-height:1.5;margin:.25rem 0 0}
+
+/* A · ANCHO — Archivo expandido, negro */
+.A h2{margin:0;font-family:var(--sans);font-weight:850;font-stretch:125%;font-size:clamp(2.4rem,7.4vw,6.2rem);line-height:.92;letter-spacing:-.035em}
+.A h2 em{font-style:normal;font-weight:250}
+.A .mini .n{font:850 clamp(1.6rem,3.4vw,2.6rem)/1 var(--sans);font-stretch:125%;letter-spacing:-.03em}
+/* B · ANGOSTO — Archivo condensado, negro, en mayúsculas */
+.B h2{margin:0;font-family:var(--sans);font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(3.4rem,13.5vw,11rem);line-height:.84;letter-spacing:-.01em}
+.B h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--marfil)}
+.B .mini .n{font:900 clamp(2rem,5vw,3.4rem)/.9 var(--sans);font-stretch:62%;text-transform:uppercase}
+/* C · CORTE — Fraunces negra, ópticamente afilada */
+.C h2{margin:0;font-family:"Fraunces",Georgia,serif;font-weight:800;font-variation-settings:"opsz" 144,"SOFT" 0;font-size:clamp(2.6rem,8vw,6.6rem);line-height:.9;letter-spacing:-.035em}
+.C h2 em{font-weight:300;font-style:italic}
+.C .mini .n{font:800 clamp(1.6rem,3.4vw,2.6rem)/1 "Fraunces",serif;font-variation-settings:"opsz" 144;letter-spacing:-.025em}
+.C .lede,.C .why{font-family:var(--sans)}
+
+/* LOGOS */
+.marcas{max-width:80rem;margin:0 auto;padding:3rem var(--m) 5rem}
+.marcas h2{font:800 clamp(1.75rem,5vw,3rem)/1 var(--sans);font-stretch:112%;letter-spacing:-.02em;margin:0 0 .5rem}
+.rejilla{display:grid;gap:3px;grid-template-columns:repeat(auto-fill,minmax(min(100%,24rem),1fr));margin-top:1.5rem}
+.marca{background:#232020;padding:1.25rem;display:grid;gap:1rem}
+.marca .lienzos{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.lienzo{aspect-ratio:1;display:grid;place-items:center;padding:12%}
+.lienzo.r{background:var(--rojo);color:var(--marfil)}
+.lienzo.p{background:var(--papel);color:var(--tinta)}
+.lienzo{overflow:hidden;min-width:0}
+.lienzo svg{width:100%;height:100%;overflow:visible}
+.marca{min-width:0}
+.chicos{display:flex;align-items:center;gap:14px;padding:.5rem 0}
+.chicos .fav{display:grid;place-items:center;border-radius:4px;background:var(--rojo);color:var(--marfil);box-sizing:border-box}
+.chicos .fav svg{width:100%;height:100%}
+.chicos .fav.p{background:var(--papel);color:var(--tinta)}
+.marca h3{margin:0;font:700 13px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.marca p{margin:0;color:var(--tenue);font-size:.92rem;line-height:1.45}
+.rec{display:inline-block;margin-left:.5em;padding:.15em .5em;border:1px solid currentColor;border-radius:99px;font-size:10px}
+</style></head><body>
+
+<header class="cab">
+  <p class="et">svh.studio · laboratorio · no publicado</p>
+  <h1>Tipografía y marca</h1>
+  <p>Tres direcciones tipográficas sobre el arranque real del sitio, y seis marcas. Las tres usan un solo sistema: una familia llevada a su extremo para el titular, la misma para el texto, y un monoespaciado propio (Martian Mono) para los datos, que hoy dependen del que trae cada teléfono.</p>
+</header>
+
+<section class="dir A"><div class="in">
+  <div class="meta-dir"><b>A · Ancho</b><span class="et">Archivo Expanded Black 850 / 125% · texto Archivo · datos Martian Mono</span></div>
+  <span class="ojo">svh.studio — Diseño y desarrollo web</span>
+  <h2>Diseño y desarrollo web para <em>hospitalidad.</em></h2>
+  <p class="lede">Somos un estudio en la Ciudad de México. Hacemos los sitios de restaurantes, cafés y bares: a la medida, en código propio y con un panel para operarlos.</p>
+  <div class="lbl"><span>01</span>Trabajo</div>
+  <div class="mini"><span class="n">Jabalí</span><span class="n">Madrizza</span><span class="n">El Algo</span></div>
+  <p class="why">Peso y anchura máximos: se lee como letrero de fachada, no como revista. El contraste lo hace el peso (850 contra 250), no una segunda familia. El más "marca" de los tres.</p>
+</div></section>
+
+<section class="dir B"><div class="in">
+  <div class="meta-dir"><b>B · Angosto</b><span class="et">Archivo Condensed Black 900 / 62% · mayúsculas · datos Martian Mono</span></div>
+  <span class="ojo">svh.studio — Diseño y desarrollo web</span>
+  <h2>Diseño y desarrollo web para <em>hospitalidad.</em></h2>
+  <p class="lede">Somos un estudio en la Ciudad de México. Hacemos los sitios de restaurantes, cafés y bares: a la medida, en código propio y con un panel para operarlos.</p>
+  <div class="lbl"><span>01</span>Trabajo</div>
+  <div class="mini"><span class="n">Jabalí</span><span class="n">Madrizza</span><span class="n">El Algo</span></div>
+  <p class="why">Condensada y enorme: llena la pantalla del celular con tres palabras. Es la voz de una pizarra de cocina o un cartel de mercado. La más atrevida; la palabra en contorno es el único gesto.</p>
+</div></section>
+
+<section class="dir C"><div class="in">
+  <div class="meta-dir"><b>C · Corte</b><span class="et">Fraunces Black 800 · óptico 144 · texto Archivo · datos Martian Mono</span></div>
+  <span class="ojo">svh.studio — Diseño y desarrollo web</span>
+  <h2>Diseño y desarrollo web para <em>hospitalidad.</em></h2>
+  <p class="lede">Somos un estudio en la Ciudad de México. Hacemos los sitios de restaurantes, cafés y bares: a la medida, en código propio y con un panel para operarlos.</p>
+  <div class="lbl"><span>01</span>Trabajo</div>
+  <div class="mini"><span class="n">Jabalí</span><span class="n">Madrizza</span><span class="n">El Algo</span></div>
+  <p class="why">Se queda con la serif, pero negra y afilada en vez de delgada: conserva lo editorial que ya tiene el sitio y le quita lo tímido. La menos arriesgada.</p>
+</div></section>
+
+<section class="marcas">
+  <h2>Marca y glifo</h2>
+  <p class="et">Cada una sobre rojo y sobre papel, y a 32 y 16 px (pestaña del navegador).</p>
+  <div class="rejilla" id="rejilla"></div>
+</section>
+
+<script>
+/* Las marcas se dibujan en SVG con las mismas fuentes. Para producción se
+   convierten a trazos; aquí sirven para comparar forma y escala. */
+var A='font-family:Archivo;font-stretch:125%;font-weight:850',C='font-family:Archivo;font-stretch:62%;font-weight:900',F='font-family:Fraunces;font-weight:800;font-variation-settings:\'opsz\' 144';
+var MARCAS=[
+ {t:'1 · Ticket',rec:1,p:'El glifo es el ticket: papel con el borde rasgado y "SvH" impreso. Es el concepto del sitio hecho marca, y a 16 px se sigue leyendo como un recibo.',
+  svg:function(){return '<svg viewBox="0 0 100 120"><path d="M8 2 H92 V104 L86 110 L80 104 L74 110 L68 104 L62 110 L56 104 L50 110 L44 104 L38 110 L32 104 L26 110 L20 104 L14 110 L8 104 Z" fill="currentColor"/><text x="50" y="66" text-anchor="middle" style="'+A+';font-size:34px;letter-spacing:-1.5px" fill="var(--bg)">SvH</text></svg>'}},
+ {t:'2 · Monograma SvH',p:'Las tres letras en Archivo ancha y negra, con la v en minúscula —el "von"— colgando de la línea. Simple, propio, funciona igual en una camisa que en un favicon.',
+  svg:function(){return '<svg viewBox="0 0 120 70"><text x="60" y="52" text-anchor="middle" style="'+A+';font-size:56px;letter-spacing:-3px" fill="currentColor">S<tspan style="font-weight:300" dy="0">v</tspan>H</text></svg>'}},
+ {t:'3 · Palabra svh.studio',p:'Sólo el dominio, que ya es la marca, en minúsculas condensadas negras. La más sobria; no tiene glifo propio para el favicon.',
+  svg:function(){return '<svg viewBox="0 0 160 60"><text x="80" y="44" text-anchor="middle" style="'+C+';font-size:46px;letter-spacing:-.5px" fill="currentColor">svh.studio</text></svg>'}},
+ {t:'4 · Código de barras',p:'Tres barras de grosor distinto que son S, v y H a la vez y el código del ticket. Abstracta y muy de sistema; necesita el nombre al lado al principio.',
+  svg:function(){return '<svg viewBox="0 0 100 100"><rect x="14" y="14" width="18" height="72" fill="currentColor"/><rect x="40" y="14" width="5" height="72" fill="currentColor"/><rect x="52" y="14" width="10" height="72" fill="currentColor"/><rect x="68" y="14" width="3" height="72" fill="currentColor"/><rect x="77" y="14" width="9" height="72" fill="currentColor"/></svg>'}},
+ {t:'5 · Pinza',p:'La pinza del riel de comandas con el ticket colgando: un objeto, no una letra. Es la marca más ilustrativa; muy reconocible, menos neutra.',
+  svg:function(){return '<svg viewBox="0 0 100 120"><rect x="6" y="4" width="88" height="6" rx="3" fill="currentColor" opacity=".55"/><rect x="38" y="2" width="24" height="12" rx="2" fill="currentColor"/><path d="M22 14 H78 V100 L72 106 L66 100 L60 106 L54 100 L48 106 L42 100 L36 106 L30 100 L22 106 Z" fill="currentColor"/><rect x="32" y="34" width="36" height="4" fill="var(--bg)"/><rect x="32" y="46" width="28" height="4" fill="var(--bg)"/><rect x="32" y="58" width="32" height="4" fill="var(--bg)"/></svg>'}},
+ {t:'6 · S/H serif negra',p:'Para la dirección C: S y H en Fraunces negra, la v diminuta en itálica entre ellas. La más clásica y elegante; se parece más a una marca de hotel que a un estudio digital.',
+  svg:function(){return '<svg viewBox="0 0 120 80"><text x="60" y="60" text-anchor="middle" style="'+F+';font-size:62px;letter-spacing:-3px" fill="currentColor">S<tspan style="font-weight:300;font-style:italic;font-size:30px" dy="-2">v</tspan><tspan dy="2">H</tspan></text></svg>'}}
+];
+var R=document.getElementById('rejilla');
+MARCAS.forEach(function(m){
+  var d=document.createElement('article');d.className='marca';
+  var s=m.svg();
+  d.innerHTML='<h3>'+m.t+(m.rec?'<span class="rec">Recomendada</span>':'')+'</h3>'+
+   '<div class="lienzos"><div class="lienzo r" style="--bg:#4F0D00">'+s+'</div><div class="lienzo p" style="--bg:#FAFAF8">'+s+'</div></div>'+
+   '<div class="chicos"><span class="et">32 px</span><span class="fav" style="width:32px;height:32px;--bg:#4F0D00;padding:4px">'+s+'</span><span class="fav p" style="width:32px;height:32px;--bg:#FAFAF8;padding:4px">'+s+'</span>'+
+   '<span class="et">16 px</span><span class="fav" style="width:16px;height:16px;--bg:#4F0D00;padding:2px">'+s+'</span><span class="fav p" style="width:16px;height:16px;--bg:#FAFAF8;padding:2px">'+s+'</span></div>'+
+   '<p>'+m.p+'</p>';
+  R.appendChild(d);
+});
+</script>
+</body></html>
