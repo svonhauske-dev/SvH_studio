@@ -31,20 +31,19 @@
   --lugar: #101010;
 
   /* ----------------------------------------------------------------- TIPO */
-  --svh-serif: "Instrument Serif", "Instrument Serif respaldo", Georgia, "Times New Roman", serif;
   --svh-sans:  "Archivo", "Archivo respaldo", system-ui, -apple-system, "Helvetica Neue", sans-serif;
-  /* La voz de los datos: el monoespaciado del sistema, el mismo del ticket.
-     Etiquetas, folios, la hora, los entregables y el pie lo usan, así la
-     comanda no se ve pegada: todo el sitio "imprime" sus datos igual.
-     Es del sistema: cero descargas y cero salto al cargar. */
-  --svh-mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* La voz de los datos y de los tickets: Martian Mono al 87.5% de ancho. */
+  --svh-mono:  "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --t-mono:    0.71875rem;   /* 11.5px */
-  --ls-mono:   .08em;
+  --ls-mono:   .04em;
 
   /* Escala fluida — móvil primero. min → max en px al margen. */
-  /* El titular llena el ancho del celular: a 13.5vw "Diseño y desarrollo",
-     el renglón más largo, ocupa ~93% de la columna y cabe desde 320px. */
-  --t-display:  clamp(2.5rem, 13.5vw, 5.5rem);     /*  43 →  88  frontispicio (el ticket cuelga a su derecha) */
+  /* ANCHO. El titular en Archivo expandida y negra, en cuatro renglones
+     ("Diseño y / desarrollo / web para / hospitalidad."). El renglón más
+     largo mide ~6.4 eme: en el celular el tamaño sale del ancho de la
+     columna; en tableta y escritorio, del espacio a la izquierda del
+     ticket, con tope de 88px. */
+  --t-display:  min(5.5rem, calc((100vw - 2 * var(--gutter)) / 6.5));
   --t-row:      clamp(1.5rem, 6.2vw, 2.75rem);     /*  24 →  44  nombre de fila */
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  acción, colofón */
   --t-lede:     clamp(1rem, 3.7vw, 1.25rem);       /*  16 →  20  la frase: entrada, contexto, bio */
