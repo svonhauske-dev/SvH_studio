@@ -131,7 +131,7 @@ a{color:inherit}
 /* Títulos: la misma Archivo, expandida y pesada. */
 .n{font-family:var(--svh-sans);font-weight:800;font-stretch:125%;font-size:var(--t-row);
   line-height:1.02;letter-spacing:-.03em}
-.row .d,.cap .ctx{font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);
+.row .d,.cap .ctx{font-size:var(--t-cuerpo);line-height:1.55;color:var(--svh-dim);
   max-width:40ch;text-wrap:pretty}
 .meta{font-family:var(--svh-mono);font-size:var(--t-mono);letter-spacing:var(--ls-mono);text-transform:uppercase;
   line-height:1.6;color:var(--svh-ink)}
@@ -150,7 +150,7 @@ a.row{color:inherit;text-decoration:none}
 /* Fichas: Capacidades y Clientes, como la hoja técnica de un proyecto.
    La etiqueta atenuada a la izquierda, el dato en tinta; en el celular,
    una encima de otra. Comparten tipo con .meta: versalitas de 12px. */
-.fichas{grid-row:3;margin:var(--s4) 0 0;display:grid;gap:var(--s3)}
+.fichas{margin:var(--s4) 0 0;display:grid;gap:var(--s3)}
 .fichas div{display:grid;gap:var(--s1);padding-top:var(--s3);border-top:1px solid var(--svh-rule)}
 .fichas dt,.fichas dd{margin:0;font-family:var(--svh-mono);font-size:var(--t-mono);letter-spacing:var(--ls-mono);
   text-transform:uppercase;line-height:1.6}
@@ -159,15 +159,18 @@ a.row{color:inherit;text-decoration:none}
 /* La etiqueta va arriba del dato, no al lado: así los nombres arrancan
    en el mismo borde que el párrafo y no en una sangría arbitraria. */
 
-/* ESTUDIO EN DOS COLUMNAS. El título a todo el ancho y el párrafo a 40ch
-   se leían como dos bloques distintos y dejaban media sección vacía. En
-   escritorio el título tiene su columna (y se parte en renglones) y el
-   párrafo y las fichas comparten la otra, con el mismo borde izquierdo. */
+/* ESTUDIO EN DOS COLUMNAS. A la izquierda el título y, debajo, lo que
+   avala a la fundadora (formación, reconocimientos); a la derecha el
+   párrafo y los clientes. Así no queda hueco bajo el título y la sección
+   mide un tercio menos. En el celular, todo apilado. */
+.estudio .fichas{margin-top:var(--s4)}
+@media (min-width:880px){.estudio .fichas{margin-top:var(--s6)}}
 @media (min-width:880px){
   .estudio .row.sin-cifra{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(2rem,5vw,4.5rem);row-gap:0;align-items:start}
-  .estudio .row.sin-cifra .n{grid-column:1;grid-row:1 / span 2;text-wrap:balance}
+  .estudio .row.sin-cifra .n{grid-column:1;grid-row:1;text-wrap:balance}
   .estudio .row.sin-cifra .d{grid-column:2;grid-row:1}
-  .estudio .fichas{grid-column:2;grid-row:2;margin-top:var(--s8)}
+  .estudio .fichas.aval{grid-column:1;grid-row:2}
+  .estudio .fichas.clientes{grid-column:2;grid-row:2}
 }
 
 /* Correo: la dirección se copia; el verbo abre el correo. Dos salidas,
@@ -405,23 +408,29 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    un más que se vuelve tache—, no botones de filtro. El ticket es papel
    térmico de verdad: angosto, monoespaciado del sistema (nada que bajar),
    filetes punteados, folio, código de barras y bordes rasgados. */
-.com-ent{margin:var(--after-label) 0 0;font-size:var(--t-lede);line-height:1.45;color:var(--svh-dim);max-width:40ch}
+.com-ent{margin:var(--after-label) 0 0;font-size:var(--t-cuerpo);line-height:1.55;color:var(--svh-dim);max-width:40ch}
 .com{display:grid;gap:var(--s12);margin-top:var(--s8);align-items:start}
 @media (min-width:720px){.com{grid-template-columns:minmax(0,1fr) 15.5rem;gap:clamp(2rem,5vw,5rem)}}
 @media (min-width:1100px){.com{grid-template-columns:minmax(0,1fr) 19rem}}
 
-.carta-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--svh-rule)}
+.carta-lista{list-style:none;margin:0;padding:0}
 .carta-lista li{border-bottom:1px solid var(--svh-rule)}
+/* Grupos de la carta: trece platillos seguidos no se recorren; cuatro
+   apartados con nombre sí. Encabezado en la voz de los datos. */
+.carta-lista li.grupo{border-bottom:0;padding:var(--s6) 0 var(--s2);font-family:var(--svh-mono);font-stretch:87.5%;
+  font-size:var(--t-mono);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--svh-dim)}
+.carta-lista li.grupo:first-child{padding-top:var(--s2)}
+.carta-lista li.grupo + li{border-top:1px solid var(--svh-rule)}
 .platillo{all:unset;box-sizing:border-box;cursor:pointer;width:100%;min-height:var(--touch);
-  display:grid;grid-template-columns:auto minmax(1rem,1fr) auto;align-items:center;gap:var(--s1) var(--s3);padding:var(--s3) 0 var(--s4)}
+  display:grid;grid-template-columns:auto minmax(1rem,1fr) auto;align-items:center;gap:2px var(--s3);padding:var(--s3) 0}
 /* La descripción del platillo, como en una carta: técnica, en la voz de los datos. */
 .pd{grid-column:1 / -1;font-family:var(--svh-mono);font-stretch:87.5%;font-size:var(--t-mono);letter-spacing:var(--ls-mono);
-  line-height:1.5;color:var(--svh-dim);text-transform:uppercase;max-width:52ch;padding-right:2.5rem}
+  line-height:1.5;color:var(--svh-dim);text-transform:uppercase;padding-right:calc(24px + var(--s3))}
 .platillo:focus-visible{outline:2px solid var(--svh-ink);outline-offset:4px}
-.pn{font-family:var(--svh-sans);font-weight:600;font-size:var(--t-value);line-height:1.1;letter-spacing:-.015em;
+.pn{font-family:var(--svh-sans);font-weight:600;font-size:var(--t-item);line-height:1.1;letter-spacing:-.015em;
   transition:transform .4s var(--ease-sale)}
 .pl{height:1px;border-bottom:1px dotted var(--svh-guia);transform:translateY(.35em);transition:border-color var(--motion-fast)}
-.mas{position:relative;width:28px;height:28px;border-radius:50%;border:1px solid var(--svh-faint);
+.mas{position:relative;width:24px;height:24px;border-radius:50%;border:1px solid var(--svh-faint);
   transition:background-color .25s,border-color .25s,transform .45s var(--ease-sale)}
 .mas::before,.mas::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.5px;border-radius:1px;
   background:var(--svh-ink);translate:-50% -50%}
@@ -475,7 +484,7 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 
 .com-acciones{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s6)}
 .enviar{display:inline-flex;align-items:center;gap:.3em;min-height:var(--touch);
-  font-family:var(--svh-sans);font-weight:650;font-size:var(--t-value);line-height:1;letter-spacing:-.015em;
+  font-family:var(--svh-sans);font-weight:650;font-size:var(--t-accion);line-height:1;letter-spacing:-.015em;
   text-decoration:underline;text-underline-offset:.3em;text-decoration-thickness:1px;text-decoration-color:var(--svh-subraya)}
 .enviar .ico{width:.62em;height:.62em;transition:transform var(--motion-fast)}
 .enviar:hover{text-decoration-color:currentColor}
@@ -506,8 +515,8 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .colofon{padding-top:var(--s4);border-top:2px solid var(--svh-rule-hard);
   display:grid;gap:var(--s4) var(--s8)}
 @media (min-width:640px){.colofon{grid-template-columns:minmax(0,1fr) auto;align-items:baseline}}
-.colofon .frase{margin:0;font-family:var(--svh-sans);font-weight:500;font-size:var(--t-value);
-  line-height:1.25;letter-spacing:-.015em;color:var(--svh-ink);text-wrap:balance}
+.colofon .frase{margin:0;font-family:var(--svh-sans);font-weight:500;font-size:var(--t-cuerpo);
+  line-height:1.45;letter-spacing:-.015em;color:var(--svh-ink);text-wrap:balance}
 .colofon .dom{margin:0;font-family:var(--svh-mono);font-size:var(--t-mono);letter-spacing:var(--ls-mono);
   text-transform:uppercase;color:var(--svh-dim)}
 

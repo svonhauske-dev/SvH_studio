@@ -48,6 +48,12 @@
   --t-value:    clamp(1.25rem, 4.6vw, 2rem);       /*  20 →  32  acción, colofón */
   --t-lede:     clamp(1rem, 3.7vw, 1.25rem);       /*  16 →  20  la frase: entrada, contexto, bio */
   --t-body:     1rem;                              /*        16  cuerpo */
+  /* Escala con escalones claros (auditoría 12 nov): título 44 · acción 24 ·
+     platillo 20 · entrada 20 · cuerpo 17 · dato 12. Antes platillos, acción
+     y colofón iban a 32 y competían con los títulos. */
+  --t-accion:   clamp(1.25rem, 2vw, 1.5rem);        /*  20 →  24  enviar comanda */
+  --t-item:     clamp(1.0625rem, 1.6vw, 1.25rem);   /*  17 →  20  platillo de la carta */
+  --t-cuerpo:   clamp(1rem, 1.2vw, 1.0625rem);      /*  16 →  17  párrafos */
   --t-desc:     1rem;                              /*        16  descripción de fila */
   --t-small:    0.75rem;                           /*        12  pie, secundario */
   --t-label:    0.75rem;                           /*        12  etiqueta de grupo */
