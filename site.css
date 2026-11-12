@@ -300,17 +300,26 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .js .lamina:not(.activa){cursor:pointer}
 
 /* Escritorio y celular juntos, sin marco de dispositivo. */
-.comp{position:relative;padding:0 13% 9% 0}
+.comp{position:relative;padding:0 13% 9% 0;margin:6px}
+/* MARCOS DE LÍNEA. Pantalla y teléfono dibujados como trazo plano —sin
+   biseles, brillos ni sombras—, con un respiro entre el trazo y el sitio.
+   Se leen como "pantalla" y "teléfono" sin parecer maqueta de plantilla.
+   En las vecinas el trazo se apaga con el velo. */
 .esc,.mov{display:block;overflow:hidden;background:var(--lugar);
-  outline:1px solid rgba(242,239,234,.2);outline-offset:-1px}
-.esc{position:relative;aspect-ratio:16/10;border-radius:6px;box-shadow:0 22px 60px rgba(0,0,0,.3);
-  transition:box-shadow .5s var(--ease-sale)}
+  --trazo:rgba(242,239,234,calc(.62 - .4 * var(--ad,0)));
+  outline:1.5px solid var(--trazo);outline-offset:clamp(3px,.5vw,6px)}
+.esc{position:relative;aspect-ratio:16/10;border-radius:4px}
 /* El radio del celular es proporcional al de un teléfono real a esa escala. */
-.mov{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:1/2;border-radius:10px;
-  box-shadow:0 18px 44px rgba(0,0,0,.38);
+.mov{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:1/2;border-radius:clamp(8px,1.4vw,14px);
+  /* El respiro del marco se rellena con el color de la página: si no, se
+     asoma el escritorio por detrás del teléfono. */
+  box-shadow:0 0 0 clamp(3px,.5vw,6px) var(--pagina,var(--lugar));
   transform:translate(calc(var(--d,0) * 38%), calc(var(--ad,0) * 10%));
   transition:translate .6s var(--ease-sale)}
 .esc img,.mov img{width:100%;height:100%;object-fit:cover;object-position:top}
+/* La cámara del teléfono: una píldora plana de tinta, arriba al centro. */
+.mov::before{content:"";position:absolute;z-index:1;top:5%;left:50%;translate:-50% 0;width:28%;height:3.2%;
+  border-radius:99px;background:#141210}
 .esc img{transform:translateX(calc(var(--d,0) * 5%)) scale(1.06);transform-origin:50% 0}
 /* Las vecinas se hunden en el color de la página con un velo de ese
    color, uno por pantalla y sin z-index (con z-index el del escritorio
@@ -320,7 +329,6 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 
 @media (hover:hover) and (pointer:fine){
   .lamina.activa .comp:hover .mov{translate:0 -4%}
-  .lamina.activa .comp:hover .esc{box-shadow:0 30px 80px rgba(0,0,0,.42)}
 }
 
 /* El pie: título · la frase · el dato · el enlace. Se desvanece antes que
