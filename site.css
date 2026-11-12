@@ -242,9 +242,12 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    lo pone el script). El riel no se desliza: es de la cocina, no de la tira.
    --cuelga es el espacio entre el riel y la lámina, donde vive la pinza. */
 .trabajo{--cuelga:26px}
-.riel{display:block;position:relative;height:0;margin-top:var(--after-label);z-index:4;pointer-events:none}
-.riel::before{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;top:-1px;height:2px;
-  background:var(--svh-on-tint);opacity:.55;transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
+/* Una sola línea: el filete de Trabajo ES el riel. Se extiende a todo el
+   ancho y los tickets cuelgan de él. Antes había dos líneas casi
+   paralelas —filete y riel— y se leían como un error. */
+.riel{display:block;position:relative;height:0;margin-top:0;z-index:4;pointer-events:none}
+.riel::before{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;top:-2px;height:2px;
+  background:var(--svh-rule-hard);transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
 .lamina{position:relative}
 .colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:10px;width:7.75rem;
   transform-origin:50% 0;rotate:var(--swing,0deg);will-change:rotate}
@@ -293,7 +296,7 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    El script la pone en cada cuadro y todo sale de ahí. El HTML trae los
    valores iniciales: la primera pintura ya es la que el script calcula. */
 .lamina{flex:0 0 var(--w);scroll-snap-align:start;scroll-snap-stop:always;
-  transform:scale(calc(1 - .06 * var(--ad,0)));transform-origin:0 40%}
+  transform:scale(calc(1 - .06 * var(--ad,0)));transform-origin:0 0}
 .js .lamina:not(.activa){cursor:pointer}
 
 /* Escritorio y celular juntos, sin marco de dispositivo. */
