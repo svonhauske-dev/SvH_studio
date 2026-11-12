@@ -307,7 +307,7 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    En las vecinas el trazo se apaga con el velo. */
 .esc,.mov{display:block;overflow:hidden;background:var(--lugar);
   --trazo:rgba(242,239,234,calc(.62 - .4 * var(--ad,0)));
-  outline:1.5px solid var(--trazo);outline-offset:clamp(3px,.5vw,6px)}
+  outline:1px solid var(--trazo);outline-offset:clamp(3px,.5vw,6px)}
 .esc{position:relative;aspect-ratio:16/10;border-radius:4px}
 /* El radio del celular es proporcional al de un teléfono real a esa escala. */
 .mov{position:absolute;right:0;bottom:0;width:25%;aspect-ratio:1/2;border-radius:clamp(8px,1.4vw,14px);
