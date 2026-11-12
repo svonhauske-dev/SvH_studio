@@ -97,8 +97,7 @@ a{color:inherit}
 }
 @media (min-width:1100px){.impresora{width:16rem}}
 /* La ranura: una boca oscura en el borde de arriba; el papel sale de abajo. */
-.ranura{position:absolute;z-index:2;top:0;left:-10px;right:-10px;height:10px;border-radius:0 0 7px 7px;
-  background:rgba(0,0,0,.42);box-shadow:inset 0 -2px 3px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.08)}
+.ranura{position:absolute;z-index:2;top:0;left:-12px;right:-12px;height:3px;background:var(--svh-on-tint);opacity:.55}
 .papel-h{max-width:none;padding-top:4px;transform-origin:50% 0;rotate:var(--giro,0deg);will-change:rotate,transform;
   transition:rotate 1.1s cubic-bezier(.34,1.56,.64,1);animation:columpio 2.6s cubic-bezier(.37,0,.63,1) 2.1s both}
 .ticket.ticket-h{padding-top:18px;animation:imprime-h 1.7s steps(16) .5s both}
@@ -244,16 +243,14 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
    --cuelga es el espacio entre el riel y la lámina, donde vive la pinza. */
 .trabajo{--cuelga:26px}
 .riel{display:block;position:relative;height:0;margin-top:var(--after-label);z-index:4;pointer-events:none}
-.riel::before{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;top:-2px;height:4px;
-  background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.22) 55%,rgba(0,0,0,.35));
-  box-shadow:0 3px 6px -2px rgba(0,0,0,.4);transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
+.riel::before{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;top:-1px;height:2px;
+  background:var(--svh-on-tint);opacity:.55;transform-origin:0 50%;animation:traza 1.2s var(--ease-media) .65s both}
 .lamina{position:relative}
 .colgante{position:absolute;z-index:3;top:calc(-1 * var(--cuelga) + 2px);left:10px;width:7.75rem;
-  transform-origin:50% 0;rotate:var(--swing,0deg);will-change:rotate;
-  filter:drop-shadow(0 14px 14px rgba(0,0,0,.3)) drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+  transform-origin:50% 0;rotate:var(--swing,0deg);will-change:rotate}
 /* La pinza que lo sujeta al riel. */
-.colgante::before{content:"";position:absolute;z-index:2;top:-4px;left:50%;translate:-50% 0;width:30px;height:10px;
-  border-radius:2px;background:linear-gradient(#5b5650,#2b2824);box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.colgante::before{content:"";position:absolute;z-index:2;top:-3px;left:50%;translate:-50% 0;width:26px;height:9px;
+  background:#141210}
 .ticket.ticket-p{padding:12px 9px 11px;font-size:8.5px;line-height:1.45}
 .ticket-p .t-fila{white-space:nowrap}
 .ticket-p .t-fila span + span{display:none}
@@ -452,9 +449,10 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 @media (max-width:719px){.ticket-col{justify-items:stretch}.ticket-col .papel{max-width:none}}
 @media (min-width:720px){.ticket-col{position:sticky;top:var(--s8)}}
 /* La sombra va en un envoltorio: la máscara del rasgado se la comería. */
-.papel{width:100%;max-width:19rem;filter:drop-shadow(0 22px 26px rgba(0,0,0,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+/* Plano: sin sombra ni textura. El papel sobre el color se separa solo;
+   la sombra blanda y el degradado metálico se leían como interfaz vieja. */
+.papel{width:100%;max-width:19rem}
 .ticket{--tinta-t:#22201C;background:#FBFAF6;color:var(--tinta-t);
-  background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.014) 0 1px,transparent 1px 3px);
   font-family:var(--svh-mono);font-size:var(--t-mono);line-height:1.6;
   letter-spacing:.03em;text-transform:uppercase;padding:22px 20px 26px;
   -webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/10px 6px repeat-x,
