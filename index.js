@@ -1,3 +1,6 @@
+/* Cada bloque va aislado en su propio try: si uno falla en algún
+   navegador, los demás siguen corriendo. Antes un error en la tira
+   detenía todo el archivo y las secciones de abajo nunca aparecían. */
 /* La tira de Trabajo.
 
    El deslizamiento es nativo (scroll-snap): sin este script la tira se
@@ -6,7 +9,7 @@
    cuadro. De ese número salen la escala, el celular que se corre, el pie
    de foto, los puntos y el color de la página, que se mezcla entre dos
    clientes mientras deslizas en vez de cambiar al llegar. */
-(function () {
+(function () { try {
   var tira = document.querySelector('.tira');
   if (!tira) return;
   var laminas = [].slice.call(tira.querySelectorAll('.lamina')),
@@ -142,10 +145,11 @@
   });
 
   medir();
-})();
+} catch (e) { if (window.console) console.error('svh:', e); } })();
 
 /* El resto de la página sube al entrar en pantalla, una vez. */
-(function () {
+(function () { try {
+  document.documentElement.classList.add('rv');
   var els = document.querySelectorAll('.revela');
   if (!('IntersectionObserver' in window)) {
     els.forEach(function (e) { e.classList.add('visto'); });
@@ -157,14 +161,14 @@
     });
   }, { rootMargin: '0px 0px -12% 0px' });
   els.forEach(function (e) { io.observe(e); });
-})();
+} catch (e) { if (window.console) console.error('svh:', e); } })();
 
 
 
 /* LA COMANDA. Cada platillo de la carta se imprime en el ticket; "Pedir
    algo así" pide lo que tiene ese sitio; "Enviar comanda" abre el correo
    con el pedido ya escrito. Sin script queda el correo normal. */
-(function () {
+(function () { try {
   var lista = document.getElementById('t-lineas');
   if (!lista) return;
   var enviar  = document.getElementById('enviar'),
@@ -237,10 +241,10 @@
     new IntersectionObserver(function (es) { ticketVisible = es[0].isIntersecting; revisarPildora(); }).observe(papel);
   }
   pintar();
-})();
+} catch (e) { if (window.console) console.error('svh:', e); } })();
 
 /* El ticket de arriba se mece hacia el cursor, poco, con resorte. */
-(function () {
+(function () { try {
   var p = document.getElementById('papel-h'), front = document.querySelector('.front');
   if (!p || !front || !matchMedia('(hover: hover) and (pointer: fine)').matches ||
       matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -250,11 +254,11 @@
     p.style.setProperty('--giro', (g * -3.5).toFixed(2) + 'deg');
   });
   front.addEventListener('pointerleave', function () { p.style.setProperty('--giro', '0deg'); });
-})();
+} catch (e) { if (window.console) console.error('svh:', e); } })();
 
 /* La dirección se copia al tocarla. Es el respaldo del mailto, que se cae
    sin ruido cuando el navegador no tiene con qué abrir el correo. */
-(function () {
+(function () { try {
   var boton = document.querySelector('[data-copiar]');
   if (!boton) return;
   var original = boton.textContent, temporizador;
@@ -300,4 +304,4 @@
     try { document.execCommand('copy'); avisar('Copiado'); } catch (e) { aMano(); }
     document.body.removeChild(caja);
   });
-})();
+} catch (e) { if (window.console) console.error('svh:', e); } })();
