@@ -495,6 +495,8 @@ body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 .enviar:hover{text-decoration-color:currentColor}
 .enviar:hover .ico{transform:translateX(3px)}
 .enviar[aria-disabled="true"]{opacity:.4;cursor:default}
+/* Lo que pasa al tocar "Enviar comanda", dicho antes de tocarlo. */
+.com-nota{flex-basis:100%;margin:calc(-1 * var(--s1)) 0 var(--s2);font-size:.875rem;line-height:1.45;color:var(--svh-dim)}
 .com-acciones .copiar{font-family:var(--svh-mono);font-size:var(--t-mono);letter-spacing:var(--ls-mono);text-transform:uppercase;color:var(--svh-dim)}
 
 /* "Pedir algo así", junto a "Ver el sitio": pide lo que ese sitio tiene. */
