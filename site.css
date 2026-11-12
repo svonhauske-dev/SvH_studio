@@ -189,13 +189,9 @@ body.tinto{
   --svh-guia:rgba(242,239,234,.25);
   color:var(--svh-ink);
 }
-/* La entrada: la página nace en papel y el color del primer cliente la
-   inunda. Sólo CSS; "backwards" pone el punto de partida y suelta. */
-@keyframes entra-color{
-  from{background-color:var(--svh-paper);--svh-ink:#101010;--svh-dim:rgba(16,16,16,.62);
-       --svh-rule:rgba(16,16,16,.15);--svh-rule-hard:#101010}
-}
-body.tinto{animation:entra-color 1s var(--ease-media) .5s backwards}
+/* Sin entrada de color: la página abre ya en el color del primer cliente.
+   El paso de papel a color al cargar, sin que nadie hiciera nada, se leía
+   como falla de carga. El color cambia sólo cuando el visitante desliza. */
 body.tinto ::selection{background:var(--svh-on-tint);color:var(--lugar)}
 body.tinto :focus-visible{outline-color:var(--svh-on-tint)}
 
